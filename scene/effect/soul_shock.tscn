@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://cw8rdqcidib7s"]
+
+[ext_resource type="PackedScene" uid="uid://b8w0unu6x2bpu" path="res://scene/effect/hit_area.tscn" id="1_c317j"]
+[ext_resource type="Script" path="res://script/effect/soul_shock.gd" id="2_8mbnt"]
+[ext_resource type="Texture2D" uid="uid://dmjsplbl32kbo" path="res://asset/image/asset.png" id="3_dwrdi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xb7rl"]
+atlas = ExtResource("3_dwrdi")
+region = Rect2(300, 700, 100, 100)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_82qg4"]
+radius = 48.6621
+
+[node name="SoulShock" instance=ExtResource("1_c317j")]
+script = ExtResource("2_8mbnt")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = SubResource("AtlasTexture_xb7rl")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_82qg4")

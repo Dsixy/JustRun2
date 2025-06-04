@@ -1,0 +1,22 @@
+[gd_scene load_steps=7 format=3 uid="uid://djqqoi155qbv8"]
+
+[ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_2jifn"]
+[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="1_4htp3"]
+[ext_resource type="Script" path="res://script/weapon/shotgun.gd" id="2_i3hou"]
+[ext_resource type="PackedScene" uid="uid://b13cb8qc2ag3m" path="res://scene/item/bullet.tscn" id="3_0311r"]
+[ext_resource type="AudioStream" uid="uid://dgvwhpki74lnx" path="res://asset/SFX/weapon/shotgun.wav" id="5_nhcos"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jfgc4"]
+atlas = ExtResource("1_4htp3")
+region = Rect2(200, 0, 100, 100)
+
+[node name="Shotgun" instance=ExtResource("1_2jifn")]
+texture = SubResource("AtlasTexture_jfgc4")
+script = ExtResource("2_i3hou")
+bulletScene = ExtResource("3_0311r")
+id = 2
+na = "霰弹枪"
+descriptions = Array[String](["以扇面发射5颗子弹", "额外发射1颗子弹", "子弹暴击伤害增加50%", "额外发射3颗子弹", "子弹基础伤害额外增加2，攻击间隔减少到0.6s"])
+
+[node name="AudioStreamPlayer" parent="." index="0"]
+stream = ExtResource("5_nhcos")

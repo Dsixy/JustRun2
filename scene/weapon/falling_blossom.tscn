@@ -1,0 +1,22 @@
+[gd_scene load_steps=7 format=3 uid="uid://caggsyvm441xe"]
+
+[ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_hre1d"]
+[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="2_p3urv"]
+[ext_resource type="Script" path="res://script/weapon/falling_blossom.gd" id="3_8bqqg"]
+[ext_resource type="PackedScene" uid="uid://c5i27r1u00pni" path="res://scene/effect/slash.tscn" id="4_6fl6u"]
+[ext_resource type="AudioStream" uid="uid://dta1gwr8q51y6" path="res://asset/SFX/weapon/falling_blossom.mp3" id="5_kmos7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdln6"]
+atlas = ExtResource("2_p3urv")
+region = Rect2(400, 0, 100, 100)
+
+[node name="FallingBlossom" instance=ExtResource("1_hre1d")]
+texture = SubResource("AtlasTexture_mdln6")
+script = ExtResource("3_8bqqg")
+slashScene = ExtResource("4_6fl6u")
+id = 4
+na = "花刀玉手"
+descriptions = Array[String](["刺出3道令人眼花缭乱的剑势，如落英缤纷。", "花刀范围增加40%", "花刀追加一刀剑势", "花刀范围额外增加60%", "花刀追加两刀，命中敌人回复1点生命值"])
+
+[node name="AudioStreamPlayer" parent="." index="0"]
+stream = ExtResource("5_kmos7")

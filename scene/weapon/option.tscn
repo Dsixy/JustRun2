@@ -1,0 +1,17 @@
+[gd_scene load_steps=6 format=3 uid="uid://jcf3dq5nrnp2"]
+
+[ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_ydcrv"]
+[ext_resource type="Texture2D" uid="uid://cfy2a5opnoaxu" path="res://asset/image/asset.png" id="2_cvqth"]
+[ext_resource type="Script" path="res://script/weapon/option.gd" id="2_hh62x"]
+[ext_resource type="PackedScene" uid="uid://hcryl6moqyoe" path="res://scene/item/option.tscn" id="4_heone"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogqno"]
+atlas = ExtResource("2_cvqth")
+region = Rect2(100, 500, 100, 100)
+
+[node name="Option" instance=ExtResource("1_ydcrv")]
+texture = SubResource("AtlasTexture_ogqno")
+script = ExtResource("2_hh62x")
+optionScene = ExtResource("4_heone")
+id = 25
+na = "Option"

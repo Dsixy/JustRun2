@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://14epxxya0aig"]
+
+[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="1_bl2ta"]
+[ext_resource type="Script" path="res://script/item/star.gd" id="2_5p7gd"]
+[ext_resource type="PackedScene" uid="uid://bm453yp21l38e" path="res://scene/effect/poker_explode.tscn" id="2_c5fh6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1by35"]
+atlas = ExtResource("1_bl2ta")
+region = Rect2(1000, 700, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44kgc"]
+atlas = ExtResource("1_bl2ta")
+region = Rect2(900, 600, 100, 100)
+
+[sub_resource type="Curve" id="Curve_ptcd4"]
+_data = [Vector2(0.0231023, 0.186473), 0.0, 0.0, 0, 0, Vector2(0.990099, 0.190728), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Star" type="Node2D"]
+script = ExtResource("2_5p7gd")
+explodeScene = ExtResource("2_c5fh6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_1by35")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 100
+randomness = 0.5
+texture = SubResource("AtlasTexture_44kgc")
+emission_shape = 1
+emission_sphere_radius = 30.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 124.22
+initial_velocity_max = 124.22
+scale_amount_curve = SubResource("Curve_ptcd4")
+color = Color(1, 1, 0.407843, 1)

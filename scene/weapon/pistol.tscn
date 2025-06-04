@@ -1,0 +1,21 @@
+[gd_scene load_steps=7 format=3 uid="uid://cscmsfcr81v3t"]
+
+[ext_resource type="Texture2D" uid="uid://cfy2a5opnoaxu" path="res://asset/image/asset.png" id="1_6xirc"]
+[ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_v6lis"]
+[ext_resource type="Script" path="res://script/weapon/pistol.gd" id="2_03nom"]
+[ext_resource type="AudioStream" uid="uid://prak0p3y8klm" path="res://asset/SFX/weapon/pistol_shot.wav" id="3_1t6hc"]
+[ext_resource type="PackedScene" uid="uid://b13cb8qc2ag3m" path="res://scene/item/bullet.tscn" id="4_ygsjn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bor0c"]
+atlas = ExtResource("1_6xirc")
+region = Rect2(0, 0, 100, 100)
+
+[node name="Pistol" instance=ExtResource("1_v6lis")]
+texture = SubResource("AtlasTexture_bor0c")
+script = ExtResource("2_03nom")
+bulletScene = ExtResource("4_ygsjn")
+na = "手枪"
+descriptions = Array[String](["平平无奇", "暴击伤害增加50%", "攻击5%概率发射4枚连锁弹。", "暴击率增加30%", "连锁弹发射概率提升25%，子弹数增加2"])
+
+[node name="AudioStreamPlayer" parent="." index="0"]
+stream = ExtResource("3_1t6hc")

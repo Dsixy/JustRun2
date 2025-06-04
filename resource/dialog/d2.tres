@@ -1,0 +1,93 @@
+[gd_resource type="Resource" script_class="DialogRes" load_steps=18 format=3 uid="uid://b1q0gs1bl37qx"]
+
+[ext_resource type="Script" path="res://resource/dialog/dialog_res.gd" id="1_oslkw"]
+[ext_resource type="Script" path="res://resource/dialog/choice.gd" id="1_ujw3j"]
+[ext_resource type="Script" path="res://resource/dialog/dialog.gd" id="2_7blxj"]
+
+[sub_resource type="Resource" id="Resource_s3sfj"]
+script = ExtResource("1_ujw3j")
+text = ""
+next_id = 1
+
+[sub_resource type="Resource" id="Resource_acy8o"]
+script = ExtResource("2_7blxj")
+id = 0
+speaker = ""
+text = "终于找到你了，你刚刚去哪了？"
+choice = Array[ExtResource("1_ujw3j")]([SubResource("Resource_s3sfj")])
+
+[sub_resource type="Resource" id="Resource_ka5u2"]
+script = ExtResource("1_ujw3j")
+text = ""
+next_id = 2
+
+[sub_resource type="Resource" id="Resource_s8v8e"]
+script = ExtResource("2_7blxj")
+id = 1
+speaker = ""
+text = "你说你刚刚看见卡莫了，那家伙跑的像土拨鼠一样快。"
+choice = Array[ExtResource("1_ujw3j")]([SubResource("Resource_ka5u2")])
+
+[sub_resource type="Resource" id="Resource_ylniv"]
+script = ExtResource("1_ujw3j")
+text = ""
+next_id = 3
+
+[sub_resource type="Resource" id="Resource_r2l0a"]
+script = ExtResource("2_7blxj")
+id = 0
+speaker = ""
+text = "别在这闲逛，这里不安全"
+choice = Array[ExtResource("1_ujw3j")]([SubResource("Resource_ylniv")])
+
+[sub_resource type="Resource" id="Resource_a22ao"]
+script = ExtResource("1_ujw3j")
+text = ""
+next_id = 4
+
+[sub_resource type="Resource" id="Resource_p711x"]
+script = ExtResource("2_7blxj")
+id = 3
+speaker = ""
+text = "我有预感，再过几分钟，会有一个很可怕的家伙出现"
+choice = Array[ExtResource("1_ujw3j")]([SubResource("Resource_a22ao")])
+
+[sub_resource type="Resource" id="Resource_c7i3u"]
+script = ExtResource("1_ujw3j")
+text = ""
+next_id = 5
+
+[sub_resource type="Resource" id="Resource_a4s4w"]
+script = ExtResource("2_7blxj")
+id = 4
+speaker = ""
+text = "你不想走，你脑子出什么毛病了？"
+choice = Array[ExtResource("1_ujw3j")]([SubResource("Resource_c7i3u")])
+
+[sub_resource type="Resource" id="Resource_cg4fn"]
+script = ExtResource("1_ujw3j")
+text = ""
+next_id = 6
+
+[sub_resource type="Resource" id="Resource_cib0b"]
+script = ExtResource("2_7blxj")
+id = 5
+speaker = ""
+text = "算了，你一直都是这傻样"
+choice = Array[ExtResource("1_ujw3j")]([SubResource("Resource_cg4fn")])
+
+[sub_resource type="Resource" id="Resource_ll7ew"]
+script = ExtResource("1_ujw3j")
+text = ""
+next_id = -1
+
+[sub_resource type="Resource" id="Resource_apwel"]
+script = ExtResource("2_7blxj")
+id = 6
+speaker = ""
+text = "这个给你，注意安全"
+choice = Array[ExtResource("1_ujw3j")]([SubResource("Resource_ll7ew")])
+
+[resource]
+script = ExtResource("1_oslkw")
+dialog = Array[ExtResource("2_7blxj")]([SubResource("Resource_acy8o"), SubResource("Resource_s8v8e"), SubResource("Resource_r2l0a"), SubResource("Resource_p711x"), SubResource("Resource_a4s4w"), SubResource("Resource_cib0b"), SubResource("Resource_apwel")])

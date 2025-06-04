@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=3 uid="uid://ljnpmeoiioce"]
+
+[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="1_ddpfp"]
+[ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_gjwxu"]
+[ext_resource type="Script" path="res://script/weapon/comic_book.gd" id="2_7thoc"]
+[ext_resource type="PackedScene" uid="uid://bcc1vmwb4tq7j" path="res://scene/item/super_monkey.tscn" id="3_gt4p3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wuc18"]
+atlas = ExtResource("1_ddpfp")
+region = Rect2(0, 300, 100, 100)
+
+[node name="ComicBook" instance=ExtResource("1_gjwxu")]
+texture = SubResource("AtlasTexture_wuc18")
+script = ExtResource("2_7thoc")
+superMonkeyScene = ExtResource("3_gt4p3")
+id = 15
+na = "漫画书"
+descriptions = Array[String](["阅读时次后召唤1个猴超人，猴超人从左向右飞行", "猴超人数数量+2", "猴超人基础伤害+10", "猴超人数量额外+2", "需要累计攻击7次触发，触发时召唤的猴超人数量+45，伤害+20"])

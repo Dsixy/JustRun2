@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=3 uid="uid://bmtj7ns1k2hw"]
+
+[ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_5yd2f"]
+[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="1_a2ku8"]
+[ext_resource type="Script" path="res://script/weapon/song_of_soul.gd" id="1_eftwq"]
+[ext_resource type="PackedScene" uid="uid://v1qtjbscbf4p" path="res://scene/effect/song_effect.tscn" id="3_e2lyv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8oc3h"]
+atlas = ExtResource("1_a2ku8")
+region = Rect2(400, 100, 100, 100)
+
+[node name="SongOfSoul" instance=ExtResource("1_5yd2f")]
+texture = SubResource("AtlasTexture_8oc3h")
+script = ExtResource("1_eftwq")
+SongEffectScene = ExtResource("3_e2lyv")
+id = 9
+na = "心之歌"
+descriptions = Array[String](["奏响心灵的旋律，对周围敌人造成范围伤害。", "范围增加20%", "歌声会击退周围目标", "范围额外增加60%", "范围提升40%，歌声效果会吸取范围内的水晶并增加其经验获取值"])

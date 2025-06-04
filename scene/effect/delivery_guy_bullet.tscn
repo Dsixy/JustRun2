@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://0a35uytptqhc"]
+
+[ext_resource type="PackedScene" uid="uid://b8w0unu6x2bpu" path="res://scene/effect/hit_area.tscn" id="1_orj8i"]
+[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="2_gw7sx"]
+[ext_resource type="Script" path="res://script/effect/delivery_guy_bullet.gd" id="2_snf6k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbce4"]
+atlas = ExtResource("2_gw7sx")
+region = Rect2(1200, 600, 100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1lgtg"]
+size = Vector2(96, 80)
+
+[node name="DeliveryGuyBullet" instance=ExtResource("1_orj8i")]
+script = ExtResource("2_snf6k")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = SubResource("AtlasTexture_fbce4")
+
+[node name="Area2D" parent="." index="1"]
+collision_mask = 5
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("RectangleShape2D_1lgtg")

@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://c40vv2govnqik"]
+
+[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="1_fkj86"]
+[ext_resource type="Script" path="res://script/item/upgrade_tool.gd" id="2_ojxhj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7jamc"]
+atlas = ExtResource("1_fkj86")
+region = Rect2(1000, 900, 100, 100)
+
+[node name="UpgradeTool" type="Sprite2D"]
+texture = SubResource("AtlasTexture_7jamc")
+script = ExtResource("2_ojxhj")

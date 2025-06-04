@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://hng738en3gdm"]
+
+[ext_resource type="PackedScene" uid="uid://b8w0unu6x2bpu" path="res://scene/effect/hit_area.tscn" id="1_wyjw3"]
+[ext_resource type="Script" path="res://script/effect/spray.gd" id="2_4x003"]
+[ext_resource type="Texture2D" uid="uid://c7yfsoql4ck4j" path="res://asset/image/asset.png" id="3_7p3ms"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kbcju"]
+size = Vector2(32, 64)
+
+[sub_resource type="Curve" id="Curve_ojhpd"]
+_data = [Vector2(0, 0.990313), 0.0, 0.0, 0, 0, Vector2(0.989091, 0.0506707), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nebmw"]
+curve = SubResource("Curve_ojhpd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rqh1c"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+angle_min = -45.0
+angle_max = 45.0
+initial_velocity_min = 400.0
+initial_velocity_max = 400.0
+angular_velocity_min = -500.0
+angular_velocity_max = 500.0
+gravity = Vector3(0, 0, 0)
+damping_min = 40.0
+damping_max = 60.0
+scale_min = 0.6
+scale_max = 0.8
+alpha_curve = SubResource("CurveTexture_nebmw")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15i67"]
+atlas = ExtResource("3_7p3ms")
+region = Rect2(800, 800, 100, 100)
+
+[node name="Spray" instance=ExtResource("1_wyjw3")]
+script = ExtResource("2_4x003")
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(577, 410)
+scale = Vector2(10, 10)
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(16, 0)
+shape = SubResource("RectangleShape2D_kbcju")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="2"]
+modulate = Color(1, 0.721569, 1, 1)
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_rqh1c")
+texture = SubResource("AtlasTexture_15i67")
+explosiveness = 0.5

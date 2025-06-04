@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=3 uid="uid://os8jbwyx2rwl"]
+
+[ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_olpol"]
+[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="2_xbfu3"]
+[ext_resource type="Script" path="res://script/weapon/poison_vial.gd" id="3_n0xm4"]
+[ext_resource type="PackedScene" uid="uid://dgdxwrbp6837k" path="res://scene/effect/poison_bottle.tscn" id="4_rjwej"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5pjfd"]
+atlas = ExtResource("2_xbfu3")
+region = Rect2(0, 200, 100, 100)
+
+[node name="PoisonVial" instance=ExtResource("1_olpol")]
+texture = SubResource("AtlasTexture_5pjfd")
+script = ExtResource("3_n0xm4")
+poisonBottleScene = ExtResource("4_rjwej")
+id = 10
+na = "毒药瓶"
+descriptions = Array[String](["随机甩出3瓶毒药，生成毒圈，敌人每秒受到伤害并附加中毒Buff", "额外掷出1瓶毒药", "毒圈范围增加40%，基础伤害增加5点", "额外掷出3瓶毒药", "毒圈范围增加100%，基础伤害增加15"])

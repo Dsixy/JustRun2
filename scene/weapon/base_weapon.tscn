@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctj376snmdfyc"]
+
+[ext_resource type="Script" path="res://script/weapon/base_weapon.gd" id="1_0m214"]
+
+[node name="BaseWeapon" type="Sprite2D"]
+script = ExtResource("1_0m214")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"

@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://hcryl6moqyoe"]
+
+[ext_resource type="Script" path="res://script/item/option.gd" id="1_vnkq6"]
+[ext_resource type="Texture2D" uid="uid://cfy2a5opnoaxu" path="res://asset/image/asset.png" id="2_h4f4h"]
+[ext_resource type="PackedScene" uid="uid://b13cb8qc2ag3m" path="res://scene/item/bullet.tscn" id="2_qrxij"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1326"]
+atlas = ExtResource("2_h4f4h")
+region = Rect2(100, 500, 100, 100)
+
+[sub_resource type="Animation" id="Animation_l2n11"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_klk5s"]
+resource_name = "default"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 40)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e75vg"]
+_data = {
+"RESET": SubResource("Animation_l2n11"),
+"default": SubResource("Animation_klk5s")
+}
+
+[node name="Option" type="Node2D"]
+position = Vector2(0, 0.616174)
+scale = Vector2(0.4, 0.4)
+script = ExtResource("1_vnkq6")
+bulletScene = ExtResource("2_qrxij")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_c1326")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_e75vg")
+}
+autoplay = "default"
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

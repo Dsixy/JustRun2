@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://vfxtn7lvdwox"]
+
+[ext_resource type="Script" path="res://script/UI/character_select_screen.gd" id="1_6wtn4"]
+[ext_resource type="Texture2D" uid="uid://sgiqg2ou2jtx" path="res://asset/image/shop.png" id="2_ubwjs"]
+[ext_resource type="Texture2D" uid="uid://cl3ydpsmduqh2" path="res://asset/image/asset.png" id="3_6ahhy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmqwg"]
+atlas = ExtResource("3_6ahhy")
+region = Rect2(100, 700, 200, 200)
+
+[node name="CharacterSelectScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6wtn4")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ubwjs")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 300.0
+offset_right = 400.0
+offset_bottom = 300.0
+theme_override_constants/h_separation = 400
+theme_override_constants/v_separation = 400
+columns = 3
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1576.0
+offset_top = 784.0
+offset_right = 1776.0
+offset_bottom = 984.0
+texture_normal = SubResource("AtlasTexture_mmqwg")
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=3 uid="uid://boo42n4my4ei4"]
+
+[ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_wp0tc"]
+[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="2_oy482"]
+[ext_resource type="Script" path="res://script/weapon/delivery_guy.gd" id="3_indrj"]
+[ext_resource type="PackedScene" uid="uid://0a35uytptqhc" path="res://scene/effect/delivery_guy_bullet.tscn" id="4_q4i1p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ecpqu"]
+atlas = ExtResource("2_oy482")
+region = Rect2(300, 200, 100, 100)
+
+[node name="DeliveryGuy" instance=ExtResource("1_wp0tc")]
+texture = SubResource("AtlasTexture_ecpqu")
+script = ExtResource("3_indrj")
+guyScene = ExtResource("4_q4i1p")
+id = 13
+na = "外卖员"
+descriptions = Array[String](["攻击释放2个外卖员，外卖员向随机敌人冲刺，到达后返回", "外卖员个数+1", "外卖员返回会带回额外金币", "外卖员个数额外+2", "外卖员返回会带回路上的金币，且外卖员拾取金币数量越多，伤害越高"])

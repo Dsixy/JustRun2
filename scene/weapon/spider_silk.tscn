@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=3 uid="uid://br70r1q45pruw"]
+
+[ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_h8w4k"]
+[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="2_t1sc8"]
+[ext_resource type="Script" path="res://script/weapon/spider_silk.gd" id="3_x7gm5"]
+[ext_resource type="PackedScene" uid="uid://fdxqxpnt3jky" path="res://scene/item/spider_silk_bullet.tscn" id="4_uuc5y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d714m"]
+atlas = ExtResource("2_t1sc8")
+region = Rect2(400, 200, 100, 100)
+
+[node name="SpiderSilk" instance=ExtResource("1_h8w4k")]
+texture = SubResource("AtlasTexture_d714m")
+script = ExtResource("3_x7gm5")
+bulletScene = ExtResource("4_uuc5y")
+id = 14
+na = "蛛网"
+descriptions = Array[String](["发射一团蛛丝，命中敌人会展开蛛网，被蛛丝攻击的敌人身上的所有持续伤害立刻结算并造成35%的伤害。", "蛛丝的范围增加20%", "蛛丝结算伤害提升到55%", "蛛丝的范围额外增加40%", "蛛丝结算伤害提升到100%，且蛛丝不会清除原有buff"])

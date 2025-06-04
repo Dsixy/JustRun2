@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://76knna1ujbai"]
+
+[ext_resource type="Script" path="res://script/weapon_arm/weapon_arm.gd" id="1_pmil6"]
+
+[node name="BaseWeaponArm" type="Node2D"]
+script = ExtResource("1_pmil6")

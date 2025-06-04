@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://bxi3kg0o3ro5u"]
+
+[ext_resource type="PackedScene" uid="uid://b8w0unu6x2bpu" path="res://scene/effect/hit_area.tscn" id="1_rwekq"]
+[ext_resource type="Script" path="res://script/effect/scythe_slash.gd" id="2_a65fl"]
+[ext_resource type="Texture2D" uid="uid://cea3tomwxq5h0" path="res://asset/image/asset2.png" id="3_rvgw8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4dyl"]
+atlas = ExtResource("3_rvgw8")
+region = Rect2(0, 500, 600, 100)
+
+[sub_resource type="Animation" id="Animation_fwew0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_feicr"]
+resource_name = "slash"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_npr1f"]
+_data = {
+"RESET": SubResource("Animation_fwew0"),
+"slash": SubResource("Animation_feicr")
+}
+
+[node name="ScytheSlash" instance=ExtResource("1_rwekq")]
+scale = Vector2(3, 3)
+script = ExtResource("2_a65fl")
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(0, 40)
+rotation = -2.35619
+scale = Vector2(1.5, 1.5)
+texture = SubResource("AtlasTexture_s4dyl")
+hframes = 6
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+disabled = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" index="1"]
+polygon = PackedVector2Array(0, -21.3333, -58.6667, -8, -106.667, 42.6667, 0, 21.3333, 106.667, 42.6667, 58.6667, -5.33333)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_npr1f")
+}
+autoplay = "slash"

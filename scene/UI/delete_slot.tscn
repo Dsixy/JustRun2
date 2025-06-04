@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://buu7grkjqu15s"]
+
+[ext_resource type="Script" path="res://script/UI/delete_slot.gd" id="1_14pih"]
+[ext_resource type="Texture2D" uid="uid://272f5wtmm3cl" path="res://asset/image/asset.png" id="1_qhtfq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7eys"]
+atlas = ExtResource("1_qhtfq")
+region = Rect2(500, 800, 100, 100)
+
+[node name="DeleteSlot" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_v7eys")
+script = ExtResource("1_14pih")

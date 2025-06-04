@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=3 uid="uid://cvrtmcwotabin"]
+
+[ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_2hrry"]
+[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="2_n0yha"]
+[ext_resource type="Script" path="res://script/weapon/coin_gun.gd" id="3_ivskd"]
+[ext_resource type="PackedScene" uid="uid://ce4s2d8e06xde" path="res://scene/item/coin_bullet.tscn" id="4_ffk2x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uh1at"]
+atlas = ExtResource("2_n0yha")
+region = Rect2(0, 400, 100, 100)
+
+[node name="CoinGun" instance=ExtResource("1_2hrry")]
+texture = SubResource("AtlasTexture_uh1at")
+script = ExtResource("3_ivskd")
+bulletScene = ExtResource("4_ffk2x")
+id = 19
+na = "金币枪"
+descriptions = Array[String](["攻击发射金币子弹，当持有金币>50/100/200/500/1000时，额外消耗1/2/3/5/8个金币，发射1/2/5/8/14个子弹。", "基础金币子弹数+2", "金币子弹基础伤害+4", "金币子弹伤害增加，增加值为0.2%现有金币", "当金币个数大于2000时，爆发金币雨，消耗100金币，发射100个子弹"])

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://o40j3tsr5fu8"]
+
+[ext_resource type="PackedScene" uid="uid://l6lkh2jgk082" path="res://scene/buff/time_buff.tscn" id="1_jrtao"]
+[ext_resource type="Script" path="res://script/buff/super_pro_buff.gd" id="2_oulyk"]
+
+[node name="SuperProBuff" instance=ExtResource("1_jrtao")]
+script = ExtResource("2_oulyk")
+ID = 9

@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://ftvn45unn2fo"]
+
+[ext_resource type="PackedScene" uid="uid://b8w0unu6x2bpu" path="res://scene/effect/hit_area.tscn" id="1_db2r4"]
+[ext_resource type="Script" path="res://script/effect/frost_wind.gd" id="2_jwwhi"]
+[ext_resource type="Texture2D" uid="uid://c3bsuij8weu70" path="res://asset/image/asset.png" id="2_or3l7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gb04m"]
+size = Vector2(24, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dk1c"]
+atlas = ExtResource("2_or3l7")
+region = Rect2(900, 500, 100, 100)
+
+[sub_resource type="Curve" id="Curve_li6v5"]
+_data = [Vector2(0, 0.164901), 0.0, 0.0, 0, 0, Vector2(0.9967, 0.0615895), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="FrostWind" instance=ExtResource("1_db2r4")]
+script = ExtResource("2_jwwhi")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(12, 0)
+shape = SubResource("RectangleShape2D_gb04m")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="2"]
+emitting = false
+amount = 60
+one_shot = true
+explosiveness = 0.8
+texture = SubResource("AtlasTexture_2dk1c")
+emission_shape = 3
+emission_rect_extents = Vector2(10, 40)
+spread = 30.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 350.0
+initial_velocity_max = 350.0
+damping_min = 100.0
+damping_max = 100.0
+scale_amount_curve = SubResource("Curve_li6v5")
+color = Color(0.740676, 0.861286, 1, 1)

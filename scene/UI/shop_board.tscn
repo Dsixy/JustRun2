@@ -1,0 +1,91 @@
+[gd_scene load_steps=7 format=3 uid="uid://cm5rwsjcqeei5"]
+
+[ext_resource type="Script" path="res://script/UI/shop_board.gd" id="1_4fwy3"]
+[ext_resource type="Texture2D" uid="uid://sgiqg2ou2jtx" path="res://asset/image/shop.png" id="1_l5qmn"]
+[ext_resource type="PackedScene" uid="uid://bfqr53erxvhy5" path="res://scene/UI/shop_slot.tscn" id="3_6xtmx"]
+[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="4_fs1nj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pr83c"]
+atlas = ExtResource("4_fs1nj")
+region = Rect2(400, 800, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tg3qm"]
+atlas = ExtResource("4_fs1nj")
+region = Rect2(400, 700, 100, 100)
+
+[node name="ShopBoard" type="Control"]
+process_mode = 3
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_4fwy3")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1927.0
+offset_bottom = 1084.0
+texture = ExtResource("1_l5qmn")
+
+[node name="ShopSlot" parent="." instance=ExtResource("3_6xtmx")]
+layout_mode = 0
+offset_left = 229.0
+offset_top = 587.0
+offset_right = 329.0
+offset_bottom = 687.0
+
+[node name="ShopSlot2" parent="." instance=ExtResource("3_6xtmx")]
+layout_mode = 0
+offset_left = 629.0
+offset_top = 193.0
+offset_right = 729.0
+offset_bottom = 293.0
+
+[node name="ShopSlot3" parent="." instance=ExtResource("3_6xtmx")]
+layout_mode = 0
+offset_left = 1026.0
+offset_top = 661.0
+offset_right = 1126.0
+offset_bottom = 761.0
+
+[node name="ShopSlot4" parent="." instance=ExtResource("3_6xtmx")]
+layout_mode = 0
+offset_left = 1475.0
+offset_top = 365.0
+offset_right = 1575.0
+offset_bottom = 465.0
+
+[node name="ReturnButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 298.0
+offset_right = 313.0
+offset_bottom = 498.0
+texture_normal = SubResource("AtlasTexture_pr83c")
+stretch_mode = 0
+
+[node name="RefreshBotton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1600.0
+offset_top = 800.0
+offset_right = 1800.0
+offset_bottom = 1000.0
+texture_normal = SubResource("AtlasTexture_tg3qm")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 57.0
+offset_top = -116.0
+offset_right = 257.0
+offset_bottom = -47.0
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 50
+text = "点击购买"
+
+[connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="RefreshBotton" to="." method="_on_refresh_botton_pressed"]

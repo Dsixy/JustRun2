@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://b00i2yptpq83"]
+
+[ext_resource type="Script" path="res://script/effect/gain_effect.gd" id="1_2uue1"]
+[ext_resource type="Texture2D" uid="uid://dlqvq833ewryv" path="res://asset/image/asset2.png" id="1_bogu0"]
+[ext_resource type="Theme" uid="uid://tkhof3a4pa3x" path="res://resource/transparent_button.tres" id="3_kh7fo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wepiv"]
+atlas = ExtResource("1_bogu0")
+region = Rect2(600, 0, 300, 300)
+
+[node name="GainEffect" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_2uue1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 2.86904
+texture = SubResource("AtlasTexture_wepiv")
+
+[node name="Button" type="Button" parent="."]
+offset_left = -64.0
+offset_top = 72.0
+offset_right = 64.0
+offset_bottom = 114.0
+theme = ExtResource("3_kh7fo")
+theme_override_font_sizes/font_size = 30
+text = "点击此处"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

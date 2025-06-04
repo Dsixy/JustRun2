@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3yiotnug3sg8"]
+
+[ext_resource type="Script" path="res://script/buff/frost_bite_buff.gd" id="1_hgdb3"]
+
+[node name="FrostBiteBuff" type="Node"]
+script = ExtResource("1_hgdb3")
+ID = 2

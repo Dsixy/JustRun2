@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7hcib3jdou0m"]
+
+[ext_resource type="PackedScene" uid="uid://b8w0unu6x2bpu" path="res://scene/effect/hit_area.tscn" id="1_uaatq"]
+[ext_resource type="Script" path="res://script/effect/rocked_explode.gd" id="2_j0ubl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2n7xd"]
+
+[sub_resource type="Curve" id="Curve_dyotw"]
+min_value = 0.5
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.986799, 0.535099), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="RockedExplode" instance=ExtResource("1_uaatq")]
+script = ExtResource("2_j0ubl")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_2n7xd")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="2"]
+z_index = 1
+amount = 100
+explosiveness = 0.9
+lifetime_randomness = 0.5
+fixed_fps = 760
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 250.0
+initial_velocity_max = 350.0
+scale_amount_min = 15.0
+scale_amount_max = 25.0
+scale_amount_curve = SubResource("Curve_dyotw")
+color = Color(0.537011, 0.537011, 0.537011, 1)

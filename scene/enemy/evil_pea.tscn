@@ -1,0 +1,115 @@
+[gd_scene load_steps=12 format=3 uid="uid://ddkba1aoxj20d"]
+
+[ext_resource type="PackedScene" uid="uid://cfgh7svcqxu8y" path="res://scene/enemy/base_enemy.tscn" id="1_admad"]
+[ext_resource type="Script" path="res://script/enemy/evil_pea.gd" id="2_81s2v"]
+[ext_resource type="Texture2D" uid="uid://cc0ydsjcahaol" path="res://asset/image/asset.png" id="3_quwq4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_raf1w"]
+atlas = ExtResource("3_quwq4")
+region = Rect2(300, 700, 100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hajr0"]
+size = Vector2(80, 88)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nook7"]
+atlas = ExtResource("3_quwq4")
+region = Rect2(1500, 200, 100, 100)
+
+[sub_resource type="Animation" id="Animation_0s3r7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6d8et"]
+resource_name = "move"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/Sprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(4.05312e-06, 5), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Sprite2D:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.12, 0.9), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_be6yt"]
+_data = {
+"RESET": SubResource("Animation_0s3r7"),
+"move": SubResource("Animation_6d8et")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fo6om"]
+size = Vector2(64, 72)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h45x1"]
+size = Vector2(64, 72)
+
+[node name="EvilPea" instance=ExtResource("1_admad")]
+script = ExtResource("2_81s2v")
+
+[node name="Shadow" parent="." index="0"]
+modulate = Color(0.180005, 0.180005, 0.180005, 1)
+position = Vector2(0, 40)
+scale = Vector2(1, 0.49)
+texture = SubResource("AtlasTexture_raf1w")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_hajr0")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D" index="0"]
+position = Vector2(1.46222e-06, 1.80382)
+scale = Vector2(1.04329, 0.963924)
+texture = SubResource("AtlasTexture_nook7")
+
+[node name="AnimationPlayer" parent="." index="3"]
+libraries = {
+"": SubResource("AnimationLibrary_be6yt")
+}
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_fo6om")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_h45x1")

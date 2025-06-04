@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://cwsvbuprq45oy"]
+
+[ext_resource type="Script" path="res://script/item/poker_bullet.gd" id="1_gw1wp"]
+[ext_resource type="Texture2D" uid="uid://c7yfsoql4ck4j" path="res://asset/image/asset.png" id="1_ljawl"]
+[ext_resource type="PackedScene" uid="uid://bm453yp21l38e" path="res://scene/effect/poker_explode.tscn" id="3_0w500"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5o4kq"]
+atlas = ExtResource("1_ljawl")
+region = Rect2(1100, 700, 400, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2r7t4"]
+size = Vector2(63, 87)
+
+[node name="PokerBullet" type="Sprite2D"]
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_5o4kq")
+hframes = 4
+frame = 3
+script = ExtResource("1_gw1wp")
+explodeScene = ExtResource("3_0w500")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(2.5, -0.5)
+shape = SubResource("RectangleShape2D_2r7t4")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

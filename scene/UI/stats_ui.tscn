@@ -1,0 +1,160 @@
+[gd_scene load_steps=12 format=3 uid="uid://dbels83ns48cr"]
+
+[ext_resource type="Script" path="res://script/UI/stats_ui.gd" id="1_2ht0e"]
+[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="1_u0k8s"]
+[ext_resource type="StyleBox" uid="uid://cpsk7emk7q4yg" path="res://resource/brown_bar.tres" id="2_522qe"]
+[ext_resource type="FontFile" uid="uid://dqwtyr83agh07" path="res://asset/font/BlackoakStd.otf" id="2_ma5ja"]
+[ext_resource type="StyleBox" uid="uid://h0auaf1kp4av" path="res://resource/process_bar_content.tres" id="3_8pycw"]
+[ext_resource type="FontFile" uid="uid://chf2gnapwjv15" path="res://asset/font/impact.ttf" id="3_ymppw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jtqmq"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47dcb"]
+atlas = ExtResource("1_u0k8s")
+region = Rect2(100, 700, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_so6wo"]
+atlas = ExtResource("1_u0k8s")
+region = Rect2(0, 700, 100, 100)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o1afq"]
+bg_color = Color(0.291202, 0.26291, 0.50682, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 5
+corner_detail = 4
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_feqm7"]
+atlas = ExtResource("1_u0k8s")
+region = Rect2(1500, 600, 100, 100)
+
+[node name="StatsUI" type="Control"]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_2ht0e")
+
+[node name="PlayerStats" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+
+[node name="Container" type="HBoxContainer" parent="PlayerStats"]
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PlayerStats/Container"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jtqmq")
+
+[node name="BackBoard" type="TextureRect" parent="PlayerStats/Container/PanelContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_47dcb")
+expand_mode = 2
+stretch_mode = 2
+
+[node name="LevelBoard" type="TextureRect" parent="PlayerStats/Container/PanelContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = SubResource("AtlasTexture_so6wo")
+expand_mode = 1
+
+[node name="LevelLabel" type="Label" parent="PlayerStats/Container/PanelContainer/LevelBoard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "0
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerStats/Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="HPBar" type="ProgressBar" parent="PlayerStats/Container/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_styles/background = ExtResource("2_522qe")
+theme_override_styles/fill = ExtResource("3_8pycw")
+step = 1.0
+show_percentage = false
+
+[node name="ExpBar" type="ProgressBar" parent="PlayerStats/Container/VBoxContainer"]
+custom_minimum_size = Vector2(250, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/background = ExtResource("2_522qe")
+theme_override_styles/fill = SubResource("StyleBoxFlat_o1afq")
+step = 1.0
+show_percentage = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayerStats/Container/VBoxContainer"]
+layout_mode = 2
+
+[node name="coin" type="TextureRect" parent="PlayerStats/Container/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_feqm7")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="PlayerStats/Container/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ymppw")
+theme_override_font_sizes/font_size = 50
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WaveStats" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WaveStats"]
+layout_mode = 2
+
+[node name="WaveLabel" type="Label" parent="WaveStats/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ma5ja")
+theme_override_font_sizes/font_size = 50
+text = "WAVE: 0"
+horizontal_alignment = 1
+
+[node name="TimeLabel" type="Label" parent="WaveStats/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ymppw")
+theme_override_font_sizes/font_size = 50
+text = "Rest:25s"
+horizontal_alignment = 1

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://ly8slwkk34ow"]
+
+[ext_resource type="Theme" uid="uid://bjd7ltid3phld" path="res://resource/damage_font.tres" id="1_em6cl"]
+[ext_resource type="Script" path="res://script/UI/damage_label.gd" id="2_tqjf1"]
+
+[node name="DamageLabel" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("1_em6cl")
+text = "12"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_tqjf1")

@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://b13cb8qc2ag3m"]
+
+[ext_resource type="Script" path="res://script/item/bullet.gd" id="1_dkb1e"]
+[ext_resource type="Texture2D" uid="uid://dmjsplbl32kbo" path="res://asset/image/asset.png" id="1_lr7ch"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ey6mo"]
+atlas = ExtResource("1_lr7ch")
+region = Rect2(1500, 800, 100, 100)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_skaxy"]
+radius = 35.9026
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wmcvc"]
+radius = 35.0892
+
+[node name="Bullet" type="CharacterBody2D"]
+modulate = Color(1, 0.784314, 0.196078, 1)
+scale = Vector2(0.4, 0.4)
+collision_layer = 0
+collision_mask = 16
+motion_mode = 1
+script = ExtResource("1_dkb1e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 2)
+texture = SubResource("AtlasTexture_ey6mo")
+region_rect = Rect2(1500, 800, 100, 100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_skaxy")
+
+[node name="Hitbox" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_wmcvc")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwnqcbauyr7c6"]
+
+[ext_resource type="PackedScene" uid="uid://76knna1ujbai" path="res://scene/weapon_arm/weapon_arm.tscn" id="1_vbf5s"]
+[ext_resource type="Script" path="res://script/weapon_arm/awu_kong.gd" id="2_d6bnu"]
+[ext_resource type="Texture2D" uid="uid://dy7jlkqse0kff" path="res://asset/image/awo_kong.png" id="3_ch4ox"]
+
+[node name="AwuKong" instance=ExtResource("1_vbf5s")]
+script = ExtResource("2_d6bnu")
+slotPos = Array[Vector2]([Vector2(300, 340), Vector2(640, 160), Vector2(640, 540), Vector2(980, 340)])
+weaponArmBoardTexture = ExtResource("3_ch4ox")

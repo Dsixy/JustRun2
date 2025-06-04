@@ -1,0 +1,20 @@
+[gd_scene load_steps=7 format=3 uid="uid://db7ylg2e5ss6e"]
+
+[ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_hij36"]
+[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="2_52tkd"]
+[ext_resource type="Script" path="res://script/weapon/hail_brace.gd" id="3_ae8fj"]
+[ext_resource type="PackedScene" uid="uid://ftvn45unn2fo" path="res://scene/effect/frost_wind.tscn" id="4_xmqh2"]
+[ext_resource type="PackedScene" uid="uid://buhgmefkaxje2" path="res://scene/effect/frost_whirl_wind.tscn" id="5_jhtoh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4w83"]
+atlas = ExtResource("2_52tkd")
+region = Rect2(100, 100, 100, 100)
+
+[node name="HailBrace" instance=ExtResource("1_hij36")]
+texture = SubResource("AtlasTexture_f4w83")
+script = ExtResource("3_ae8fj")
+windEffectScene = ExtResource("4_xmqh2")
+whirlWindScene = ExtResource("5_jhtoh")
+id = 6
+na = "冰霜手镯"
+descriptions = Array[String](["吹出锥形的冷风。对命中的敌人施加冻伤Buff", "寒风范围增加40%", "寒风范围额外增加60%", "寒风范围额外增加100%", "攻击额外释放产生冰龙卷，向前推进，对首次命中的敌人造成伤害并施加冻伤Buff"])

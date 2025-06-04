@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://dabftocr4hgwp"]
+
+[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="1_klsp1"]
+[ext_resource type="Script" path="res://script/item/little_spirit.gd" id="1_uraxs"]
+[ext_resource type="PackedScene" uid="uid://cw8rdqcidib7s" path="res://scene/effect/soul_shock.tscn" id="2_tb54b"]
+[ext_resource type="Shader" path="res://resource/little_spirit.gdshader" id="2_uykyl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jlf01"]
+shader = ExtResource("2_uykyl")
+shader_parameter/amplitude = 400.0
+shader_parameter/frequency = 5.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_faocc"]
+atlas = ExtResource("1_klsp1")
+region = Rect2(1000, 400, 200, 100)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hgajx"]
+radius = 43.9318
+
+[node name="LittleSpirit" type="Node2D"]
+script = ExtResource("1_uraxs")
+hitAreaScene = ExtResource("2_tb54b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_jlf01")
+texture = SubResource("AtlasTexture_faocc")
+hframes = 2
+frame = 1
+region_enabled = true
+region_rect = Rect2(0, 0, 200, 100)
+region_filter_clip_enabled = true
+
+[node name="Area2D" type="Area2D" parent="." groups=["player"]]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_hgajx")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

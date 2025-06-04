@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://bdiaolrodfp2s"]
+
+[ext_resource type="PackedScene" uid="uid://8qdkx2tqgrj7" path="res://scene/item/pickable_item.tscn" id="1_mk6ak"]
+[ext_resource type="Texture2D" uid="uid://c3bsuij8weu70" path="res://asset/image/asset.png" id="2_vw30h"]
+[ext_resource type="Script" path="res://script/item/catnip.gd" id="3_vegak"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_utvj4"]
+atlas = ExtResource("2_vw30h")
+region = Rect2(1000, 800, 100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gs5hu"]
+size = Vector2(96, 96)
+
+[node name="Catnip" instance=ExtResource("1_mk6ak")]
+texture = SubResource("AtlasTexture_utvj4")
+script = ExtResource("3_vegak")
+
+[node name="Area2D" parent="." index="0" groups=["flower"]]
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("RectangleShape2D_gs5hu")

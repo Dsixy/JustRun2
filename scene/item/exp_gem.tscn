@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://bs3aq45n6g3gt"]
+
+[ext_resource type="PackedScene" uid="uid://8qdkx2tqgrj7" path="res://scene/item/pickable_item.tscn" id="1_m4edu"]
+[ext_resource type="Texture2D" uid="uid://csfwhe0dglnkb" path="res://asset/image/asset.png" id="2_evjok"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drn2k"]
+atlas = ExtResource("2_evjok")
+region = Rect2(1300, 900, 300, 100)
+
+[sub_resource type="GDScript" id="GDScript_m3bxk"]
+script/source = "extends PickableItem
+
+var level: int
+
+func init(level: int, pos: Vector2):
+	self.level = level
+	self.global_position = pos
+	self.frame = self.level
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m117k"]
+radius = 37.3363
+
+[node name="ExpGem" instance=ExtResource("1_m4edu")]
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_drn2k")
+hframes = 3
+script = SubResource("GDScript_m3bxk")
+
+[node name="Area2D" parent="." index="0" groups=["expGem"]]
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_m117k")

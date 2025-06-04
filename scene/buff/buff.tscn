@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://drbbo67ya42cm"]
+
+[ext_resource type="Script" path="res://script/buff/buff.gd" id="1_6drpr"]
+
+[node name="Buff" type="Node"]
+script = ExtResource("1_6drpr")

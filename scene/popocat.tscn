@@ -1,0 +1,209 @@
+[gd_scene load_steps=10 format=3 uid="uid://cmrr18ofuy11j"]
+
+[ext_resource type="Texture2D" uid="uid://csfwhe0dglnkb" path="res://asset/image/asset.png" id="1_1h4bm"]
+[ext_resource type="Script" path="res://script/popocat.gd" id="1_rl3vt"]
+[ext_resource type="StyleBox" uid="uid://cdiqajlswqjlc" path="res://resource/transparent.tres" id="2_mfviu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7648"]
+atlas = ExtResource("1_1h4bm")
+region = Rect2(1200, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6istv"]
+atlas = ExtResource("1_1h4bm")
+region = Rect2(1200, 100, 200, 100)
+
+[sub_resource type="Animation" id="Animation_26683"]
+resource_name = "Idle"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.500004, 7.5), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.085, 0.85), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Face:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(28.75, -15.25), Vector2(31, -7.125), Vector2(28.75, -15.25)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Face:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.365, 0.365), Vector2(0.365, 0.3225), Vector2(0.365, 0.365)]
+}
+
+[sub_resource type="Animation" id="Animation_gcvc1"]
+resource_name = "Move"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-6, 1), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.129154, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Face:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(28.75, -15.25), Vector2(20, -16), Vector2(28.75, -15.25)]
+}
+
+[sub_resource type="Animation" id="Animation_gj8ac"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Face:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(28.75, -15.25)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Face:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.365, 0.365)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body:skew")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rrddo"]
+_data = {
+"Idle": SubResource("Animation_26683"),
+"Move": SubResource("Animation_gcvc1"),
+"RESET": SubResource("Animation_gj8ac")
+}
+
+[node name="Popocat" type="Node2D"]
+script = ExtResource("1_rl3vt")
+
+[node name="Body" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_h7648")
+
+[node name="Face" type="Sprite2D" parent="."]
+position = Vector2(28.75, -15.25)
+scale = Vector2(0.365, 0.365)
+texture = SubResource("AtlasTexture_6istv")
+hframes = 2
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rrddo")
+}
+autoplay = "Idle"
+
+[node name="Button" type="Button" parent="."]
+offset_left = -61.0
+offset_top = -32.0
+offset_right = 59.0
+offset_bottom = 38.0
+theme_override_styles/normal = ExtResource("2_mfviu")
+theme_override_styles/hover = ExtResource("2_mfviu")
+theme_override_styles/pressed = ExtResource("2_mfviu")
+theme_override_styles/disabled = ExtResource("2_mfviu")
+theme_override_styles/focus = ExtResource("2_mfviu")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

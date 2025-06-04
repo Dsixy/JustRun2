@@ -1,0 +1,16 @@
+[gd_scene load_steps=6 format=3 uid="uid://r18aa06k7er5"]
+
+[ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_ac17r"]
+[ext_resource type="Script" path="res://script/weapon/lightwheel.gd" id="2_8aqh1"]
+[ext_resource type="Texture2D" uid="uid://cfy2a5opnoaxu" path="res://asset/image/asset.png" id="2_cp5c3"]
+[ext_resource type="PackedScene" uid="uid://bdoasv3ov5c5" path="res://scene/item/wheel.tscn" id="3_l57wd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l5lfp"]
+atlas = ExtResource("2_cp5c3")
+region = Rect2(0, 500, 100, 100)
+
+[node name="Lightwheel" instance=ExtResource("1_ac17r")]
+texture = SubResource("AtlasTexture_l5lfp")
+script = ExtResource("2_8aqh1")
+wheelScene = ExtResource("3_l57wd")
+id = 24

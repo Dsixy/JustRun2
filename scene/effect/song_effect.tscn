@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://v1qtjbscbf4p"]
+
+[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="1_7lhd4"]
+[ext_resource type="Script" path="res://script/effect/song_effect.gd" id="2_1opum"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hp7u5"]
+atlas = ExtResource("1_7lhd4")
+region = Rect2(300, 800, 100, 100)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5qqpu"]
+radius = 46.5296
+
+[node name="SongEffect" type="Sprite2D"]
+texture = SubResource("AtlasTexture_hp7u5")
+script = ExtResource("2_1opum")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_5qqpu")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

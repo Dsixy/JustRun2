@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyatppja0dlh6"]
+
+[ext_resource type="StyleBox" uid="uid://c12gxnfx501sf" path="res://resource/board.tres" id="1_6uuyn"]
+[ext_resource type="Script" path="res://script/UI/dialog_bubble.gd" id="1_vaa16"]
+
+[sub_resource type="Theme" id="Theme_b6d27"]
+
+[node name="DialogBubble" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_vaa16")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+theme = SubResource("Theme_b6d27")
+theme_override_styles/panel = ExtResource("1_6uuyn")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "你好，要来点什么嘛？"

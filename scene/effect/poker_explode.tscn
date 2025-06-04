@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://bm453yp21l38e"]
+
+[ext_resource type="PackedScene" uid="uid://b8w0unu6x2bpu" path="res://scene/effect/hit_area.tscn" id="1_t7mvg"]
+[ext_resource type="Script" path="res://script/effect/poker_explode.gd" id="2_0uv1a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_by3d8"]
+radius = 150.0
+
+[sub_resource type="Curve" id="Curve_b0kkc"]
+min_value = 0.5
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.986799, 0.535099), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="PokerExplode" instance=ExtResource("1_t7mvg")]
+script = ExtResource("2_0uv1a")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_by3d8")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="2"]
+z_index = 1
+amount = 100
+explosiveness = 0.9
+lifetime_randomness = 0.5
+fixed_fps = 760
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 250.0
+initial_velocity_max = 350.0
+scale_amount_min = 15.0
+scale_amount_max = 25.0
+scale_amount_curve = SubResource("Curve_b0kkc")
+color = Color(0.537011, 0.537011, 0.537011, 1)

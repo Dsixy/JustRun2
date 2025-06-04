@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4eplhuxpqijn"]
+
+[ext_resource type="Script" path="res://script/buff/poison_buff.gd" id="1_7pqkv"]
+
+[node name="PoisonBuff" type="Node"]
+script = ExtResource("1_7pqkv")
+ID = 1

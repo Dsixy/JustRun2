@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://dw3vhru22x0qv"]
+
+[ext_resource type="PackedScene" uid="uid://8qdkx2tqgrj7" path="res://scene/item/pickable_item.tscn" id="1_mvtgc"]
+[ext_resource type="Texture2D" uid="uid://c7yfsoql4ck4j" path="res://asset/image/asset.png" id="2_0gq68"]
+[ext_resource type="Script" path="res://script/item/carmor_coin.gd" id="3_43rfd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ax3mn"]
+atlas = ExtResource("2_0gq68")
+region = Rect2(1500, 600, 100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_njepi"]
+size = Vector2(53, 84)
+
+[node name="CarmorCoin" instance=ExtResource("1_mvtgc")]
+texture = SubResource("AtlasTexture_ax3mn")
+script = ExtResource("3_43rfd")
+
+[node name="Area2D" parent="." index="0" groups=["coin"]]
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_njepi")

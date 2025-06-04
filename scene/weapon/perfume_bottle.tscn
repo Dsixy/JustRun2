@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=3 uid="uid://b1nwym4bxj64v"]
+
+[ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_0shmk"]
+[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="2_sfa83"]
+[ext_resource type="Script" path="res://script/weapon/perfume_bottle.gd" id="3_4wh3a"]
+[ext_resource type="PackedScene" uid="uid://hng738en3gdm" path="res://scene/effect/spray.tscn" id="4_eg86s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75o5n"]
+atlas = ExtResource("2_sfa83")
+region = Rect2(100, 300, 100, 100)
+
+[node name="PerfumeBottle" instance=ExtResource("1_0shmk")]
+texture = SubResource("AtlasTexture_75o5n")
+script = ExtResource("3_4wh3a")
+sprayEffectScene = ExtResource("4_eg86s")
+id = 16
+na = "香水瓶"
+descriptions = Array[String](["向前喷射香氛，根据自身收集的植物获得对应植物的香氛值，攻击根据香氛值附加额外效果。香氛值总和上限20点。每一点风信子：增加0.3/0.8点基础伤害每一点蓝山绿叶：增加3/6%范围每一点酒色玫瑰：降低0.01攻击间隔，4级时，10点飞行速度每一点雨滴茉莉：毒元素伤害增加1/1.5点每一个猫薄荷：获得流浪猫咪商人的青睐", "喷雾范围增加40%", "每拾起一朵植物能够额外提升2点香氛值。", "范围增加100%", "能力值上限增加30,每个植物获得的能力提升"])

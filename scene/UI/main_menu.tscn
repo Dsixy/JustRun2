@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqd1ienreg3qs"]
+
+[ext_resource type="Script" path="res://script/UI/main_menu.gd" id="1_svuop"]
+[ext_resource type="PackedScene" uid="uid://vfxtn7lvdwox" path="res://scene/UI/character_select_screen.tscn" id="2_1r0rb"]
+[ext_resource type="Texture2D" uid="uid://sgiqg2ou2jtx" path="res://asset/image/shop.png" id="2_ex3ga"]
+[ext_resource type="Texture2D" uid="uid://v43cpo6a2hnm" path="res://asset/image/asset.png" id="3_o8q54"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_duhlt"]
+atlas = ExtResource("3_o8q54")
+region = Rect2(100, 700, 200, 200)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_svuop")
+nextScene = ExtResource("2_1r0rb")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ex3ga")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 816.0
+offset_top = 696.0
+offset_right = 1016.0
+offset_bottom = 896.0
+texture_normal = SubResource("AtlasTexture_duhlt")
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

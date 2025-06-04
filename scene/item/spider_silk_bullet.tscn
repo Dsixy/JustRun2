@@ -1,0 +1,23 @@
+[gd_scene load_steps=7 format=3 uid="uid://fdxqxpnt3jky"]
+
+[ext_resource type="PackedScene" uid="uid://b8w0unu6x2bpu" path="res://scene/effect/hit_area.tscn" id="1_w7wvt"]
+[ext_resource type="Script" path="res://script/item/spider_silk_bullet.gd" id="2_o0jsc"]
+[ext_resource type="PackedScene" uid="uid://da17tam3v0e30" path="res://scene/effect/spider_web.tscn" id="3_xe8lf"]
+[ext_resource type="Texture2D" uid="uid://v43cpo6a2hnm" path="res://asset/image/asset.png" id="4_2tn5d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o76ne"]
+atlas = ExtResource("4_2tn5d")
+region = Rect2(1500, 800, 100, 100)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0fych"]
+radius = 36.0139
+
+[node name="SpiderSilkBullet" instance=ExtResource("1_w7wvt")]
+script = ExtResource("2_o0jsc")
+SpiderWebScene = ExtResource("3_xe8lf")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = SubResource("AtlasTexture_o76ne")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_0fych")

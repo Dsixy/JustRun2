@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="DialogRes" load_steps=10 format=3 uid="uid://djkv3h3ih1fjs"]
+
+[ext_resource type="Script" path="res://resource/dialog/dialog_res.gd" id="1_3naxx"]
+[ext_resource type="Script" path="res://resource/dialog/choice.gd" id="1_7et3o"]
+[ext_resource type="Script" path="res://resource/dialog/dialog.gd" id="2_lhr60"]
+
+[sub_resource type="Resource" id="Resource_27m8i"]
+script = ExtResource("1_7et3o")
+text = ""
+next_id = 1
+
+[sub_resource type="Resource" id="Resource_t8pjf"]
+script = ExtResource("2_lhr60")
+id = 0
+speaker = "Carmor"
+text = "原来你在这"
+choice = Array[ExtResource("1_7et3o")]([SubResource("Resource_27m8i")])
+
+[sub_resource type="Resource" id="Resource_jp68p"]
+script = ExtResource("1_7et3o")
+text = ""
+next_id = 2
+
+[sub_resource type="Resource" id="Resource_saayn"]
+script = ExtResource("2_lhr60")
+id = 1
+speaker = "Carmor"
+text = "看起来你打了一场恶仗"
+choice = Array[ExtResource("1_7et3o")]([SubResource("Resource_jp68p")])
+
+[sub_resource type="Resource" id="Resource_ft7m1"]
+script = ExtResource("1_7et3o")
+text = "还算有点用"
+next_id = -1
+
+[sub_resource type="Resource" id="Resource_nd2xe"]
+script = ExtResource("2_lhr60")
+id = 2
+speaker = "Carmor"
+text = "拿去吧，我想这对你有帮助"
+choice = Array[ExtResource("1_7et3o")]([SubResource("Resource_ft7m1")])
+
+[resource]
+script = ExtResource("1_3naxx")
+dialog = Array[ExtResource("2_lhr60")]([SubResource("Resource_t8pjf"), SubResource("Resource_saayn"), SubResource("Resource_nd2xe")])

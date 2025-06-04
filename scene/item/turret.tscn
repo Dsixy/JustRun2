@@ -1,0 +1,91 @@
+[gd_scene load_steps=10 format=3 uid="uid://tsctl0nqoo1f"]
+
+[ext_resource type="Texture2D" uid="uid://dmjsplbl32kbo" path="res://asset/image/asset.png" id="1_l1u1n"]
+[ext_resource type="Script" path="res://script/item/turret.gd" id="1_nhmcr"]
+[ext_resource type="PackedScene" uid="uid://c7lxhwk7r3v67" path="res://scene/item/bullet_2.tscn" id="2_aey4s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjhxm"]
+atlas = ExtResource("1_l1u1n")
+region = Rect2(1200, 500, 100, 100)
+
+[sub_resource type="Animation" id="Animation_ycklk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_h0p8g"]
+resource_name = "attack"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(0.95, 0.95)]
+}
+
+[sub_resource type="Animation" id="Animation_tq1lg"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.85, 1.12)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oecr3"]
+_data = {
+"RESET": SubResource("Animation_ycklk"),
+"attack": SubResource("Animation_h0p8g"),
+"idle": SubResource("Animation_tq1lg")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xnwpl"]
+radius = 350.0
+
+[node name="Turret" type="Node2D"]
+script = ExtResource("1_nhmcr")
+bulletScene = ExtResource("2_aey4s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_pjhxm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_oecr3")
+}
+autoplay = "idle"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_xnwpl")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

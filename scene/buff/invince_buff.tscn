@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkdo14o441ghc"]
+
+[ext_resource type="PackedScene" uid="uid://l6lkh2jgk082" path="res://scene/buff/time_buff.tscn" id="1_hfhbn"]
+[ext_resource type="Script" path="res://script/buff/invince_buff.gd" id="2_pc4wm"]
+
+[node name="InvinceBuff" instance=ExtResource("1_hfhbn")]
+script = ExtResource("2_pc4wm")
+ID = 4

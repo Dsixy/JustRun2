@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://bdoasv3ov5c5"]
+
+[ext_resource type="Script" path="res://script/item/wheel.gd" id="1_4idlw"]
+[ext_resource type="PackedScene" uid="uid://b8w0unu6x2bpu" path="res://scene/effect/hit_area.tscn" id="1_ishdx"]
+[ext_resource type="Texture2D" uid="uid://cfy2a5opnoaxu" path="res://asset/image/asset.png" id="3_rkgmr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bddq"]
+atlas = ExtResource("3_rkgmr")
+region = Rect2(800, 700, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qs4ja"]
+atlas = ExtResource("3_rkgmr")
+region = Rect2(800, 600, 100, 100)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ptrbt"]
+radius = 48.6621
+
+[node name="Wheel" instance=ExtResource("1_ishdx")]
+script = ExtResource("1_4idlw")
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(-9, 6)
+texture = SubResource("AtlasTexture_3bddq")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." index="1"]
+visible = false
+scale = Vector2(1.2, 1.2)
+texture = SubResource("AtlasTexture_qs4ja")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_ptrbt")
+
+[node name="Timer" type="Timer" parent="." index="3"]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

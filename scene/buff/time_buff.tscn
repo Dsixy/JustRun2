@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://l6lkh2jgk082"]
+
+[ext_resource type="Script" path="res://script/buff/time_buff.gd" id="1_hw8au"]
+
+[node name="TimeBuff" type="Node"]
+script = ExtResource("1_hw8au")

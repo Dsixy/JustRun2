@@ -1,0 +1,18 @@
+[gd_scene load_steps=7 format=3 uid="uid://mgg2y673cdlw"]
+
+[ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_76smv"]
+[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="2_3tvyv"]
+[ext_resource type="Script" path="res://script/weapon/rocket_launcher.gd" id="2_poybt"]
+[ext_resource type="PackedScene" uid="uid://ddlw2bmr4sv2i" path="res://scene/effect/rocket.tscn" id="3_lhiax"]
+[ext_resource type="PackedScene" uid="uid://dqr7e67ba10fw" path="res://scene/item/crosshair.tscn" id="4_hjt5r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2ii1"]
+atlas = ExtResource("2_3tvyv")
+region = Rect2(100, 400, 100, 100)
+
+[node name="RocketLauncher" instance=ExtResource("1_76smv")]
+texture = SubResource("AtlasTexture_b2ii1")
+script = ExtResource("2_poybt")
+rocketScene = ExtResource("3_lhiax")
+crosshairScene = ExtResource("4_hjt5r")
+id = 20

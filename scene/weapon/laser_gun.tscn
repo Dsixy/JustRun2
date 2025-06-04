@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=3 uid="uid://xli28by6rukt"]
+
+[ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_arj70"]
+[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="2_k0lqi"]
+[ext_resource type="Script" path="res://script/weapon/laser_gun.gd" id="3_pfngn"]
+[ext_resource type="PackedScene" uid="uid://bopjcagc3rla8" path="res://scene/effect/laser.tscn" id="4_yfdql"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n57o0"]
+atlas = ExtResource("2_k0lqi")
+region = Rect2(100, 200, 100, 100)
+
+[node name="LaserGun" instance=ExtResource("1_arj70")]
+texture = SubResource("AtlasTexture_n57o0")
+script = ExtResource("3_pfngn")
+laserScene = ExtResource("4_yfdql")
+id = 11
+na = "激光枪"
+descriptions = Array[String](["发射激光贯穿敌人。", "激光宽度增加60%", "激光枪攻击间隔缩短0.4，基础伤害增加10", "激光宽度额外增加100%", "激光枪将发射3道激光"])

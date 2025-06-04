@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://k8gbqc42ic5f"]
+
+[ext_resource type="Script" path="res://script/UI/player_ability_board.gd" id="1_8pjj7"]
+[ext_resource type="PackedScene" uid="uid://b8hijpucsu33e" path="res://scene/UI/ability.tscn" id="2_18cay"]
+[ext_resource type="Texture2D" uid="uid://ckvhd1x6q82g6" path="res://asset/image/asset.png" id="3_hah1k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rcwi"]
+atlas = ExtResource("3_hah1k")
+region = Rect2(100, 700, 200, 200)
+
+[node name="PlayerAbilityBoard" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_8pjj7")
+abilityScene = ExtResource("2_18cay")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 200.0
+scale = Vector2(2, 2)
+pivot_offset = Vector2(200, 200)
+mouse_filter = 2
+texture = SubResource("AtlasTexture_0rcwi")
+stretch_mode = 2

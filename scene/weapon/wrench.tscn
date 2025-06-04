@@ -1,0 +1,16 @@
+[gd_scene load_steps=6 format=3 uid="uid://xxj5alw1jw1j"]
+
+[ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_b0wrt"]
+[ext_resource type="Texture2D" uid="uid://dmjsplbl32kbo" path="res://asset/image/asset.png" id="2_navog"]
+[ext_resource type="Script" path="res://script/weapon/wrench.gd" id="2_u22hd"]
+[ext_resource type="PackedScene" uid="uid://tsctl0nqoo1f" path="res://scene/item/turret.tscn" id="3_n541c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fem2v"]
+atlas = ExtResource("2_navog")
+region = Rect2(300, 400, 100, 100)
+
+[node name="Wrench" instance=ExtResource("1_b0wrt")]
+texture = SubResource("AtlasTexture_fem2v")
+script = ExtResource("2_u22hd")
+turretScene = ExtResource("3_n541c")
+id = 20

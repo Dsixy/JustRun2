@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://q161hhu4w2dy"]
+
+[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="1_yaf8t"]
+[ext_resource type="Script" path="res://script/weapon/stellar_wrath.gd" id="2_tep3d"]
+[ext_resource type="PackedScene" uid="uid://14epxxya0aig" path="res://scene/item/star.tscn" id="3_5inx8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvk10"]
+atlas = ExtResource("1_yaf8t")
+region = Rect2(200, 100, 100, 100)
+
+[node name="StellarWrath" type="Sprite2D"]
+texture = SubResource("AtlasTexture_nvk10")
+script = ExtResource("2_tep3d")
+starScene = ExtResource("3_5inx8")
+id = 7
+na = "群星之怒"
+descriptions = Array[String](["在场上随机3个子弹所在位置释放流星。流星会在1s后降落。", "最大流星数量+2", "流星范围增加40%", "最大流星额外数量+3", "流星范围额外增加60%。当场上子弹不足时，多余的流星会随机降落"])

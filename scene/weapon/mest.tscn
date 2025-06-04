@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=3 uid="uid://r5p3tqjgxuy5"]
+
+[ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_m4xbr"]
+[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="2_jphtk"]
+[ext_resource type="Script" path="res://script/weapon/mest.gd" id="2_sn0e4"]
+[ext_resource type="PackedScene" uid="uid://c5i27r1u00pni" path="res://scene/effect/slash.tscn" id="4_iorrb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qa7uc"]
+atlas = ExtResource("2_jphtk")
+region = Rect2(200, 200, 100, 100)
+
+[node name="MEST" instance=ExtResource("1_m4xbr")]
+texture = SubResource("AtlasTexture_qa7uc")
+script = ExtResource("2_sn0e4")
+dashScene = ExtResource("4_iorrb")
+id = 12
+na = "肉蛋葱鸡"
+descriptions = Array[String](["武器攻击时，玩家进入无敌状态并向前突进，弹开路径上怪物并造成伤害。", "基础伤害增加10", "玩家体型增加体力*10%", "基础伤害增加30", "攻击会连续进行两次冲击"])

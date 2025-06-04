@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://ddlw2bmr4sv2i"]
+
+[ext_resource type="PackedScene" uid="uid://b8w0unu6x2bpu" path="res://scene/effect/hit_area.tscn" id="1_8ivp0"]
+[ext_resource type="Script" path="res://script/effect/rocket.gd" id="2_fvn8j"]
+[ext_resource type="PackedScene" uid="uid://b7hcib3jdou0m" path="res://scene/effect/rocked_explode.tscn" id="3_kjncv"]
+[ext_resource type="Texture2D" uid="uid://v43cpo6a2hnm" path="res://asset/image/asset.png" id="3_kqf0d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1satr"]
+atlas = ExtResource("3_kqf0d")
+region = Rect2(1300, 500, 200, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kgugu"]
+size = Vector2(96.5685, 33.9411)
+
+[node name="Rocket" instance=ExtResource("1_8ivp0")]
+script = ExtResource("2_fvn8j")
+explodeScene = ExtResource("3_kjncv")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = SubResource("AtlasTexture_1satr")
+hframes = 2
+frame = 1
+
+[node name="Area2D" parent="." index="1" groups=["Rocket"]]
+collision_mask = 6
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(5.85787, -5.85787)
+rotation = -0.785398
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_kgugu")

@@ -1,0 +1,91 @@
+[gd_scene load_steps=7 format=3 uid="uid://8somwgch0kso"]
+
+[ext_resource type="Texture2D" uid="uid://272f5wtmm3cl" path="res://asset/image/asset.png" id="1_8vspb"]
+[ext_resource type="Script" path="res://script/UI/bag_board.gd" id="1_r1tvd"]
+[ext_resource type="PackedScene" uid="uid://2gxsh2aq0wu4" path="res://scene/UI/ui_slot.tscn" id="2_mxrp0"]
+[ext_resource type="PackedScene" uid="uid://buu7grkjqu15s" path="res://scene/UI/delete_slot.tscn" id="4_dux7p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fsdh1"]
+atlas = ExtResource("1_8vspb")
+region = Rect2(0, 700, 100, 100)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nvngu"]
+texture = SubResource("AtlasTexture_fsdh1")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+modulate_color = Color(1, 0.843137, 0.639216, 1)
+
+[node name="BagBoard" type="Control"]
+process_mode = 3
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+script = ExtResource("1_r1tvd")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(750, 150)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.005
+anchor_top = 0.667
+anchor_right = 0.982
+anchor_bottom = 1.014
+offset_left = 14.4
+offset_top = -8.36005
+offset_right = -1111.44
+offset_bottom = -233.12
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(2.5, 2.5)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_nvngu")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = -50.0
+offset_right = 102.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="UISlot" parent="Panel/HBoxContainer" instance=ExtResource("2_mxrp0")]
+layout_mode = 2
+
+[node name="UISlot2" parent="Panel/HBoxContainer" instance=ExtResource("2_mxrp0")]
+layout_mode = 2
+
+[node name="UISlot3" parent="Panel/HBoxContainer" instance=ExtResource("2_mxrp0")]
+layout_mode = 2
+
+[node name="UISlot4" parent="Panel/HBoxContainer" instance=ExtResource("2_mxrp0")]
+layout_mode = 2
+
+[node name="UISlot5" parent="Panel/HBoxContainer" instance=ExtResource("2_mxrp0")]
+layout_mode = 2
+
+[node name="UISlot6" parent="Panel/HBoxContainer" instance=ExtResource("2_mxrp0")]
+process_mode = 3
+layout_mode = 2
+
+[node name="UISlot7" parent="Panel/HBoxContainer" instance=ExtResource("2_mxrp0")]
+layout_mode = 2
+
+[node name="DeleteSlot" parent="." instance=ExtResource("4_dux7p")]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 440.0
+offset_right = 345.0
+offset_bottom = 740.0

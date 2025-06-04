@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bjd7ltid3phld"]
+
+[ext_resource type="FontFile" uid="uid://dsvb4s0ipd4ap" path="res://asset/font/OCRAStd.otf" id="1_dswjr"]
+
+[resource]
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 30
+Label/font_sizes/font_size = 30
+Label/fonts/font = ExtResource("1_dswjr")

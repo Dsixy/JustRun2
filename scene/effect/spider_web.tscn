@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://da17tam3v0e30"]
+
+[ext_resource type="Texture2D" uid="uid://c3bsuij8weu70" path="res://asset/image/asset.png" id="1_1njdj"]
+[ext_resource type="Script" path="res://script/effect/spider_web.gd" id="2_g1hcb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nb6v7"]
+atlas = ExtResource("1_1njdj")
+region = Rect2(1300, 600, 100, 100)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ayu0y"]
+radius = 46.2709
+
+[node name="SpiderWeb" type="Sprite2D"]
+modulate = Color(1, 1, 1, 0.588235)
+texture = SubResource("AtlasTexture_nb6v7")
+script = ExtResource("2_g1hcb")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ayu0y")

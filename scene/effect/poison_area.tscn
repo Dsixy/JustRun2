@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://cgqirgeosh8tm"]
+
+[ext_resource type="PackedScene" uid="uid://b8w0unu6x2bpu" path="res://scene/effect/hit_area.tscn" id="1_0oi8h"]
+[ext_resource type="Script" path="res://script/effect/poison_area.gd" id="2_n2ssj"]
+[ext_resource type="Texture2D" uid="uid://c7yfsoql4ck4j" path="res://asset/image/asset.png" id="3_jnhk1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogyw6"]
+atlas = ExtResource("3_jnhk1")
+region = Rect2(300, 700, 100, 100)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2ppbv"]
+radius = 43.1741
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihmh7"]
+atlas = ExtResource("3_jnhk1")
+region = Rect2(800, 800, 100, 100)
+
+[sub_resource type="Curve" id="Curve_w05ba"]
+_data = [Vector2(0.00330033, 0.242384), 0.0, 0.0, 0, 0, Vector2(0.9967, 0.0874172), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="PoisonArea" instance=ExtResource("1_0oi8h")]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("2_n2ssj")
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(0.572549, 0.8, 0.564706, 1)
+texture = SubResource("AtlasTexture_ogyw6")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_2ppbv")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="2"]
+modulate = Color(0.883449, 1, 0.75214, 1)
+texture = SubResource("AtlasTexture_ihmh7")
+emission_shape = 1
+emission_sphere_radius = 50.0
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+angular_velocity_min = -200.0
+angular_velocity_max = 200.0
+scale_amount_curve = SubResource("Curve_w05ba")
+
+[node name="Timer" type="Timer" parent="." index="3"]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

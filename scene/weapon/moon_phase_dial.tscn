@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtb4g5jyus3iu"]
+
+[ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_4impm"]
+[ext_resource type="Script" path="res://script/weapon/moon_phase_dial.gd" id="2_xr7jy"]
+[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="2_xrbe8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3pv1w"]
+atlas = ExtResource("2_xrbe8")
+region = Rect2(400, 300, 100, 100)
+
+[node name="MoonPhaseDial" instance=ExtResource("1_4impm")]
+texture = SubResource("AtlasTexture_3pv1w")
+script = ExtResource("2_xr7jy")
+circleSlashScene = null
+id = 15

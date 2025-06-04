@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=3 uid="uid://ceqhhetrt7if2"]
+
+[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="1_83fav"]
+[ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_yr4a2"]
+[ext_resource type="Script" path="res://script/weapon/poker.gd" id="2_axnrr"]
+[ext_resource type="PackedScene" uid="uid://cwsvbuprq45oy" path="res://scene/item/poker_bullet.tscn" id="3_mblgu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdmp7"]
+atlas = ExtResource("1_83fav")
+region = Rect2(300, 100, 100, 100)
+
+[node name="Poker" instance=ExtResource("1_yr4a2")]
+texture = SubResource("AtlasTexture_pdmp7")
+script = ExtResource("2_axnrr")
+pokerBulletScene = ExtResource("3_mblgu")
+id = 8
+na = "扑克牌"
+descriptions = Array[String](["甩出3张扑克，有1%概率甩出ACE牌，造成额外爆炸伤害。", "额外甩出2张扑克", "扑克可以穿透3个目标", "额外甩出3张扑克", "每30张必然产生一张ACE牌，ACE牌爆炸范围提升50%"])

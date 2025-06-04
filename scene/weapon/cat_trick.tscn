@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=3 uid="uid://mktgk00x436i"]
+
+[ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_kxt17"]
+[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="2_bqxgv"]
+[ext_resource type="Script" path="res://script/weapon/cat_trick.gd" id="2_lhjr1"]
+[ext_resource type="PackedScene" uid="uid://64mkbakqyrxs" path="res://scene/effect/cat_shield.tscn" id="3_c20nm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7pwip"]
+atlas = ExtResource("2_bqxgv")
+region = Rect2(400, 400, 100, 100)
+
+[node name="CatTrick" instance=ExtResource("1_kxt17")]
+texture = SubResource("AtlasTexture_7pwip")
+script = ExtResource("2_lhjr1")
+shieldScene = ExtResource("3_c20nm")
+id = 22
+na = "猫之计谋"
+descriptions = Array[String](["每10次攻击，获得一个猫咪护盾，猫咪护盾可以抵挡一次伤害。", "猫咪护盾触发时间变成8次", "猫咪护盾可以叠加2次", "猫咪护盾触发时间变成5次", "攻击后，猫咪护盾为玩家提供2s庇护，庇护状态下玩家单次受到伤害不超过最大生命值10%"])

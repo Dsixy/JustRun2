@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://cj7o2etishp0l"]
+
+[ext_resource type="PackedScene" uid="uid://8qdkx2tqgrj7" path="res://scene/item/pickable_item.tscn" id="1_1t12r"]
+[ext_resource type="Script" path="res://script/item/blue_mountain_leaf.gd" id="2_2higs"]
+[ext_resource type="Texture2D" uid="uid://c3bsuij8weu70" path="res://asset/image/asset.png" id="2_t1xeb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yv1ka"]
+atlas = ExtResource("2_t1xeb")
+region = Rect2(1100, 800, 100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ii30l"]
+size = Vector2(96, 96)
+
+[node name="BlueMountainLeaf" instance=ExtResource("1_1t12r")]
+texture = SubResource("AtlasTexture_yv1ka")
+script = ExtResource("2_2higs")
+
+[node name="Area2D" parent="." index="0" groups=["flower"]]
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("RectangleShape2D_ii30l")

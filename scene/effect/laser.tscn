@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://bopjcagc3rla8"]
+
+[ext_resource type="PackedScene" uid="uid://b8w0unu6x2bpu" path="res://scene/effect/hit_area.tscn" id="1_dk25s"]
+[ext_resource type="Script" path="res://script/effect/laser.gd" id="2_m750u"]
+[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="2_to6y5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jm1cl"]
+atlas = ExtResource("2_to6y5")
+region = Rect2(1400, 600, 100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iuler"]
+size = Vector2(96, 96)
+
+[node name="HitArea" instance=ExtResource("1_dk25s")]
+script = ExtResource("2_m750u")
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(48, 0)
+texture = SubResource("AtlasTexture_jm1cl")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(48, 0)
+shape = SubResource("RectangleShape2D_iuler")

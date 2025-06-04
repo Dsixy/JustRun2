@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7d45lxm7f1t6"]
+
+[ext_resource type="PackedScene" uid="uid://8qdkx2tqgrj7" path="res://scene/item/pickable_item.tscn" id="1_d8yux"]
+[ext_resource type="Texture2D" uid="uid://v43cpo6a2hnm" path="res://asset/image/asset.png" id="2_podea"]
+[ext_resource type="Script" path="res://script/item/raindrop_jasmine.gd" id="3_konrn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_spi1y"]
+atlas = ExtResource("2_podea")
+region = Rect2(1200, 800, 100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4k3fw"]
+size = Vector2(96, 80)
+
+[node name="RaindropJasmine" instance=ExtResource("1_d8yux")]
+texture = SubResource("AtlasTexture_spi1y")
+script = ExtResource("3_konrn")
+
+[node name="Area2D" parent="." index="0" groups=["flower"]]
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("RectangleShape2D_4k3fw")
