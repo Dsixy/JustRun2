@@ -1,4 +1,5 @@
 extends Sprite2D
+@onready var area = $Area2D
 
 func init(pos: Vector2):
 	self.global_position = pos

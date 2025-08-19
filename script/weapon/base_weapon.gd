@@ -30,8 +30,11 @@ func process_slot(cur: Node, drag: Node):
 func upgrade():
 	pass
 	
-func arm():
+func arm(weaponArm: BaseWeaponArm):
 	pass
 	
 func dearm():
+	pass
+	
+func follow_up_attack():
 	pass

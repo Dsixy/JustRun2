@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://ufm28rpuvxwb"]
+
+[ext_resource type="PackedScene" uid="uid://b8w0unu6x2bpu" path="res://scene/effect/hit_area.tscn" id="1_ahayf"]
+[ext_resource type="Script" path="res://script/item/tear_bullet.gd" id="2_784yq"]
+[ext_resource type="Texture2D" uid="uid://bi3bmmkwy8x1y" path="res://asset/image/asset.png" id="3_o47v0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3sko"]
+atlas = ExtResource("3_o47v0")
+region = Rect2(700, 600, 100, 100)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wgbid"]
+radius = 24.0
+
+[node name="TearBullet" instance=ExtResource("1_ahayf")]
+scale = Vector2(0.4, 0.4)
+script = ExtResource("2_784yq")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = SubResource("AtlasTexture_o3sko")
+
+[node name="Area2D" parent="." index="1" groups=["TearBullet"]]
+collision_layer = 8
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0, 16)
+shape = SubResource("CircleShape2D_wgbid")

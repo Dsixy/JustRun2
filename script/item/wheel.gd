@@ -17,7 +17,7 @@ func _process(delta):
 	self.rotation += angVel * delta
 
 func init(pos: Vector2, target: Vector2, speed: int, range: float, 
-		damage: DamageInfo, wheelDamage: DamageInfo, maxRun: int, light: bool):
+		damage: DamageInfo, wheelDamage: DamageInfo, maxRun: int, light: bool, maxDist: int):
 	self.global_position = pos
 	self.speed = speed
 	self.damage = damage
@@ -25,9 +25,11 @@ func init(pos: Vector2, target: Vector2, speed: int, range: float,
 	self.scale *= range
 	self.maxMove = maxRun
 	self.light = light
+	self.runDist = maxDist
 		
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "global_position", target, 0.6)
+	self.maxMove -= 1
 	self.timer.start(attackInterval)
 	
 func delete():

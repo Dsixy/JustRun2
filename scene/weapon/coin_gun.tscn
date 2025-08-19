@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cvrtmcwotabin"]
 
 [ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_2hrry"]
-[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="2_n0yha"]
+[ext_resource type="Texture2D" uid="uid://c1fmdi34bowtf" path="res://asset/image/asset.png" id="2_n0yha"]
 [ext_resource type="Script" path="res://script/weapon/coin_gun.gd" id="3_ivskd"]
 [ext_resource type="PackedScene" uid="uid://ce4s2d8e06xde" path="res://scene/item/coin_bullet.tscn" id="4_ffk2x"]
 

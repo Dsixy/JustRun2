@@ -1,0 +1,19 @@
+[gd_scene load_steps=7 format=3 uid="uid://r3x4lwrlwhb2"]
+
+[ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_yowwk"]
+[ext_resource type="Texture2D" uid="uid://bi3bmmkwy8x1y" path="res://asset/image/asset.png" id="2_16c6x"]
+[ext_resource type="Script" path="res://script/weapon/tear.gd" id="2_c7nhu"]
+[ext_resource type="PackedScene" uid="uid://ufm28rpuvxwb" path="res://scene/item/tear_bullet.tscn" id="4_fg1gl"]
+[ext_resource type="PackedScene" uid="uid://odfbonslu8t6" path="res://scene/item/tear_ball.tscn" id="5_v6p1k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8kif"]
+atlas = ExtResource("2_16c6x")
+region = Rect2(0, 600, 100, 100)
+
+[node name="Tear" instance=ExtResource("1_yowwk")]
+texture = SubResource("AtlasTexture_g8kif")
+script = ExtResource("2_c7nhu")
+tearBulletScene = ExtResource("4_fg1gl")
+tearBallScene = ExtResource("5_v6p1k")
+id = 28
+na = "泪水"

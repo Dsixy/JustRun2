@@ -44,7 +44,7 @@ func attack_once():
 		self.baseCritDamage, player)
 
 	dash.init("dash", direction, damage, dashScale * 3)
-	dash.extraVel = direction * 1500
+	dash.extraVel = direction * 1200
 	dash.scale /= 2
 
 	player.direction = direction

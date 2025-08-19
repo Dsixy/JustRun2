@@ -1,0 +1,448 @@
+[gd_scene load_steps=39 format=3 uid="uid://b1581j7gts3vx"]
+
+[ext_resource type="StyleBox" uid="uid://c12gxnfx501sf" path="res://resource/board.tres" id="1_htq42"]
+[ext_resource type="Script" path="res://script/UI/illustrated_handbook.gd" id="1_xm4fs"]
+[ext_resource type="PackedScene" uid="uid://cyqedkh0hf7u6" path="res://scene/UI/book_slot.tscn" id="3_0qdbq"]
+[ext_resource type="Texture2D" uid="uid://bi3bmmkwy8x1y" path="res://asset/image/asset.png" id="4_xuc3q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_duh1w"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(1000, 900, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1r2dk"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(1100, 900, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7cp2"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(1200, 900, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xj3i7"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15rsi"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqvn0"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ic37p"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fwnkk"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ap5yl"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(0, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40ntw"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(100, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdmdk"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(200, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvlwf"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(300, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ockd6"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(400, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tx5t5"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(0, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvcqj"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(100, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s53ly"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(200, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jv64l"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(300, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3qfv"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(400, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgj7k"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(0, 300, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o88ju"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(100, 300, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rcmx"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(200, 300, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3aou"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(300, 300, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dfxxn"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(400, 300, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6t4c"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(0, 400, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_at36n"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(100, 400, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wl4ce"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(200, 400, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xaeci"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(300, 400, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pe1ie"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(400, 400, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jw7ot"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(0, 500, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vf7qh"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(100, 500, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgetf"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(200, 500, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x08ph"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(300, 500, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7yrw"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(400, 500, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_riyqa"]
+atlas = ExtResource("4_xuc3q")
+region = Rect2(0, 600, 100, 100)
+
+[node name="IllustratedHandbook" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xm4fs")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(1300, 800)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.0
+offset_top = -85.0
+offset_right = 85.0
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_htq42")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 80
+text = "图鉴"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 4
+
+[node name="BookSlot28" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+description = "非武器。拖拽该物品到其他武器上后可升级该武器。"
+item_name = "升级套件"
+itemTexture = SubResource("AtlasTexture_duh1w")
+
+[node name="BookSlot29" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+description = "非武器。拖拽到武器上以复制该武器的一级版本"
+item_name = "镜子"
+itemTexture = SubResource("AtlasTexture_1r2dk")
+
+[node name="BookSlot30" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+description = "非武器。获取后自动使用。使角色能力点+1"
+item_name = "彩虹糖"
+itemTexture = SubResource("AtlasTexture_v7cp2")
+
+[node name="BookSlot" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+description = "攻击发射子弹"
+item_name = "手枪"
+itemTexture = SubResource("AtlasTexture_xj3i7")
+
+[node name="BookSlot2" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+description = "发射子弹攻击敌人。高伤害，高暴击，低攻速"
+item_name = "狙击枪"
+itemTexture = SubResource("AtlasTexture_15rsi")
+
+[node name="BookSlot3" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+description = "发射多颗子弹攻击敌人"
+item_name = "霰弹枪"
+itemTexture = SubResource("AtlasTexture_hqvn0")
+
+[node name="BookSlot4" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+description = "攻击进行圆形范围的劈砍。劈砍会进行两次"
+item_name = "激光剑"
+itemTexture = SubResource("AtlasTexture_ic37p")
+
+[node name="BookSlot5" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+description = "攻击时对前方进行眼花缭乱的挥砍"
+item_name = "花刀玉手"
+itemTexture = SubResource("AtlasTexture_fwnkk")
+
+[node name="BookSlot6" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+description = "攻击是释放泡泡环绕自身。泡泡对击中的敌人会造成心灵伤害"
+item_name = "思维泡泡"
+itemTexture = SubResource("AtlasTexture_ap5yl")
+
+[node name="BookSlot7" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+description = "攻击时吹出一道寒风。造成冰属性伤害并施加减速Buff"
+item_name = "冰霜手镯"
+itemTexture = SubResource("AtlasTexture_40ntw")
+
+[node name="BookSlot8" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+description = "攻击时若场上存在弹幕，则随机选择弹幕作为落点降下陨星"
+item_name = "群星之怒"
+itemTexture = SubResource("AtlasTexture_bdmdk")
+
+[node name="BookSlot9" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+description = "攻击释放多张纸牌。有概率释放Ace牌，造成大量伤害。"
+item_name = "扑克牌"
+itemTexture = SubResource("AtlasTexture_mvlwf")
+
+[node name="BookSlot10" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+description = "攻击释放歌声，对周围敌人造成伤害。"
+item_name = "心之歌"
+itemTexture = SubResource("AtlasTexture_ockd6")
+
+[node name="BookSlot11" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+description = "攻击时随机丢出毒药瓶，毒药瓶落地后生成毒区。对其中敌人造成持续伤害，同时施加中毒buff"
+item_name = "毒药瓶"
+itemTexture = SubResource("AtlasTexture_tx5t5")
+
+[node name="BookSlot12" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+description = "攻击时释放激光。对一条直线上的敌人造成伤害"
+item_name = "激光枪"
+itemTexture = SubResource("AtlasTexture_hvcqj")
+
+[node name="BookSlot13" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+description = "攻击时推动玩家向前撞击，对击中的敌人造成伤害。撞击期间获得短暂无敌效果。"
+item_name = "肉蛋葱鸡"
+itemTexture = SubResource("AtlasTexture_s53ly")
+
+[node name="BookSlot14" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+description = "攻击是释放若干外卖员。外卖员会随机选取场上敌人作为目标，行驶到目标处后返回，对路径上敌人造成伤害。"
+item_name = "外卖员"
+itemTexture = SubResource("AtlasTexture_jv64l")
+
+[node name="BookSlot15" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+description = "攻击发射蛛网弹，命中后造成伤害并展开蛛网，蛛网内的敌人身上受到的持续伤害立即结算"
+item_name = "蛛网"
+itemTexture = SubResource("AtlasTexture_l3qfv")
+
+[node name="BookSlot16" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+description = "攻击时召唤几个猴超人从左向右飞行，飞行过程会对碰到的敌人造成伤害"
+item_name = "漫画书"
+itemTexture = SubResource("AtlasTexture_cgj7k")
+
+[node name="BookSlot17" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+description = "攻击喷射香氛，对命中敌人造成伤害并施加中毒buff。香水瓶的能力可以通过收集植物永久提升"
+item_name = "香水瓶"
+itemTexture = SubResource("AtlasTexture_o88ju")
+
+[node name="BookSlot18" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+itemTexture = SubResource("AtlasTexture_0rcmx")
+
+[node name="BookSlot19" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+itemTexture = SubResource("AtlasTexture_t3aou")
+
+[node name="BookSlot20" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+itemTexture = SubResource("AtlasTexture_dfxxn")
+
+[node name="BookSlot21" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+description = "攻击释放金币子弹。发射的金币会随着自身金币数量提升，同时也会消耗一定的金币"
+item_name = "金币枪"
+itemTexture = SubResource("AtlasTexture_t6t4c")
+
+[node name="BookSlot22" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+description = "攻击在指定区域生成锚点，随后释放若干火箭轰击"
+item_name = "火箭炮"
+itemTexture = SubResource("AtlasTexture_at36n")
+
+[node name="BookSlot23" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+itemTexture = SubResource("AtlasTexture_wl4ce")
+
+[node name="BookSlot24" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+description = "攻击释放炮台"
+item_name = "扳手"
+itemTexture = SubResource("AtlasTexture_xaeci")
+
+[node name="BookSlot25" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+description = "每进行若干次攻击，生成猫咪护盾，猫咪护盾会保护你免受一次伤害"
+item_name = "猫之计谋"
+itemTexture = SubResource("AtlasTexture_pe1ie")
+
+[node name="BookSlot26" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+description = "攻击释放光轮。若场上存在其他光轮，则使所有光轮向指定方向飞行一段距离。"
+item_name = "极速光轮"
+itemTexture = SubResource("AtlasTexture_jw7ot")
+
+[node name="BookSlot27" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+description = "攻击释放浮游炮。到达一定等级时，浮游炮还可以使用你背包中第一个武器"
+item_name = "浮游炮"
+itemTexture = SubResource("AtlasTexture_vf7qh")
+
+[node name="BookSlot31" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+description = "其他武器攻击时释放追加攻击，叶子攻击时收回场上叶子，并造成二次伤害"
+item_name = "叶子"
+itemTexture = SubResource("AtlasTexture_sgetf")
+
+[node name="BookSlot32" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+description = "攻击释放魂灵，魂灵受伤时会释放冲击波伤害周围敌人"
+item_name = "唤灵海螺"
+itemTexture = SubResource("AtlasTexture_x08ph")
+
+[node name="BookSlot33" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+description = "复制下一个武器的攻击"
+item_name = "复制器"
+itemTexture = SubResource("AtlasTexture_i7yrw")
+
+[node name="BookSlot34" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
+layout_mode = 2
+description = "攻击释放泪珠，可以触发神奇的连锁反应"
+item_name = "泪水"
+itemTexture = SubResource("AtlasTexture_riyqa")
+
+[node name="PanelContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = ExtResource("1_htq42")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="PanelContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Name" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PanelContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+autowrap_mode = 3

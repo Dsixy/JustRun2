@@ -48,3 +48,9 @@ func attack():
 	
 func calculate_damage():
 	return 3 + 2 * self.level + 0.1 * self.player.charisma + 0.2 * self.player.insight
+	
+func dearm():
+	for bubble in bubbleList:
+		if is_instance_valid(bubble):
+			bubble.queue_free()
+	bubbleList.clear()

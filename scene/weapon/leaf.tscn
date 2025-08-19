@@ -1,0 +1,17 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbpemeomnqs60"]
+
+[ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_2763l"]
+[ext_resource type="Script" path="res://script/weapon/leaf.gd" id="2_c7nlm"]
+[ext_resource type="Texture2D" uid="uid://bi3bmmkwy8x1y" path="res://asset/image/asset.png" id="2_nxn77"]
+[ext_resource type="PackedScene" uid="uid://w5yuklgbrn1s" path="res://scene/item/leaf_bullet.tscn" id="3_737g8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxtwo"]
+atlas = ExtResource("2_nxn77")
+region = Rect2(200, 500, 100, 100)
+
+[node name="Leaf" instance=ExtResource("1_2763l")]
+texture = SubResource("AtlasTexture_gxtwo")
+script = ExtResource("2_c7nlm")
+leafBulletScene = ExtResource("3_737g8")
+id = 27
+na = "叶子"

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bx4uqpji7ofvv"]
 
-[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="1_20rc8"]
+[ext_resource type="Texture2D" uid="uid://cfy2a5opnoaxu" path="res://asset/image/asset.png" id="1_20rc8"]
 [ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_bai65"]
 [ext_resource type="Script" path="res://script/weapon/thought_bubble.gd" id="2_2gl2x"]
 [ext_resource type="PackedScene" uid="uid://b32fkr4tmf51m" path="res://scene/item/bubble.tscn" id="3_25p34"]

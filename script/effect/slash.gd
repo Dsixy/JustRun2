@@ -1,6 +1,5 @@
 extends HitArea
 
-
 var lifeSteal: int = 0
 
 @onready var aniplayer = $AnimationPlayer
@@ -20,5 +19,5 @@ func _on_area_2d_area_entered(area):
 	if area.is_in_group("enemy"):
 		var e = area.get_parent()
 		e.be_hit(damage.copy())
-		e.extraVel = extraVel
+		e.be_knock_back(extraVel, 0.5)
 		damage.source.HP += lifeSteal

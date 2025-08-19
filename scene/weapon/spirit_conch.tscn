@@ -1,10 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://bs3mfewqtuj1t"]
+[gd_scene load_steps=6 format=3 uid="uid://bs3mfewqtuj1t"]
 
 [ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_b3f43"]
 [ext_resource type="Script" path="res://script/weapon/spirit_conch.gd" id="2_3vneo"]
+[ext_resource type="Texture2D" uid="uid://c1fmdi34bowtf" path="res://asset/image/asset.png" id="2_u8klj"]
 [ext_resource type="PackedScene" uid="uid://dabftocr4hgwp" path="res://scene/item/little_spirit.tscn" id="3_jnx45"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1rfj"]
+atlas = ExtResource("2_u8klj")
+region = Rect2(300, 500, 100, 100)
+
 [node name="SpiritConch" instance=ExtResource("1_b3f43")]
+texture = SubResource("AtlasTexture_w1rfj")
 script = ExtResource("2_3vneo")
 spiritScene = ExtResource("3_jnx45")
 id = 21
+na = "唤灵海螺"

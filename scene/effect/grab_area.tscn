@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj1raj6hvtyix"]
+
+[ext_resource type="Script" path="res://script/effect/grab_area.gd" id="1_lparl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w0t58"]
+size = Vector2(857, 568)
+
+[node name="GrabArea" type="Node2D"]
+script = ExtResource("1_lparl")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(419.5, -4)
+shape = SubResource("RectangleShape2D_w0t58")

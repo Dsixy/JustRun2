@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0bofarbjpy4h"]
+
+[ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_wyn3e"]
+[ext_resource type="Script" path="res://script/weapon/maiden_touch.gd" id="2_v4hbe"]
+[ext_resource type="PackedScene" uid="uid://bj1raj6hvtyix" path="res://scene/effect/grab_area.tscn" id="3_2rqly"]
+
+[node name="MaidenTouch" instance=ExtResource("1_wyn3e")]
+script = ExtResource("2_v4hbe")
+grabScene = ExtResource("3_2rqly")

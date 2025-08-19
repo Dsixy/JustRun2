@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cfgh7svcqxu8y" path="res://scene/enemy/base_enemy.tscn" id="1_nfb5y"]
 [ext_resource type="Script" path="res://script/enemy/junk_rush.gd" id="2_v5w3e"]
-[ext_resource type="Texture2D" uid="uid://v43cpo6a2hnm" path="res://asset/image/asset.png" id="3_prxd0"]
+[ext_resource type="Texture2D" uid="uid://bi3bmmkwy8x1y" path="res://asset/image/asset.png" id="3_prxd0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2rrqi"]
 atlas = ExtResource("3_prxd0")

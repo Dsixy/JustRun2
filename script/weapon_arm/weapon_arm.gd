@@ -28,6 +28,9 @@ func attack():
 		for weapon in content[i]:
 			if weapon:
 				weapon.attack()
+				for w: BaseWeapon in weaponList:
+					if w:
+						w.follow_up_attack()
 			
 		await get_tree().create_timer(self.contentAttackInterval[i] * intervalScale).timeout
 	set_process(true)
@@ -48,7 +51,7 @@ func update_weapons():
 		if weapon:
 			add_child(weapon)
 			weapon.update_player(self.player)
-			weapon.arm()
+			weapon.arm(self)
 	
 	update_content()
 	

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://mktgk00x436i"]
 
 [ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_kxt17"]
-[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="2_bqxgv"]
+[ext_resource type="Texture2D" uid="uid://cfy2a5opnoaxu" path="res://asset/image/asset.png" id="2_bqxgv"]
 [ext_resource type="Script" path="res://script/weapon/cat_trick.gd" id="2_lhjr1"]
 [ext_resource type="PackedScene" uid="uid://64mkbakqyrxs" path="res://scene/effect/cat_shield.tscn" id="3_c20nm"]
 

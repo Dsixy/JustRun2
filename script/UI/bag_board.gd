@@ -7,7 +7,7 @@ var slotList
 func _ready():
 	pass # Replace with function body.
 
-func init(player: BasePlayer):
+func init(player: BasePlayer, cfg_dict: Dictionary = {}):
 	self.player = player
 	self.slotList = $Panel/HBoxContainer.get_children()
 	

@@ -1,21 +1,11 @@
 extends BaseWeaponArm
 
 func _ready():
-	var s = preload("res://scene/weapon/option.tscn")
-	var a = s.instantiate()
-	a.upgrade()
-	a.upgrade()
-	a.upgrade()
-	a.upgrade()
-	s = preload("res://scene/weapon/delivery_guy.tscn")
-	var b = s.instantiate()
-	b.upgrade()
-	b.upgrade()
 	self.slotScale = 2.25
-	s = preload("res://scene/weapon/laser_gun.tscn")
-	var c = s.instantiate()
+	var s = preload("res://scene/weapon/laser_gun.tscn")
+	var a = s.instantiate()
 	
-	self.weaponList = [null, c, a, b]
+	self.weaponList = [null, a, null, null]
 		
 func update_content():
 	self.contentAttackInterval = []

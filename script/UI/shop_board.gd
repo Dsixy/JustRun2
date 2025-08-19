@@ -12,7 +12,7 @@ signal close
 func _ready():
 	pass # Replace with function body.
 
-func init(player: BasePlayer):
+func init(player: BasePlayer, cfg_dict: Dictionary):
 	self.player = player
 	for i in range(4):
 		slotList[i].player = self.player

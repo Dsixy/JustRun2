@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://cyqedkh0hf7u6"]
+
+[ext_resource type="StyleBox" uid="uid://c12gxnfx501sf" path="res://resource/board.tres" id="1_lq4uw"]
+[ext_resource type="Script" path="res://script/UI/book_slot.gd" id="2_4v1fh"]
+[ext_resource type="Texture2D" uid="uid://cfy2a5opnoaxu" path="res://asset/image/asset.png" id="2_41j6j"]
+[ext_resource type="Theme" uid="uid://tkhof3a4pa3x" path="res://resource/transparent_button.tres" id="3_s1p15"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0hbdp"]
+atlas = ExtResource("2_41j6j")
+region = Rect2(0, 0, 100, 100)
+
+[node name="BookSlot" type="PanelContainer"]
+custom_minimum_size = Vector2(100, 100)
+offset_right = 20.0
+offset_bottom = 20.0
+scale = Vector2(0.7, 0.7)
+theme_override_styles/panel = ExtResource("1_lq4uw")
+script = ExtResource("2_4v1fh")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_0hbdp")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+theme = ExtResource("3_s1p15")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

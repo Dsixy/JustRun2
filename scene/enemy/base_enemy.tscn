@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfgh7svcqxu8y"]
+[gd_scene load_steps=8 format=3 uid="uid://cfgh7svcqxu8y"]
 
 [ext_resource type="Script" path="res://script/enemy/base_enemy.gd" id="1_mb4os"]
 [ext_resource type="PackedScene" uid="uid://bbinpg7puli3u" path="res://scene/buff/buff_manager.tscn" id="2_urdlp"]
-[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="3_waxlp"]
+[ext_resource type="Texture2D" uid="uid://bi3bmmkwy8x1y" path="res://asset/image/asset.png" id="3_waxlp"]
+[ext_resource type="Script" path="res://script/enemy/Active.gd" id="4_2o1kl"]
+[ext_resource type="Script" path="res://script/enemy/StateMachine.gd" id="4_pursq"]
+[ext_resource type="Script" path="res://script/enemy/Staggered.gd" id="6_yllhx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aes5c"]
 atlas = ExtResource("3_waxlp")
@@ -36,6 +39,7 @@ collision_layer = 0
 [node name="BuffManager" parent="." instance=ExtResource("2_urdlp")]
 
 [node name="StatusIcon" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(34, 34)
 scale = Vector2(0.365, 0.365)
 texture = SubResource("AtlasTexture_aes5c")
@@ -45,6 +49,15 @@ vframes = 3
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(-1.90735e-06, -1.90735e-06)
 scale = Vector2(3.2, 3.2)
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("4_pursq")
+
+[node name="Active" type="Node" parent="StateMachine"]
+script = ExtResource("4_2o1kl")
+
+[node name="Staggered" type="Node" parent="StateMachine"]
+script = ExtResource("6_yllhx")
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

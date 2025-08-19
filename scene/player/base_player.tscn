@@ -31,7 +31,6 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_upadm")
 
 [node name="Hurtbox" type="Area2D" parent="." groups=["player"]]
-collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://crtolih0stjo8"]
+[gd_scene load_steps=11 format=3 uid="uid://crtolih0stjo8"]
 
 [ext_resource type="Script" path="res://script/scene.gd" id="1_ct4f5"]
 [ext_resource type="PackedScene" uid="uid://bs3aq45n6g3gt" path="res://scene/item/exp_gem.tscn" id="2_332mv"]
@@ -7,23 +7,18 @@
 [ext_resource type="Script" path="res://script/UI.gd" id="5_64xcc"]
 [ext_resource type="PackedScene" uid="uid://dbels83ns48cr" path="res://scene/UI/stats_ui.tscn" id="6_osxhy"]
 [ext_resource type="AudioStream" uid="uid://uxohg486n51q" path="res://asset/music/吸血鬼幸存者bgm.mp3" id="7_tppv3"]
+[ext_resource type="Script" path="res://script/PhysicalLayer.gd" id="8_37q3e"]
 [ext_resource type="Texture2D" uid="uid://p8todlyl7ob6" path="res://asset/image/back.png" id="8_c4ubn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bejm1"]
 atlas = ExtResource("8_c4ubn")
 region = Rect2(0, 0, 1600, 1000)
 
-[node name="Scene" type="Node2D"]
+[node name="Scene" type="Node"]
 script = ExtResource("1_ct4f5")
 expGemScene = ExtResource("2_332mv")
 coinScene = ExtResource("3_rmb0o")
 weaponArmScene = ExtResource("4_vhs5u")
-
-[node name="WaveTimer" type="Timer" parent="."]
-one_shot = true
-
-[node name="EnemyGenerateTimer" type="Timer" parent="."]
-one_shot = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -44,8 +39,15 @@ offset_right = 40.0
 grow_vertical = 0
 theme_override_constants/separation = 20
 
+[node name="Label4" type="Label" parent="UI/HBoxContainer"]
+layout_mode = 2
+
 [node name="Label3" type="Label" parent="UI/HBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 30
+text = "按 T 打开图鉴"
 
 [node name="Label" type="Label" parent="UI/HBoxContainer"]
 layout_mode = 2
@@ -61,31 +63,37 @@ theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 30
 text = "按 M 打开能力点"
 
-[node name="Bullet" type="Node2D" parent="."]
-
-[node name="Enemy" type="Node2D" parent="."]
-
-[node name="Item" type="Node2D" parent="."]
-
-[node name="Effect" type="Node2D" parent="."]
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI"]
 stream = ExtResource("7_tppv3")
 autoplay = true
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+[node name="PhysicalLayer" type="Node2D" parent="."]
+script = ExtResource("8_37q3e")
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="Bullet" type="Node2D" parent="PhysicalLayer"]
+
+[node name="Enemy" type="Node2D" parent="PhysicalLayer"]
+
+[node name="Item" type="Node2D" parent="PhysicalLayer"]
+
+[node name="Effect" type="Node2D" parent="PhysicalLayer"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="PhysicalLayer"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="PhysicalLayer/ParallaxBackground"]
 motion_mirroring = Vector2(3200, 2000)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="PhysicalLayer/ParallaxBackground/ParallaxLayer"]
 texture_repeat = 2
 position = Vector2(1600, 1000)
 scale = Vector2(2, 2)
 texture = SubResource("AtlasTexture_bejm1")
 
-[connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]
-[connection signal="timeout" from="EnemyGenerateTimer" to="." method="_on_enemy_generate_timer_timeout"]
-[connection signal="close_board" from="UI" to="." method="_on_ui_close_board"]
-[connection signal="open_ability_board" from="UI" to="." method="_on_ui_open_ability_board"]
-[connection signal="open_bag_board" from="UI" to="." method="_on_ui_open_bag_board"]
+[node name="WaveTimer" type="Timer" parent="PhysicalLayer"]
+one_shot = true
+
+[node name="EnemyGenerateTimer" type="Timer" parent="PhysicalLayer"]
+one_shot = true
+
+[connection signal="timeout" from="PhysicalLayer/WaveTimer" to="." method="_on_wave_timer_timeout"]
+[connection signal="timeout" from="PhysicalLayer/EnemyGenerateTimer" to="." method="_on_enemy_generate_timer_timeout"]

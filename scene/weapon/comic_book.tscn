@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ljnpmeoiioce"]
 
-[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="1_ddpfp"]
+[ext_resource type="Texture2D" uid="uid://c1fmdi34bowtf" path="res://asset/image/asset.png" id="1_ddpfp"]
 [ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_gjwxu"]
 [ext_resource type="Script" path="res://script/weapon/comic_book.gd" id="2_7thoc"]
 [ext_resource type="PackedScene" uid="uid://bcc1vmwb4tq7j" path="res://scene/item/super_monkey.tscn" id="3_gt4p3"]

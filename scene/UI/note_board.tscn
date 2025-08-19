@@ -1,0 +1,81 @@
+[gd_scene load_steps=6 format=3 uid="uid://b1cty1cjd86he"]
+
+[ext_resource type="Script" path="res://script/UI/note_board.gd" id="1_bawt0"]
+[ext_resource type="StyleBox" uid="uid://c12gxnfx501sf" path="res://resource/board.tres" id="1_eq7ml"]
+[ext_resource type="FontFile" uid="uid://4pjyr76ukhtj" path="res://asset/font/PoplarStd.otf" id="2_cumwk"]
+[ext_resource type="Texture2D" uid="uid://cfy2a5opnoaxu" path="res://asset/image/asset.png" id="3_jqltm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhue3"]
+atlas = ExtResource("3_jqltm")
+region = Rect2(0, 700, 100, 100)
+
+[node name="NoteBoard" type="Control"]
+custom_minimum_size = Vector2(500, 350)
+layout_mode = 3
+anchors_preset = 0
+offset_left = -250.0
+offset_top = -175.0
+offset_right = 250.0
+offset_bottom = 175.0
+pivot_offset = Vector2(250, 175)
+script = ExtResource("1_bawt0")
+
+[node name="Panel" type="PanelContainer" parent="."]
+self_modulate = Color(0.405615, 0.825065, 1, 1)
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_eq7ml")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_cumwk")
+theme_override_font_sizes/font_size = 50
+text = "You Loss"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton" type="TextureButton" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+texture_normal = SubResource("AtlasTexture_jhue3")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/TextureButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.366595, 0.366595, 0.366595, 1)
+theme_override_fonts/font = ExtResource("2_cumwk")
+theme_override_font_sizes/font_size = 30
+text = "Restart"
+
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/TextureButton" to="." method="_on_texture_button_pressed"]

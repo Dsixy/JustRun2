@@ -3,9 +3,11 @@ class_name BaseEnemy extends CharacterBody2D
 @onready var animationPlayer = $AnimationPlayer
 @onready var buffManager = $BuffManager
 @onready var statusIcon = $StatusIcon
+@onready var stateMachine = $StateMachine
 var target: Vector2 = Vector2.ZERO
 var direction: Vector2 = Vector2.ZERO
 var extraVel: Vector2 = Vector2.ZERO
+var staggerTime: float = 0.0
 var speed: int = 100
 var HP: int = 100
 var damage: DamageInfo = DamageInfo.new()
@@ -17,10 +19,17 @@ func _ready():
 	damage.baseAmount = 5.0
 	
 func _physics_process(_delta):
-	direction = (target - global_position).normalized()
-	velocity = direction * speed + extraVel
-	move_and_collide(velocity * _delta)
-	extraVel *= 0.95
+	stateMachine.physics_process(_delta)
+	#direction = (target - global_position).normalized()
+	#velocity = direction * speed + extraVel
+	#move_and_collide(velocity * _delta)
+	#extraVel *= 0.95
+	
+func be_knock_back(knockVel: Vector2, time: float):
+	self.extraVel = knockVel
+	self.staggerTime = time
+	
+	self.stateMachine.switch_to_state("Staggered")
 	
 func reset_properties():
 	pass

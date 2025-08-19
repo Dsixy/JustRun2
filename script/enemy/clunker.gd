@@ -6,7 +6,7 @@ func _ready():
 	self.speed = 80
 
 func init(level: int, wave: int):
-	self.level = level
+	self.level = int((wave - 10) / 7) + 1
 	reset_properties(wave)
 	
 func reset_properties(wave: int = 0):

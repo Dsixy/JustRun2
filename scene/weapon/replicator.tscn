@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://22pwsddv1qx"]
+
+[ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_gaq6j"]
+[ext_resource type="Texture2D" uid="uid://bi3bmmkwy8x1y" path="res://asset/image/asset.png" id="2_0i5ac"]
+[ext_resource type="Script" path="res://script/weapon/replicator.gd" id="2_ecee3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yfavy"]
+atlas = ExtResource("2_0i5ac")
+region = Rect2(400, 500, 100, 100)
+
+[node name="Replicator" instance=ExtResource("1_gaq6j")]
+texture = SubResource("AtlasTexture_yfavy")
+script = ExtResource("2_ecee3")
+id = 26
+na = "复制器"
+descriptions = null

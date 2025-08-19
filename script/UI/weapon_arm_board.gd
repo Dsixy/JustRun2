@@ -6,8 +6,7 @@ extends Control
 var slotList = []
 var weaponArm: BaseWeaponArm
 
-	
-func init(player: BasePlayer):
+func init(player: BasePlayer, cfg_dict: Dictionary = {}):
 	weaponArm = player.weaponArm
 	panel.texture = weaponArm.weaponArmBoardTexture.duplicate()
 	load_slot(player.weaponArm)

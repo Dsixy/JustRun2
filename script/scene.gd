@@ -1,18 +1,20 @@
-extends Node2D
+extends Node
 
 @export var expGemScene: PackedScene
 @export var coinScene: PackedScene
 @export var weaponArmScene: PackedScene
 
-@onready var waveTimer = $WaveTimer
-@onready var enemyGenerateTimer = $EnemyGenerateTimer
+@onready var waveTimer = $PhysicalLayer/WaveTimer
+@onready var enemyGenerateTimer = $PhysicalLayer/EnemyGenerateTimer
+@onready var UIScene = $UI
 @onready var UIcontainer = $UI/Container
 @onready var statsUI = $UI/StatsUI
 
-@onready var bulletNode = $Bullet
-@onready var enemyNode = $Enemy
-@onready var itemNode = $Item
-@onready var effectNode = $Effect
+@onready var bulletNode = $PhysicalLayer/Bullet
+@onready var enemyNode = $PhysicalLayer/Enemy
+@onready var itemNode = $PhysicalLayer/Item
+@onready var effectNode = $PhysicalLayer/Effect
+@onready var sceneLayer = $PhysicalLayer
 
 const expGemProb = [
 	[0.3, 0, 0], [0.3, 0, 0],
@@ -36,6 +38,7 @@ var wave: int = 1
 var wave_time: int = 0
 var popocatScene = preload("res://scene/popocat.tscn")
 var nextWave: bool = false
+var gameoverFlag: bool = false
 
 # enemy manage
 var enemyList: Array[PackedScene] = [
@@ -81,6 +84,11 @@ const enemyGenerate = [
 	[[10, 3, 1], [10, 2, 2], [15, 1, 3]],
 ]
 var enemyGenerateInterval: float = 0.0
+var killEnemyCounter: int = 0
+var lastWaveGenerationNum: int = 0
+var killGeneRate: float = 0.0
+var generateBonus: float = 1.0
+
 var inWave: bool = false
 var lootSceneList = [
 	preload("res://scene/item/hyacinth.tscn"),
@@ -89,22 +97,24 @@ var lootSceneList = [
 	preload("res://scene/item/raindrop_jasmine.tscn"),
 	preload("res://scene/item/catnip.tscn")
 ]
+var coinList = []
+var gemList = []
 
-# UI manage
-const abilityBoardScene = preload("res://scene/UI/player_ability_board.tscn")
-const weaponArmBoardScene = preload("res://scene/UI/weapon_arm_board.tscn")
-const bagBoardScene = preload("res://scene/UI/bag_board.tscn")
-const shopBoardScene = preload("res://scene/UI/shop_board.tscn")
+# some constant
+var enemySetDirectionInterval: float = 1.0
+var enemySetDirectionTimer: float = 0.0
 
 func _ready():
+	GameInfo.mainscene = self
 	load_player()
 	load_event()
-	GameInfo.mainscene = self	
+	load_cfg()
 	statsUI.player = self.player
+	UIScene.player = self.player
 	start_game()
 	
 func start_game():
-	for i in range(30):
+	for i in range(10):
 		await one_wave()
 		if wave == 10 and GameInfo.config.get_value("Event", "first_to_wave_10") == false:
 			Events.story_triggered.emit("first_to_wave_10")
@@ -113,7 +123,7 @@ func start_game():
 
 		GameInfo.refresh()
 		await popocat_shop()
-		wave += 1
+		wave += 3
 	final_results()
 	
 func final_results():
@@ -126,9 +136,16 @@ func final_results():
 	for skill in properties:
 		if player.get(skill) == 20 and GameInfo.config.get_value("Event", "first_%s_to_20" % skill) == false:
 			Events.skill_triggered.emit(skill)
+			
+	GameInfo.player = ""
+	get_tree().change_scene_to_file("res://scene/UI/main_menu.tscn")
 
 func _process(delta):
-	set_enemy_direction()
+	enemySetDirectionTimer += delta
+	if enemySetDirectionTimer >= enemySetDirectionInterval:
+		set_enemy_direction()
+		enemySetDirectionTimer -= enemySetDirectionInterval
+		enemySetDirectionInterval = randf_range(0.6, 1.4)
 
 # manage event
 func load_event():
@@ -136,6 +153,12 @@ func load_event():
 	Events.connect("skill_triggered", _on_skill_triggered)
 	Events.connect("level_triggered", _on_level_triggered)
 	
+func load_cfg():
+	if GameInfo.cheat:
+		player.money = 10000
+		player.abilityPoint = 500
+		player.refreshTime = 1000
+		
 func _on_story_triggered(storyName: String):
 	pass
 	match storyName:
@@ -166,7 +189,7 @@ func carmor_come():
 	var tween = get_tree().create_tween()
 	
 	focus()
-	GameInfo.mainscene.add_child(carmor)
+	sceneLayer.add_child(carmor)
 	carmor.global_position = player.global_position + Vector2(1000, 0)
 	tween.tween_property(carmor, "global_position", player.global_position + Vector2(100, 0), 2)
 	
@@ -194,7 +217,7 @@ func alew_come():
 	var tween = get_tree().create_tween()
 	
 	focus()
-	GameInfo.mainscene.add_child(alew)
+	sceneLayer.add_child(alew)
 	alew.global_position = player.global_position + Vector2(1000, 0)
 	tween.tween_property(alew, "global_position", player.global_position + Vector2(100, 0), 2)
 	
@@ -241,11 +264,11 @@ func show_item(item: Node):
 	
 	effect.remove_child(item)
 	effect.queue_free()
-	
+
 # manage player
 func load_player():
 	player = load(GameInfo.player).instantiate()
-	add_child(player)
+	sceneLayer.add_child(player)
 	
 	player.init(player_init_position)
 	player.connect("get_upgrade", player_updgrade)
@@ -261,61 +284,21 @@ func player_updgrade():
 	pass
 
 func player_dead():
-	final_results()
-# UI
-func _open_ability_board():
-	var abilityBoard = abilityBoardScene.instantiate()
-	UIcontainer.add_child(abilityBoard)
-	abilityBoard.init(player)
-	abilityBoard.connect("board_close", _on_ui_close_board)
-	get_tree().paused = true
-	# Engine.time_scale = 0
-	
-func _on_ui_close_board():
-	_on_board_closed()
-	
-func _on_ui_open_bag_board():
-	_open_bag_board()
-	_open_weapon_arm_board()
-	
-func _on_ui_open_ability_board():
-	_open_ability_board()
-	
-func _open_weapon_arm_board():
-	var weaponArmBoard = weaponArmBoardScene.instantiate()
-	UIcontainer.add_child(weaponArmBoard)
-	weaponArmBoard.init(player)
-	get_tree().paused = true
-	# Engine.time_scale = 0
-
-func _open_bag_board():
-	var bagBoard = bagBoardScene.instantiate()
-	UIcontainer.add_child(bagBoard)
-	bagBoard.init(player)
-	get_tree().paused = true
-	
-func _open_shop_board():
-	var shopBoard = shopBoardScene.instantiate()
-	UIcontainer.add_child(shopBoard)
-	shopBoard.init(player)
-	shopBoard.connect("close", _on_board_closed)
-	get_tree().paused = true
-
-func _on_board_closed():
+	var noteName: Array[String] = ["note"]
+	var board = UIScene.open_UI_board(noteName, {"text": "You Loss", "button_text": "Restart"})
+	gameoverFlag = true
+	await board.click
 	get_tree().paused = false
-	player.weaponArm.deactivate()
-	var children = UIcontainer.get_children()
-	for child in children:
-		child.close_board()
-	# Engine.time_scale = 1
-
+	
+	final_results()
+	
 # manage wave
 func one_wave():
 	wave_time = 27 + 2 * wave
 	waveTimer.start(wave_time)
 	inWave = true
 	
-	if wave == 30:
+	if wave >= 30:
 		var m = preload("res://scene/enemy/mr_scythe.tscn").instantiate()
 		enemyNode.add_child(m)
 		enemies.append(m)
@@ -325,34 +308,81 @@ func one_wave():
 	var idx = 0
 	while inWave:
 		generate_enemies(enemy_generate[idx])
-		var generate_interval = 0.5 + len(enemies) * 0.1
+		lastWaveGenerationNum = enemyNode.get_child_count()
+		var generate_interval = clamp(0.5 + len(enemies) * 0.1, 0.5, 4)
 		enemyGenerateTimer.start(generate_interval)
 		await enemyGenerateTimer.timeout
 		
 		idx += 1
 		idx = idx % len(enemy_generate)
 	
+		if lastWaveGenerationNum == 0:
+			continue
+			
+		killGeneRate = killEnemyCounter / lastWaveGenerationNum
+		if killGeneRate <= 0.3:
+			generateBonus *= 0.5
+		elif killGeneRate <= 0.9:
+			generateBonus *= 0.8
+		elif killGeneRate <= 1.2:
+			generateBonus *= 1.25
+		elif killGeneRate <= 1.5:
+			generateBonus *= 1.6
+		else:
+			generateBonus *= 3.0
+			
+		generateBonus = clamp(generateBonus, 0.5, 5)
+			
 	clear_enemy()
+	clear_coin_and_gem()
 
 func _on_wave_timer_timeout():
 	inWave = false
 
+func clear_coin_and_gem():
+	for coin in coinList:
+		if is_instance_valid(coin) and randf() < 0.3:
+			player.pick(coin.area)
+		elif is_instance_valid(coin):
+			coin.queue_free()
+			
+	coinList.clear()
+	
+	for gem in gemList:
+		if is_instance_valid(gem) and randf() < 0.1:
+			player.pick(gem.area)
+		elif is_instance_valid(gem):
+			gem.queue_free()
+			
+	gemList.clear()
+	
 func popocat_shop():
 	var popocat = popocatScene.instantiate()
-	add_child(popocat)
+	sceneLayer.add_child(popocat)
 	popocat.global_position = player.global_position + Vector2(-1000, 0)
 	popocat.connect("click", _open_shop_board)
 	await popocat.click
 	
+func _open_shop_board():
+	var shopName: Array[String] = ["shop"]
+	var shop: Node = UIScene.open_UI_board(shopName)
+	shop.connect("close", shop_close)
+	
 func shop_close():
-	pass
+	var shopName: Array[String] = ["shop"]
+	UIScene.UIFocusStack.erase(["shop"])
+	UIScene.close_UI_board(shopName)
 
 # manage enemy
 func generate_enemies(ene: Array):
-	for i in range(ene[0]):
+	var counter = 0
+	for i in range(int(ene[0] * generateBonus)):
 		var pos = Utils.get_spawn_position_outside_camera(player.global_position, Vector2(1920, 1080))
 		for j in range(ene[1]):
 			generate_enemy(ene[2], pos + 100 * Vector2(randf(), randf()))
+			counter += 1
+	
+	return counter
 	
 func generate_enemy(idx: int, pos: Vector2):
 	var i = idx % 4
@@ -373,16 +403,20 @@ func process_enemy_death(enemy: BaseEnemy, pos: Vector2, willLoot: bool):
 			var expGem = expGemScene.instantiate()
 			itemNode.add_child(expGem)
 			expGem.init(expGemLevel, pos)
+			gemList.append(expGem)
 		
 		if randf() < (self.wave * 0.01 + 0.4):
 			var coin = coinScene.instantiate()
 			itemNode.add_child(coin)
 			coin.init(pos)
+			coinList.append(coin)
 			
 		if randf() < 0.008:
 			var loot = lootSceneList[Utils.random_weighted([0.2, 0.2, 0.2, 0.2, 0.2])].instantiate()
 			itemNode.add_child(loot)
 			loot.global_position = pos
+			
+		killEnemyCounter += 1
 
 	for weapon in self.player.weaponArm.weaponList:
 		if weapon and weapon.id == 21 and weapon.collect:

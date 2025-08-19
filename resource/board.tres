@@ -1,6 +1,6 @@
 [gd_resource type="StyleBoxTexture" load_steps=3 format=3 uid="uid://c12gxnfx501sf"]
 
-[ext_resource type="Texture2D" uid="uid://cfy2a5opnoaxu" path="res://asset/image/asset.png" id="1_sce21"]
+[ext_resource type="Texture2D" uid="uid://bi3bmmkwy8x1y" path="res://asset/image/asset.png" id="1_sce21"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3wve2"]
 atlas = ExtResource("1_sce21")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://bq5le1osh0ojy"]
 
 [ext_resource type="PackedScene" uid="uid://cfgh7svcqxu8y" path="res://scene/enemy/base_enemy.tscn" id="1_5susj"]
-[ext_resource type="Texture2D" uid="uid://dmjsplbl32kbo" path="res://asset/image/asset.png" id="2_lty5x"]
+[ext_resource type="Texture2D" uid="uid://bi3bmmkwy8x1y" path="res://asset/image/asset.png" id="2_lty5x"]
 [ext_resource type="Script" path="res://script/enemy/mr_scythe.gd" id="2_s6vl1"]
 [ext_resource type="PackedScene" uid="uid://b13cb8qc2ag3m" path="res://scene/item/bullet.tscn" id="3_gvl2i"]
 [ext_resource type="PackedScene" uid="uid://bxi3kg0o3ro5u" path="res://scene/effect/scythe_slash.tscn" id="4_tn4he"]

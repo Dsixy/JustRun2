@@ -8,6 +8,7 @@ var attackInterval: float = 1
 var baseDamage: int = 4
 var wheelDamage: int = 1
 var wheelRangeBonus: float = 1
+var maxDist: int = 700
 		
 var baseCritRate: float = 0.05
 var baseCritDamage: float = 2.0
@@ -26,14 +27,15 @@ func upgrade():
 		match self.level:
 			1: self.wheelNum += 1
 			2: 
-				self.wheelRangeBonus += 0.3
+				self.wheelRangeBonus += 0.6
 				self.wheelDamage += 3
 			3: 
-				self.wheelNum += 1
+				self.wheelNum += 2
 				self.baseDamage += 6
 			4: 
 				self.wheelNum += 1
 				self.maxRun += 2
+				self.maxDist += 300
 				self.light = true
 	
 func attack():
@@ -54,7 +56,7 @@ func attack():
 			randf() < self.baseCritRate + self.player.critRate,
 			self.baseCritDamage, player)
 		wheel.init(global_position, target, wheelSpeed, wheelRangeBonus,
-				 damage, wheelDamage, maxRun, light)
+				 damage, wheelDamage, maxRun, light, maxDist)
 		wheel.connect("death", _process_wheel_delete)
 		wheels.append(wheel)
 	

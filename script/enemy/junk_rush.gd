@@ -15,11 +15,11 @@ func _physics_process(delta):
 	extraVel *= 0.95
 	
 func init(level: int, wave: int):
-	self.level = level
+	self.level = int(wave / 12) + 1
 	reset_properties(wave)
 	
 func reset_properties(wave: int = 0):
-	self.HP = 20 + (-2 + 4 * self.level) * wave
+	self.HP = 10 + (-2 + 4 * self.level) * wave
 	self.damage.baseAmount = 20 * self.level + 10
 	
 func rush_to_target():

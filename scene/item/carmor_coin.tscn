@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dw3vhru22x0qv"]
 
 [ext_resource type="PackedScene" uid="uid://8qdkx2tqgrj7" path="res://scene/item/pickable_item.tscn" id="1_mvtgc"]
-[ext_resource type="Texture2D" uid="uid://c7yfsoql4ck4j" path="res://asset/image/asset.png" id="2_0gq68"]
+[ext_resource type="Texture2D" uid="uid://cfy2a5opnoaxu" path="res://asset/image/asset.png" id="2_0gq68"]
 [ext_resource type="Script" path="res://script/item/carmor_coin.gd" id="3_43rfd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ax3mn"]

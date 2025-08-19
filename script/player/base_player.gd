@@ -2,7 +2,7 @@ class_name BasePlayer extends CharacterBody2D
 
 const expRequire = [20, 50, 100, 200, 300, 500, 600, 700, 800, 1000, 
 					1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000,
-					2200, 2400, 2600, 2800, 3000, 3400, 3800, 4200, 4600, 5000]
+					2500, 3000, 3500, 4000, 4500, 5000, 6000, 7000, 8000, 9000, 10000]
 					
 const expGemValue = [10, 50, 500]
 
@@ -41,13 +41,14 @@ var direction: Vector2
 @onready var buffManager = $BuffManager
 
 var weaponArm: BaseWeaponArm
-var money: float = 30
+var money: float = 0
 var inventory = [null, null, null, null, null, null, null]
 var isInvincible: bool = false
 var refreshTime: int = 1
 var isDash: bool = false
 var elapse: float = 0.0
 var dashTime: float = 0.3
+var autoAttack: bool = true
 
 signal get_upgrade
 signal go_die
@@ -87,17 +88,12 @@ func process_input():
 		sprite.scale = Vector2(1, 1)
 	
 	direction = direction.normalized()
-	
-	#if Input.is_action_just_pressed("Attack"):
-		#self.weaponArm.activate()
-	#elif Input.is_action_just_released("Attack"):
-		#self.weaponArm.deactivate()
 		
 func _unhandled_input(event):
 	if GameInfo.mainscene.player != self:
 		return
 		
-	if event.is_action_pressed("Attack"):
+	if event.is_action_pressed("Attack") or autoAttack:
 		weaponArm.activate()
 	elif event.is_action_released("Attack"):
 		weaponArm.deactivate()
@@ -133,11 +129,11 @@ func _on_pickup_area_area_entered(area):
 	elif area.is_in_group("flower"):
 		item.on_picked_up(self)
 		for weapon in self.weaponArm.weaponList:
-			if weapon and weapon.id == 12:
+			if weapon and weapon.id == 16:
 				weapon.gain(item.n)
 		
 func gain_exp(exp: int):
-	if self.level < 30:
+	if self.level < 29:
 		self.expValue += exp
 		while(self.expValue >= self.expRequire[self.level]):
 			self.expValue -= self.expRequire[self.level]
@@ -148,6 +144,7 @@ func gain_coin(value: float = 1, extra: float = 0.0):
 
 func upgrade():
 	self.level += 1
+	self.level = min(30, self.level)
 	self.abilityPoint += 2
 	self.HP += int(self.maxHP * 0.1)
 	emit_signal("get_upgrade")

@@ -1,6 +1,7 @@
 extends Control
 
 @export var abilityScene: PackedScene
+@onready var abilityPointLabel = $TextureRect/Label
 const properties = [
 	"stamina", "strength",
 	"insight", "agility",
@@ -48,7 +49,7 @@ func _ready():
 		abilityDict[self.properties[i]] = ability
 		ability.connect("click", ability_clicked)
 
-func init(player: BasePlayer):
+func init(player: BasePlayer, cfg_dict: Dictionary = {}):
 	self.player = player
 	for item in abilityDict:
 		abilityDict[item].value = player.get(item)
@@ -57,6 +58,8 @@ func init(player: BasePlayer):
 	var playerIcon = player.sprite.duplicate()
 	playerIcon.scale = Vector2(1.2, 1.2)
 	add_child(playerIcon)
+	
+	abilityPointLabel.text = "当前点数：%d" % player.abilityPoint
 		
 func update_player_ability():
 	if player:
@@ -73,3 +76,5 @@ func ability_clicked():
 	player.abilityPoint -= 1
 	for item in abilityDict:
 		abilityDict[item].set_available(player.abilityPoint > 0)
+	
+	abilityPointLabel.text = "当前点数：%d" % player.abilityPoint

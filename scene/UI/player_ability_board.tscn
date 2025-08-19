@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://script/UI/player_ability_board.gd" id="1_8pjj7"]
 [ext_resource type="PackedScene" uid="uid://b8hijpucsu33e" path="res://scene/UI/ability.tscn" id="2_18cay"]
-[ext_resource type="Texture2D" uid="uid://ckvhd1x6q82g6" path="res://asset/image/asset.png" id="3_hah1k"]
+[ext_resource type="Texture2D" uid="uid://cfy2a5opnoaxu" path="res://asset/image/asset.png" id="3_hah1k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0rcwi"]
 atlas = ExtResource("3_hah1k")
@@ -24,3 +24,20 @@ pivot_offset = Vector2(200, 200)
 mouse_filter = 2
 texture = SubResource("AtlasTexture_0rcwi")
 stretch_mode = 2
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -111.5
+offset_right = 111.5
+offset_bottom = 72.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 15
+text = "当前点数：1"
+horizontal_alignment = 1
+vertical_alignment = 2

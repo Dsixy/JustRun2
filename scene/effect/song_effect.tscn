@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://v1qtjbscbf4p"]
 
-[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="1_7lhd4"]
+[ext_resource type="Texture2D" uid="uid://cfy2a5opnoaxu" path="res://asset/image/asset.png" id="1_7lhd4"]
 [ext_resource type="Script" path="res://script/effect/song_effect.gd" id="2_1opum"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hp7u5"]

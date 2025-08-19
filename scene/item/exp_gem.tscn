@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bs3aq45n6g3gt"]
 
 [ext_resource type="PackedScene" uid="uid://8qdkx2tqgrj7" path="res://scene/item/pickable_item.tscn" id="1_m4edu"]
-[ext_resource type="Texture2D" uid="uid://csfwhe0dglnkb" path="res://asset/image/asset.png" id="2_evjok"]
+[ext_resource type="Texture2D" uid="uid://cfy2a5opnoaxu" path="res://asset/image/asset.png" id="2_evjok"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_drn2k"]
 atlas = ExtResource("2_evjok")
@@ -10,6 +10,7 @@ region = Rect2(1300, 900, 300, 100)
 [sub_resource type="GDScript" id="GDScript_m3bxk"]
 script/source = "extends PickableItem
 
+@onready var area = $Area2D
 var level: int
 
 func init(level: int, pos: Vector2):

@@ -5,7 +5,7 @@ var target_distance: int = 600
 var bulletNum: int = 3
 const shootAccuracy: float = 0.6
 const bulletSpeed: int = 200
-var bulletDamage: DamageInfo
+var bulletDamage: DamageInfo = DamageInfo.new()
 
 func _ready():
 	self.speed = 150
@@ -19,7 +19,7 @@ func _physics_process(delta):
 	extraVel *= 0.95
 	
 func init(level: int, wave: int):
-	self.level = level
+	self.level = int((wave - 10) / 7) + 1
 	reset_properties(wave)
 	
 func reset_properties(wave: int = 0):
