@@ -4,7 +4,6 @@ extends BaseWeapon
 
 var guySpeed: int = 400
 var attackInterval: float = 0.9
-var baseDamage: int = 6
 		
 var baseCritRate: float = 0.05
 var baseCritDamage: float = 2.0
@@ -13,6 +12,7 @@ var extraCoin: bool = false
 var bringCoin: bool = false
 
 func _ready():
+	self.baseDamage = [2, 4, 10, 20, 40]
 	hide()
 	
 func upgrade():
@@ -40,4 +40,4 @@ func attack():
 		guy.init(global_position, target, guySpeed, damage, player, extraCoin, bringCoin)
 	
 func calculate_damage():
-	return self.baseDamage + 2.5 * self.level * (1 + 0.2 * self.player.charisma)
+	return self.baseDamage[self.level] + 0.5 * self.level * (2 + 0.5 * self.player.charisma)

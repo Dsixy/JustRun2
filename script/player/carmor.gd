@@ -26,3 +26,4 @@ func update():
 	self.pickupRange = 100 + 15 * self.perception + 5 * self.dexterrity
 	
 	self.pickupAreaShape.shape.radius = self.pickupRange
+	self.discountRate = 0.95 - 0.025 * self.charisma

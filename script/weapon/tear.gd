@@ -2,7 +2,6 @@ extends BaseWeapon
 
 @export var tearBulletScene: PackedScene
 @export var tearBallScene: PackedScene
-var baseDamage: int = 7
 var baseCritRate: float = 0.05
 var baseCritDamage: float = 2.0
 var attackInterval: float = 2.0
@@ -14,13 +13,14 @@ var always: bool = false
 var maxStack: int = 4
 
 func _ready():
+	self.baseDamage = [2, 8, 12, 20, 34]
 	hide()
 	
 func upgrade():
 	if self.level <= 3:
 		self.level += 1
 		match self.level:
-			1: self.baseDamage += 4
+			1: pass
 			2: self.tearNum += 4
 			3: 
 				self.always = true
@@ -42,5 +42,5 @@ func attack():
 		500 * (1.25 - 0.5 * randf()), explodeNum, tearBallScene, always, maxStack)
 	
 func calculate_damage():
-	return 2 + 1 * self.level
+	return self.baseDamage[self.level]
 	

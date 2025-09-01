@@ -32,7 +32,7 @@ func init(pos: Vector2, target: BaseEnemy, speed: int, damage: DamageInfo, \
 		self.area.set_collision_mask_value(2, true)
 	
 func delete():
-	player.gain_coin(collection + int(extraCoin))
+	player.gain_coin(collection + int(extraCoin) * 0.2)
 	queue_free()
 	
 func come_back():
@@ -46,7 +46,7 @@ func _on_area_2d_area_entered(area):
 	if area.is_in_group("enemy"):
 		var d = damage.copy()
 		if self.bringCoin:
-			d.baseAmount += collection * 2.0
+			d.baseAmount += collection * 5.0
 		e.be_hit(d)
 		if e == target:
 			come_back()

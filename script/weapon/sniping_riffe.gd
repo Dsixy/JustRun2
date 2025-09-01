@@ -8,12 +8,12 @@ var attackInterval: float:
 	get:
 		return 2 - self.player.dexterrity * 0.1
 var critPierce: int = 0
-var baseDamage: int = 25
 		
 var baseCritRate: float = 0.35
 var baseCritDamage: float = 2.0
 	
 func _ready():
+	self.baseDamage = [25, 50, 80, 180, 350]
 	hide()
 	
 func upgrade():
@@ -21,11 +21,9 @@ func upgrade():
 		self.level += 1
 		match self.level:
 			1: self.critPierce = 1
-			2: self.baseDamage += 7
+			2: self.baseCritDamage += 0.5
 			3: self.critPierce = 7
-			4:
-				self.baseDamage += 8
-				self.baseCritDamage += 0.5
+			4: self.baseCritDamage += 1.5
 		
 	
 func attack():
@@ -47,4 +45,4 @@ func attack():
 		bullet.pierce = self.critPierce
 	
 func calculate_damage():
-	return self.baseDamage + 10 * self.level
+	return self.baseDamage[self.level]

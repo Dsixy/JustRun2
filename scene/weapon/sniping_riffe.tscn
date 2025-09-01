@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cilkgfm7lt1ox"]
 
-[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="1_rojtv"]
+[ext_resource type="Texture2D" uid="uid://bi3bmmkwy8x1y" path="res://asset/image/asset.png" id="1_rojtv"]
 [ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_yvwg0"]
 [ext_resource type="Script" path="res://script/weapon/sniping_riffe.gd" id="2_ly175"]
 [ext_resource type="PackedScene" uid="uid://b13cb8qc2ag3m" path="res://scene/item/bullet.tscn" id="3_4mt5x"]

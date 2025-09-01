@@ -41,9 +41,9 @@ func show_damage_label(damage: DamageInfo, pos:Vector2):
 
 func set_price(level: int, rarityFactor: float = 1.0):
 	var wave = GameInfo.mainscene.wave
-	match int(wave / 5):
-		0: return 10 + (5 * rarityFactor + wave) * randf() + level * 1 
-		1: return 5 + (10 * rarityFactor + 2 *wave) * randf() + level * 1.5
-		2: return 0 + (15 * rarityFactor + 2 * wave) * randf() + level * 2
+	match int(wave / 2):
+		0: return 5 + (5 * rarityFactor + wave) * randf() + level * 1 
+		1: return 0 + (10 * rarityFactor + 3 * wave) * randf() + level * 1.5
+		2: return 10 + (15 * rarityFactor + 4 * wave) * randf() + level * 2
 		3: return 10 + (18 * rarityFactor + 1.5 * wave) * randf() + level * 2.5
 		_: return 20 + (20 * rarityFactor + 3 * wave) * randf() + level * 3

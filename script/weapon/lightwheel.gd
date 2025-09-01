@@ -5,8 +5,6 @@ extends BaseWeapon
 var wheelSpeed: int = 700
 var shootAccuracy: float = 0.6
 var attackInterval: float = 1
-var baseDamage: int = 4
-var wheelDamage: int = 1
 var wheelRangeBonus: float = 1
 var maxDist: int = 700
 		
@@ -17,8 +15,11 @@ var wheelNum: int = 2
 var maxRun: int = 3
 var light: bool = false
 var wheels = []
+var wheelDamage := []
 
 func _ready():
+	self.baseDamage = [4, 8, 15, 32, 80]
+	self.wheelDamage = [1, 3, 6, 20, 40]
 	hide()
 	
 func upgrade():
@@ -28,10 +29,8 @@ func upgrade():
 			1: self.wheelNum += 1
 			2: 
 				self.wheelRangeBonus += 0.6
-				self.wheelDamage += 3
 			3: 
 				self.wheelNum += 2
-				self.baseDamage += 6
 			4: 
 				self.wheelNum += 1
 				self.maxRun += 2
@@ -65,6 +64,6 @@ func _process_wheel_delete(w):
 	
 func calculate_damage(name: String):
 	if name == "wheel":
-		return self.wheelDamage + 1 * self.level
+		return self.wheelDamage[self.level]
 	else:
-		return self.baseDamage + 3 * self.level
+		return self.baseDamage[self.level]

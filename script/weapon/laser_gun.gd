@@ -4,8 +4,7 @@ extends BaseWeapon
 
 var attackInterval: float:
 	get:
-		return 1.2 - 0.02 * self.player.dexterrity - extra
-var baseDamage: int = 10
+		return 1.2 - 0.02 * self.player.dexterrity - self.extra
 var laserScale: float = 0.4
 var laserNum: int = 1
 		
@@ -14,17 +13,17 @@ var baseCritDamage: float = 1.5
 var extra:= 0.0
 	
 func _ready():
+	self.baseDamage = [7, 15, 30, 55, 150]
 	hide()
 	
 func upgrade():
 	if self.level <= 3:
 		self.level += 1
 		match self.level:
-			1: self.laserScale += 0.24
+			1: self.laserScale += 0.4
 			2: 
-				self.baseDamage += 10
 				self.extra = 0.4
-			3: self.laserScale += 0.4
+			3: self.laserScale += 1.0
 			4:
 				self.laserNum += 2
 		
@@ -44,4 +43,4 @@ func attack():
 		laser.modulate = Color8(200, 240, 255)
 	
 func calculate_damage():
-	return self.baseDamage + 7 * self.level
+	return self.baseDamage[self.level]

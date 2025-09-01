@@ -4,7 +4,6 @@ extends BaseWeapon
 
 const superBuff = preload("res://scene/buff/super_pro_buff.tscn")
 var attackInterval: float = 1.0
-var baseDamage: int = 0
 var attackTime: int = 0
 var requiredAttackTime: int = 10
 		
@@ -37,7 +36,4 @@ func attack():
 		attackTime -= requiredAttackTime
 	
 func calculate_damage(name: String):
-	if name == "pierce":
-		return self.pierceDamage + 3 * self.level + 0.6 * self.player.strength
-	else:
-		return self.baseDamage + 2 * self.level + 0.4 * self.player.strength
+	return 0

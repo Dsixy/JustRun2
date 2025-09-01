@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://q161hhu4w2dy"]
 
-[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="1_yaf8t"]
+[ext_resource type="Texture2D" uid="uid://bi3bmmkwy8x1y" path="res://asset/image/asset.png" id="1_yaf8t"]
 [ext_resource type="Script" path="res://script/weapon/stellar_wrath.gd" id="2_tep3d"]
 [ext_resource type="PackedScene" uid="uid://14epxxya0aig" path="res://scene/item/star.tscn" id="3_5inx8"]
 

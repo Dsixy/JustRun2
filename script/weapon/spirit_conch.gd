@@ -3,7 +3,6 @@ extends BaseWeapon
 @export var spiritScene: PackedScene
 
 var attackInterval: float = 1.2
-var baseDamage: int = 2
 
 var baseCritRate: float = 0.00
 var baseCritDamage: float = 2.0
@@ -16,6 +15,7 @@ var collect: bool = false
 var collectedSoul: int = 0
 
 func _ready():
+	self.baseDamage = [2, 4, 8, 16, 40]
 	hide()
 	
 func upgrade():
@@ -36,7 +36,8 @@ func attack():
 		var spirit = spiritScene.instantiate()
 		GameInfo.mainscene.itemNode.add_child(spirit)
 		spirit.init(global_position, spiritRadiusBonus, 
-		spiritHP + 20 * self.player.insight + 15 * self.level, calculate_damage())
+		spiritHP + 20 * self.player.insight + 15 * self.level, 
+		calculate_damage(), self.level)
 		spirits.append(spirit)
 		spirit.connect("disappear", process_spirit_disappear)
 	elif self.collect:
@@ -48,4 +49,4 @@ func process_spirit_disappear(t: Node):
 	spirits.erase(t)
 	
 func calculate_damage():
-	return self.baseDamage + 1 * self.level + 0.5 * self.player.perception
+	return self.baseDamage[self.level] + 5 * self.player.perception

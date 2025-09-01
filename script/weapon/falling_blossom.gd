@@ -4,7 +4,6 @@ extends BaseWeapon
 
 var attackInterval: float = 1
 var slashScale: float = 1.0
-var baseDamage: int = 2
 		
 var baseCritRate: float = 0.05
 var baseCritDamage: float = 2.0
@@ -12,6 +11,7 @@ var anis: Array[String] = ["flowerSlash", "backFlowerSlash2", "flowerSlash2"]
 var lifeSteal: int = 0
 
 func _ready():
+	self.baseDamage = [2, 3, 5, 10, 20]
 	hide()
 	
 func upgrade():
@@ -21,13 +21,12 @@ func upgrade():
 			1: self.slashScale += 0.4
 			2: 
 				self.anis.append("backFlowerSlash")
-			3: self.slashScale += 0.6
+			3: self.slashScale += 1.2
 			4:
 				self.anis = ["flowerSlash", "backFlowerSlash2",
 							"flowerSlash3", "backFlowerSlash",
 							"flowerSlash2", "backFlowerSlash3"]
 				self.lifeSteal = 1.0
-				self.slashScale += 1
 	
 func attack():
 	for ani in anis:
@@ -39,10 +38,10 @@ func attack():
 		var damage = DamageInfo.new(calculate_damage(ani), 0, 
 			randf() < self.baseCritRate + self.player.critRate,
 			self.baseCritDamage, player)
-		slash.init(ani, direction, damage, slashScale * 2)
+		slash.init(ani, direction, damage, slashScale * 3)
 		slash.lifeSteal = lifeSteal
 		await get_tree().create_timer(0.1).timeout
 	
 func calculate_damage(name: String):
-	return self.baseDamage + (1 * self.level + 0.4 * self.player.strength) * \
+	return self.baseDamage[self.level] + 0.5 * self.player.strength * \
 	(0.1 * self.player.dexterrity + 1)

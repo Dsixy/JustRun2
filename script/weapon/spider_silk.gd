@@ -16,6 +16,7 @@ const baseCritRate: float = 0.05
 const baseCritDamage: float = 2.0
 	
 func _ready():
+	self.baseDamage = [12, 16, 20, 30, 50]
 	hide()
 	
 func upgrade():
@@ -45,4 +46,4 @@ func attack():
 				keepBuff, range, damagePercent)
 	
 func calculate_damage():
-	return 12 + 4 * self.level
+	return self.baseDamage[self.level]

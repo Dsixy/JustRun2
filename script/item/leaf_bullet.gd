@@ -9,6 +9,7 @@ var currentDistance: float = 0.0
 var direction: Vector2
 var player: BasePlayer
 var finish: bool = false
+var comeBackBonus: float = 0.0
 
 func _process(delta):
 	if finish:
@@ -19,12 +20,13 @@ func _process(delta):
 		if currentDistance >= maxDistance:
 			finish = true
 	
-func init(pos: Vector2, direction: Vector2, maxDistance: int, damage: DamageInfo, player: BasePlayer):
+func init(pos: Vector2, direction: Vector2, maxDistance: int, damage: DamageInfo, player: BasePlayer, bonus: float):
 	self.global_position = pos
 	self.direction = direction
 	self.maxDistance = maxDistance
 	self.damage = damage
 	self.player = player
+	self.comeBackBonus = bonus
 	rotation = direction.angle() - PI / 2
 	
 func delete():
@@ -32,6 +34,7 @@ func delete():
 	
 func come_back():
 	set_process(false)
+	self.damage.bonus = comeBackBonus
 	rotation = (player.global_position - global_position).angle() - PI / 2
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "global_position", player.global_position, 0.3)

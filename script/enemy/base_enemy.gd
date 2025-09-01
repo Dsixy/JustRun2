@@ -13,6 +13,8 @@ var HP: int = 100
 var damage: DamageInfo = DamageInfo.new()
 var level: int = 1
 
+const WAVE_SCALE: Array[int] = [1, 2, 4, 8, 12, 24, 30, 36, 44, 50]
+
 signal death(sender: BaseEnemy, pos: Vector2, willLoot: bool)
 
 func _ready():

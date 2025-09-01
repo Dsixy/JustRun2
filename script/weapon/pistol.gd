@@ -1,7 +1,7 @@
 extends BaseWeapon
 
 @export var bulletScene: PackedScene = preload("res://scene/item/bullet.tscn")
-var bulletSpeed: int =1000
+var bulletSpeed: int = 1000
 var shootAccuracy: float:
 	get:
 		return 0.8 + self.player.dexterrity * 0.01
@@ -12,8 +12,9 @@ var chainFire: float = 0.0
 var chainFireNum: int = 4
 var baseCritRate: float = 0.05
 var baseCritDamage: float = 2.0
-	
+
 func _ready():
+	self.baseDamage = [10, 20, 35, 60, 100]
 	hide()
 	
 func upgrade():
@@ -21,10 +22,10 @@ func upgrade():
 		self.level += 1
 		match self.level:
 			1: self.baseCritDamage += 0.5
-			2: self.chainFire = 0.05
+			2: self.chainFire = 0.15
 			3: self.baseCritRate += 0.3
 			4: 
-				self.chainFire = 0.3
+				self.chainFire = 0.4
 				self.chainFireNum += 2
 
 func attack():
@@ -49,4 +50,4 @@ func attack():
 		await get_tree().create_timer(0.06).timeout
 	
 func calculate_damage():
-	return 10 + 5 * self.level
+	return self.baseDamage[self.level]

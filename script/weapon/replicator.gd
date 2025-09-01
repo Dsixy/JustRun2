@@ -1,6 +1,5 @@
 extends BaseWeapon
 
-var baseDamage: int = 7
 var baseCritRate: float = 0.05
 var baseCritDamage: float = 2.0
 var attackInterval: float = 2.0

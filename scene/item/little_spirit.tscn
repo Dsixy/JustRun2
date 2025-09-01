@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dabftocr4hgwp"]
 
-[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="1_klsp1"]
+[ext_resource type="Texture2D" uid="uid://bi3bmmkwy8x1y" path="res://asset/image/asset.png" id="1_klsp1"]
 [ext_resource type="Script" path="res://script/item/little_spirit.gd" id="1_uraxs"]
 [ext_resource type="PackedScene" uid="uid://cw8rdqcidib7s" path="res://scene/effect/soul_shock.tscn" id="2_tb54b"]
 [ext_resource type="Shader" path="res://resource/little_spirit.gdshader" id="2_uykyl"]

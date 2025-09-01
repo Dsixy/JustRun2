@@ -5,7 +5,6 @@ extends BaseWeapon
 
 var rocketSpeed: int = 700
 var attackInterval: float = 0.9
-var baseDamage: int = 2
 		
 var baseCritRate: float = 0.05
 var baseCritDamage: float = 1.5
@@ -16,6 +15,7 @@ var hugeRocket: bool = false
 var burningBuff: bool = false
 
 func _ready():
+	self.baseDamage = [2, 4, 8, 15, 30]
 	hide()
 	
 func upgrade():
@@ -60,6 +60,6 @@ func launch_rockets(target: Vector2, num: int, _huge: bool = false):
 	
 func calculate_damage(huge: bool = false):
 	if huge:
-		return 50
+		return 300
 	else:
-		return self.baseDamage + 1 * self.level
+		return self.baseDamage[self.level]

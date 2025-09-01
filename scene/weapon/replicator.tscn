@@ -13,4 +13,3 @@ texture = SubResource("AtlasTexture_yfavy")
 script = ExtResource("2_ecee3")
 id = 26
 na = "复制器"
-descriptions = null

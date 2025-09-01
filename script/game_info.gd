@@ -33,11 +33,12 @@ func _ready():
 	config.set_value("WeaponUnlock", "cat_trick", true)
 	config.set_value("WeaponUnlock", "wrench", true)
 	config.set_value("WeaponUnlock", "rocket_launcher", true)
-	config.set_value("WeaponUnlock", "option", true)
+	#config.set_value("WeaponUnlock", "option", true)
 	config.set_value("WeaponUnlock", "lightwheel", true)
 	config.set_value("WeaponUnlock", "leaf", true)
 	config.set_value("WeaponUnlock", "spirit_conch", true)
 	config.set_value("WeaponUnlock", "replicator", true)
+	config.set_value("WeaponUnlock", "tear", true)
 	#
 	#config.save("user://config.cfg")
 	

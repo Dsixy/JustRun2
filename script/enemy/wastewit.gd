@@ -5,6 +5,8 @@ var target_distance: int = 600
 var bulletNum: int = 3
 const shootAccuracy: float = 0.6
 const bulletSpeed: int = 200
+const COLOR_MUDOLATE = [Color8(255, 255, 255), Color8(150, 150, 150), Color8(100, 100, 100)]
+
 var bulletDamage: DamageInfo = DamageInfo.new()
 
 func _ready():
@@ -19,11 +21,12 @@ func _physics_process(delta):
 	extraVel *= 0.95
 	
 func init(level: int, wave: int):
-	self.level = int((wave - 10) / 7) + 1
+	self.level = level
+	$Sprite2D.modulate = COLOR_MUDOLATE[self.level - 1]
 	reset_properties(wave)
-	
+
 func reset_properties(wave: int = 0):
-	self.HP = 15 + (1 + 1 * self.level) * wave
+	self.HP = 3 * (self.WAVE_SCALE[wave-1] + 5 * self.level - 5)
 	self.damage.baseAmount = 15 * self.level
 	self.bulletDamage.baseAmount = 20 * self.level
 	self.bulletNum = 3 + 2 * self.level

@@ -28,7 +28,7 @@ func spread():
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("enemy"):
 		var enemy = area.get_parent()
-		enemy.be_hit(damage)
+		enemy.be_hit(damage.copy())
 		var buff = frostBiteBuff.instantiate()
 		buff.set_up(GameInfo.mainscene.player)
 		enemy.buffManager.add_buff(buff)

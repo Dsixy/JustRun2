@@ -1,6 +1,7 @@
 class_name BaseWeapon extends Sprite2D
 
 var level: int = 0
+var baseDamage: Array[int] = [0, 0, 0, 0, 0]
 var player: BasePlayer = null
 @export var id: int = 0
 @onready var audioPlayer = $AudioStreamPlayer

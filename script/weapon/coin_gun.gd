@@ -5,24 +5,25 @@ extends BaseWeapon
 var bulletSpeed: int = 700
 var shootAccuracy: float = 0.6
 var attackInterval: float = 0.4
-var baseDamage: int = 4
 		
 var baseCritRate: float = 0.05
 var baseCritDamage: float = 2.0
 var damageBonus: float = 0
 	
 var bulletNum: int = 1
+var short: int = 0
 var coinRain: bool = false
 
 func _ready():
+	self.baseDamage = [10, 18, 35, 80, 150]
 	hide()
 	
 func upgrade():
 	if self.level <= 3:
 		self.level += 1
 		match self.level:
-			1: self.bulletNum += 2
-			2: self.baseDamage += 4
+			1: self.short = 1
+			2: self.bulletNum += 2
 			3: self.damageBonus = 0.001
 			4: self.coinRain = true
 		
@@ -45,7 +46,7 @@ func calculate_bullet_num():
 func attack():
 	var target = get_global_mouse_position()
 	var out = calculate_bullet_num()
-	var cost = out[0]
+	var cost = out[0] - short
 	var finalBulletNum = bulletNum + out[1]
 	var wave = 1
 	
@@ -69,4 +70,4 @@ func attack():
 	self.player.money -= cost
 	
 func calculate_damage():
-	return self.baseDamage + 2 * self.level + 0.4 * self.player.perception
+	return self.baseDamage[self.level] + 4 * self.player.perception

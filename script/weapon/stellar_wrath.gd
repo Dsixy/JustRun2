@@ -7,21 +7,23 @@ var baseCritRate: float = 0.05
 var baseCritDamage: float = 2.0
 
 var starNum: int = 3
-var attackRadius: int = 100
+var attackRadius: int = 150
+var attackBonus: float = 1.0
 var alwaysFall: bool = false
-	
+
 func _ready():
+	self.baseDamage = [3, 5, 9, 15, 30]
 	hide()
 	
 func upgrade():
 	if self.level <= 3:
 		self.level += 1
 		match self.level:
-			1: self.starNum += 2
-			2: self.attackRadius += 0.4
-			3: self.starNum += 3
+			1: self.attackBonus += 0.4
+			2: self.starNum += 2
+			3: self.attackBonus += 0.8
 			4: 
-				self.attackRadius += 0.6
+				self.starNum += 4
 				self.alwaysFall = true
 		
 func attack():	
@@ -33,7 +35,7 @@ func attack():
 		var damage = DamageInfo.new(calculate_damage(), 0, 
 			randf() < self.baseCritRate + self.player.critRate,
 			self.baseCritDamage, player)
-		star.init(targetPos, attackRadius, damage)
+		star.init(targetPos, attackRadius * attackBonus, damage)
 	
 func get_target_positions():
 	var screenArea = Rect2(player.camera.get_screen_center_position() - Vector2(960, 540), Vector2(1920, 1080))
@@ -55,4 +57,4 @@ func get_target_positions():
 	return posList
 	
 func calculate_damage():
-	return 7 + 1.5 * self.level * (2 + 0.2 * self.player.insight)
+	return self.baseDamage[self.level] + 1.5 * self.level * (2 + 0.2 * self.player.insight)

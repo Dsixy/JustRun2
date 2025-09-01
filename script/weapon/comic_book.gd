@@ -8,11 +8,11 @@ var attackInterval: float = 1.5
 var monkeyNum: int = 1
 var baseCritRate: float = 0.05
 var baseCritDamage: float = 2.0
-var baseDamage: int = 15
 var counter:= 0
 var maxTime:= 0
 	
 func _ready():
+	self.baseDamage = [15, 25, 50, 120, 300]
 	hide()
 	
 func upgrade():
@@ -20,11 +20,11 @@ func upgrade():
 		self.level += 1
 		match self.level:
 			1: self.monkeyNum += 2
-			2: self.baseDamage += 10
+			2: self.monkeyNum += 2
 			3: self.monkeyNum += 2
 			4:
 				self.monkeyNum += 45
-				self.maxTime = 7
+				self.maxTime = 5
 		
 	
 func attack():
@@ -45,4 +45,4 @@ func attack():
 		await get_tree().create_timer(0.05).timeout
 	
 func calculate_damage():
-	return baseDamage + 5 * self.level
+	return self.baseDamage[self.level]

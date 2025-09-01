@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cfgh7svcqxu8y" path="res://scene/enemy/base_enemy.tscn" id="1_v82kv"]
 [ext_resource type="Script" path="res://script/enemy/clunker.gd" id="2_3p8f5"]
-[ext_resource type="Texture2D" uid="uid://cc0ydsjcahaol" path="res://asset/image/asset.png" id="2_yiq08"]
+[ext_resource type="Texture2D" uid="uid://bi3bmmkwy8x1y" path="res://asset/image/asset.png" id="2_yiq08"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e4n7n"]
 atlas = ExtResource("2_yiq08")
@@ -207,6 +207,9 @@ texture = SubResource("AtlasTexture_e4n7n")
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("CircleShape2D_r6a6x")
+
+[node name="Sprite2D" parent="." index="2"]
+modulate = Color(0.352941, 0.243137, 0.137255, 1)
 
 [node name="Body" type="Sprite2D" parent="Sprite2D" index="0"]
 position = Vector2(-1, 1)

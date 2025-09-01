@@ -16,10 +16,13 @@ var pokerCounter: int = 0
 var mustSpade: bool = false
 var spadeExplodeRadius: int = 200
 
+var explodeDamage:= []
 var baseCritRate: float = 0.05
 var baseCritDamage: float = 2.0
 	
 func _ready():
+	self.baseDamage = [3, 5, 10, 20, 60]
+	self.explodeDamage = [50, 80, 150, 270, 500]
 	hide()
 	
 func upgrade():
@@ -28,7 +31,7 @@ func upgrade():
 		match self.level:
 			1: self.pokerNum += 2
 			2: self.pierce = 3
-			3: self.pokerNum += 3
+			3: self.pokerNum += 5
 			4:
 				self.mustSpade = true
 				self.spadeExplodeRadius *= 1.5
@@ -65,6 +68,6 @@ func attack():
 	
 func calculate_damage(idx: int):
 	if idx != 3:
-		return 3 + 1.5 * self.level
+		return self.baseDamage[self.level]
 	else:
-		return 10 + 20 * self.level
+		return self.explodeDamage[self.level]

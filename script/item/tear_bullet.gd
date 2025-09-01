@@ -15,6 +15,7 @@ func _process(delta):
 	max_path -= speed * delta
 	if max_path < 0:
 		generate()
+		delete()
 	
 func init(pos: Vector2, direction: Vector2, speed: int, damage: DamageInfo,
 	max_path: int, explodeNum: int, tearBallScene: PackedScene, can: bool=false,
@@ -35,13 +36,15 @@ func delete():
 	queue_free()
 	
 func generate():
-	if canGenerate:
-		var tearBall = tearBallScene.instantiate()
-		GameInfo.mainscene.itemNode.add_child(tearBall)
-		tearBall.init(global_position, explodeNum, damage.copy(), tearBallScene, maxStack)
-	delete()
+	var tearBall = tearBallScene.instantiate()
+	GameInfo.mainscene.itemNode.add_child(tearBall)
+	tearBall.init(global_position, explodeNum, damage.copy(), tearBallScene, maxStack)
 
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("enemy"):
 		area.get_parent().be_hit(damage.copy())
-		generate()
+		if canGenerate:
+			generate()
+		
+		delete()
+		

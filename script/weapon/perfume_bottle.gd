@@ -4,7 +4,6 @@ extends BaseWeapon
 
 var range: float = 1.0
 var attackInterval: float = 0.8
-var baseDamage: int = 5
 		
 var baseCritRate: float = 0.0
 var baseCritDamage: float = 1.0
@@ -27,6 +26,7 @@ var maxContent: int = 20
 var oneCollect: int = 0
 	
 func _ready():
+	self.baseDamage = [5, 7, 9, 11, 15]
 	hide()
 	
 func upgrade():
@@ -57,7 +57,7 @@ func attack():
 				damage, self.poisonBonus * self.collections["RaindropJasmine"])
 	
 func calculate_damage():
-	return self.baseDamage + 2 * self.level + self.damageBonus * self.collections["Hyacinth"]
+	return self.baseDamage[self.level] + self.damageBonus * self.collections["Hyacinth"]
 	
 func gain(name: String):
 	if curContent <= maxContent:

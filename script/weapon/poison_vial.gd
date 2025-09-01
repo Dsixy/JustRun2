@@ -4,23 +4,20 @@ extends BaseWeapon
 var attackInterval: float = 1
 var vialNum: int = 3
 var range: float = 1.0
-var baseDamage: int = 7
 	
 func _ready():
+	self.baseDamage = [3, 5, 8, 15, 30]
 	hide()
 	
 func upgrade():
 	if self.level <= 3:
 		self.level += 1
 		match self.level:
-			1: self.vialNum += 1
-			2: 
-				self.baseDamage += 2
-				self.range += 0.4
-			3: self.vialNum += 3
+			1: self.vialNum += 2
+			2: self.range += 0.4
+			3: self.vialNum += 4
 			4:
-				self.range += 1
-				self.baseDamage += 5
+				self.range += 2
 		
 	
 func attack():
@@ -35,4 +32,4 @@ func attack():
 		poisonBottle.init(global_position, global_position + bias, range, damage)
 	
 func calculate_damage():
-	return baseDamage + 3 * self.level
+	return self.baseDamage[self.level]

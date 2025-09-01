@@ -3,25 +3,26 @@ extends BaseWeapon
 @export var dashScene: PackedScene
 
 var attackInterval: float = 0.6
-var baseDamage: int = 3
 
 var baseCritRate: float = 0.05
 var baseCritDamage: float = 2.0
 
 var dashScale: float = 1.0
+var heal: int = 0
 var dashTime: int = 1
 	
 func _ready():
+	self.baseDamage = [8, 15, 30, 70, 180]
 	hide()
 	
 func upgrade():
 	if self.level <= 3:
 		self.level += 1
 		match self.level:
-			1: self.baseDamage += 10
+			1: self.heal = 1
 			2: 
 				self.player.scale += Vector2.ONE * self.player.stamina * 0.1
-			3: self.baseDamage += 20
+			3: self.heal = 3
 			4:
 				self.dashTime += 1
 
@@ -40,12 +41,13 @@ func attack_once():
 	player.add_child(dash)
 
 	var damage = DamageInfo.new(calculate_damage(), 0, 
-		randf() < self.baseCritRate + player.critRate,
+		randf() < self.baseCritRate + player.critRate + 0.03 * self.player.resilience,
 		self.baseCritDamage, player)
 
 	dash.init("dash", direction, damage, dashScale * 3)
 	dash.extraVel = direction * 1200
 	dash.scale /= 2
+	dash.lifeSteal = heal
 
 	player.direction = direction
 	player.isDash = true
@@ -57,4 +59,4 @@ func attack_once():
 	tween.tween_property(player, "speed", original_speed, 0.24).set_ease(Tween.EASE_IN)
 	
 func calculate_damage():
-	return self.baseDamage + 4 * self.level + 2 * self.player.stamina
+	return self.baseDamage[self.level] + 10 * self.player.stamina * self.level

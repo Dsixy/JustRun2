@@ -4,6 +4,5 @@ extends BaseWeaponArm
 func _ready():
 	var s = preload("res://scene/weapon/pistol.tscn")
 	var c = s.instantiate()
-	c.upgrade()
 	
 	self.weaponList = [null, c, null, null]

@@ -5,7 +5,6 @@ extends BaseWeapon
 var baseRange: int = 500
 var rangeBonus: float = 1.0
 var attackInterval: float = 0.7
-var baseDamage: int = 5
 		
 var baseCritRate: float = 0.05
 var baseCritDamage: float = 2.0
@@ -14,6 +13,7 @@ var canKnockBack: bool = false
 var canPick: bool = false
 	
 func _ready():
+	self.baseDamage = [5, 8, 12, 20, 30]
 	hide()
 	
 func upgrade():
@@ -39,5 +39,5 @@ func attack():
 					canKnockBack, canPick)
 	
 func calculate_damage():
-	return self.baseDamage + 5 * self.level + 1.5 * self.player.charisma\
-		+ 1 * self.player.insight
+	return self.baseDamage[self.level] + (1.5 * self.player.charisma\
+		+ 1 * self.player.insight) * (1 + self.level)

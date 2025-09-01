@@ -1,7 +1,6 @@
 extends BaseWeapon
 
 @export var optionScene: PackedScene
-var baseDamage: int = 7
 var baseCritRate: float = 0.05
 var baseCritDamage: float = 2.0
 var attackInterval: float:
@@ -20,7 +19,7 @@ func upgrade():
 	if self.level <= 3:
 		self.level += 1
 		match self.level:
-			1: self.baseDamage += 5
+			1: pass
 			2: self.optionMove = true
 			3: self.optionNum += 1
 			4: self.autoAttack = true
@@ -48,7 +47,7 @@ func attack():
 			op.attack()
 	
 func calculate_damage():
-	return self.baseDamage + 3 * self.level
+	return self.baseDamage[self.level]
 	
 func dearm():
 	for op in options:

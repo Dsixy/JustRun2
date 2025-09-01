@@ -16,6 +16,7 @@ var bubbleRadiusMove: bool = false
 var bubbleList = []
 	
 func _ready():
+	self.baseDamage = [3, 5, 8, 12, 20]
 	hide()
 	
 func upgrade():
@@ -47,7 +48,8 @@ func attack():
 		bubbleList.append(bubble)
 	
 func calculate_damage():
-	return 3 + 2 * self.level + 0.1 * self.player.charisma + 0.2 * self.player.insight
+	return self.baseDamage[self.level] + 2 * self.level + \
+	1 * self.player.charisma + 2 * self.player.insight
 	
 func dearm():
 	for bubble in bubbleList:

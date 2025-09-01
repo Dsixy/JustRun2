@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dhdgld8h13rk5"]
 
 [ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_wkpgi"]
-[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="2_hkrnk"]
+[ext_resource type="Texture2D" uid="uid://bi3bmmkwy8x1y" path="res://asset/image/asset.png" id="2_hkrnk"]
 [ext_resource type="Script" path="res://script/weapon/laser_sword.gd" id="3_j5t58"]
 [ext_resource type="PackedScene" uid="uid://c5i27r1u00pni" path="res://scene/effect/slash.tscn" id="4_lorcw"]
 [ext_resource type="AudioStream" uid="uid://bmo55n8haagjx" path="res://asset/SFX/weapon/laser_sword.wav" id="5_rxru8"]

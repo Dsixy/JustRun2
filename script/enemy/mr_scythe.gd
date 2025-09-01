@@ -27,7 +27,7 @@ func init(level: int, wave: int):
 	reset_properties(wave)
 	
 func reset_properties(wave: int = 0):
-	self.HP = 50000
+	self.HP = 100000
 	self.damage.baseAmount = 20 * self.level + 5
 	self.bulletDamage = DamageInfo.new()
 	self.bulletDamage.baseAmount = 20 * self.level + 5

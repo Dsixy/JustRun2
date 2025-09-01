@@ -37,7 +37,7 @@ func set_slot_item(idx: int, weight: Array = [0.7, 0.14, 0.14, 0.02]):
 		3:
 			content = upgradeToolScene.instantiate()
 		
-	slotList[idx].set_content(content, Utils.set_price(player.level))
+	slotList[idx].set_content(content, Utils.set_price(player.level) * player.discountRate)
 
 func close_board():
 	queue_free()

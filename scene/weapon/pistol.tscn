@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cscmsfcr81v3t"]
 
-[ext_resource type="Texture2D" uid="uid://cfy2a5opnoaxu" path="res://asset/image/asset.png" id="1_6xirc"]
+[ext_resource type="Texture2D" uid="uid://bi3bmmkwy8x1y" path="res://asset/image/asset.png" id="1_6xirc"]
 [ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_v6lis"]
 [ext_resource type="Script" path="res://script/weapon/pistol.gd" id="2_03nom"]
 [ext_resource type="AudioStream" uid="uid://prak0p3y8klm" path="res://asset/SFX/weapon/pistol_shot.wav" id="3_1t6hc"]

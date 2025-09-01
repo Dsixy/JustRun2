@@ -3,7 +3,6 @@ extends BaseWeapon
 @export var turretScene: PackedScene
 
 var attackInterval: float = 1.2
-var baseDamage: int = 4
 		
 var baseCritRate: float = 0.05
 var baseCritDamage: float = 2.0
@@ -14,6 +13,7 @@ var turrets = []
 var pierce: bool = false
 
 func _ready():
+	self.baseDamage = [6, 10, 18, 32, 66]
 	hide()
 	
 func upgrade():
@@ -22,8 +22,8 @@ func upgrade():
 		match self.level:
 			1: self.turretMaxNum += 1
 			2: 
-				self.baseDamage += 4
 				self.turretAttackInterval -= 0.2
+				self.turretRadiusBonus += 0.2
 			3: self.turretMaxNum += 2
 			4: 
 				self.turretAttackInterval -= 0.3
@@ -44,4 +44,4 @@ func process_turret_disappear(t: Node):
 	turrets.erase(t)
 	
 func calculate_damage():
-	return self.baseDamage + 2 * self.level + 0.4 * self.player.perception
+	return self.baseDamage[self.level]

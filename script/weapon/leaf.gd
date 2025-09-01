@@ -3,17 +3,18 @@ extends BaseWeapon
 @export var leafBulletScene: PackedScene
 
 var attackInterval: float = 1.2
-var baseDamage: int = 2
 
 var baseCritRate: float = 0.00
 var baseCritDamage: float = 2.0
 
 var leafList = []
 var followUPProb: float = 1
+var comeBackDamageBonus: float = 0
 var maxDistance: int = 800
 var extraFollowUp: bool = false
 
 func _ready():
+	self.baseDamage = [2, 4, 10, 25, 60]
 	hide()
 	
 func upgrade():
@@ -21,10 +22,9 @@ func upgrade():
 		self.level += 1
 		match self.level:
 			1: self.followUPProb = 1.0
-			2: self.baseDamage += 2
+			2: self.comeBackDamageBonus = 0.4
 			3: 
 				self.maxDistance += 400
-				self.baseDamage += 2
 			4:  self.extraFollowUp = true
 
 func attack():
@@ -41,7 +41,8 @@ func shoot():
 	var damage = DamageInfo.new(calculate_damage(), 0, 
 		randf() < self.baseCritRate + self.player.critRate,
 		self.baseCritDamage, player)
-	bullet.init(global_position, (target-global_position).normalized(), maxDistance, damage, player)
+	bullet.init(global_position, (target-global_position).normalized(), 
+	maxDistance, damage, player, comeBackDamageBonus)
 	
 	leafList.append(bullet)
 	
@@ -55,4 +56,4 @@ func follow_up_attack():
 			await get_tree().create_timer(0.05).timeout
 	
 func calculate_damage():
-	return self.baseDamage + 1 * self.level + 0.5 * self.player.perception
+	return self.baseDamage[self.level]

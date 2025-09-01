@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://os8jbwyx2rwl"]
 
 [ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_olpol"]
-[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="2_xbfu3"]
+[ext_resource type="Texture2D" uid="uid://bi3bmmkwy8x1y" path="res://asset/image/asset.png" id="2_xbfu3"]
 [ext_resource type="Script" path="res://script/weapon/poison_vial.gd" id="3_n0xm4"]
 [ext_resource type="PackedScene" uid="uid://dgdxwrbp6837k" path="res://scene/effect/poison_bottle.tscn" id="4_rjwej"]
 

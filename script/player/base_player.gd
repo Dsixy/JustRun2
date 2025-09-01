@@ -28,6 +28,7 @@ var goldBonus: float = 1.0
 var expBonus: float = 1.0
 var critRate: float = 0.05
 var pickupRange: int
+var discountRate: float = 1.0
 
 var expValue: int
 var direction: Vector2

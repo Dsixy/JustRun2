@@ -17,17 +17,27 @@ extends Node
 @onready var sceneLayer = $PhysicalLayer
 
 const expGemProb = [
-	[0.3, 0, 0], [0.3, 0, 0],
-	[0.3, 0.05, 0], [0.3, 0.05, 0], [0.3, 0.05, 0], [0.3, 0.05, 0], 
-	[0.45, 0.07, 0], [0.45, 0.07, 0], [0.45, 0.07, 0], [0.45, 0.07, 0], 
-	[0, 0.3, 0], 
-	[0.5, 0.07, 0], [0.5, 0.07, 0], [0.5, 0.07, 0], [0.5, 0.07, 0], [0.5, 0.07, 0], 
-	[0.5, 0.1, 0], [0.5, 0.1, 0], [0.5, 0.1, 0], [0.5, 0.1, 0], 
+	[0, 0, 0],
+	[0.3, 0, 0],
+	[0.3, 0.05, 0],
+	[0.45, 0.07, 0],
+	[0, 0.3, 0],
+	[0.5, 0.1, 0],
 	[0.0, 0.5, 0.02],
-	[0.3, 0.25, 0], [0.3, 0.25, 0], [0.3, 0.25, 0], [0.3, 0.25, 0], 
+	[0.3, 0.25, 0],
 	[0, 0, 0.3],
-	[0.1, 0.4, 0], [0.1, 0.4, 0], [0.1, 0.4, 0], [0.1, 0.4, 0], 
+	[0.1, 0.4, 0],
 	[0, 0, 0.5]
+]
+
+const LOOT_PROB: float = 0.012
+const LOOT_PLANT_PROB = [0.1, 0.1, 0.5, 0.1, 0.2]
+const lootSceneList = [
+	preload("res://scene/item/hyacinth.tscn"),
+	preload("res://scene/item/blue_mountain_leaf.tscn"),
+	preload("res://scene/item/wine_rose.tscn"),
+	preload("res://scene/item/raindrop_jasmine.tscn"),
+	preload("res://scene/item/catnip.tscn")
 ]
 
 var player: BasePlayer
@@ -48,40 +58,18 @@ var enemyList: Array[PackedScene] = [
 	preload("res://scene/enemy/wastewit.tscn")
 ]
 var enemies: Array[BaseEnemy] = []
-const enemyGenerate = [
+const enemyGenerate = [ # [num_group, item_per_group, enemy_idx, enemy_level
 	[],
-	[[3, 3, 0], [0, 0, 0], [0, 0, 0], [15, 1, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]],
-	[[3, 3, 0], [0, 0, 0], [0, 0, 0], [15, 1, 0], [0, 0, 0], [0, 0, 0]],
-	[[3, 3, 0], [0, 0, 0], [0, 0, 0], [15, 1, 0], [0, 0, 0]],
-	
-	[[3, 3, 0], [0, 0, 0], [0, 0, 0], [15, 1, 0], [0, 0, 0], [0, 0, 0], [3, 3, 1]],
-	[[8, 3, 0], [0, 0, 0], [15, 1, 0], [0, 0, 0], [0, 0, 0], [5, 3, 1]],
-	[[15, 3, 0], [30, 1, 0], [10, 3, 1]],
-	[[3, 3, 0], [0, 0, 0], [15, 1, 0], [3, 3, 1]],
-	
-	[[5, 3, 0], [10, 2, 1], [1, 1, 2], [5, 3, 0], [3, 1, 2]], 
-	[[5, 3, 0], [10, 2, 1], [1, 1, 2], [5, 3, 0], [3, 1, 2]], 
-	[[5, 3, 0], [10, 2, 1], [1, 1, 2], [5, 3, 0], [3, 1, 2]], 
-	[[5, 3, 0], [10, 2, 1], [1, 1, 2], [5, 3, 0], [3, 1, 2]], 
-	[[5, 3, 0], [10, 2, 1], [1, 1, 2], [5, 3, 0], [3, 1, 2]], 
-	
-	[[10, 3, 0], [5, 3, 1], [6, 2, 2], [10, 3, 0], [5, 3, 1], [6, 2, 2], [15, 1, 3]],
-	[[10, 3, 0], [5, 3, 1], [6, 2, 2], [10, 3, 0], [5, 3, 1], [6, 2, 2], [15, 1, 3]],
-	[[10, 3, 0], [5, 3, 1], [6, 2, 2], [10, 3, 0], [5, 3, 1], [6, 2, 2], [15, 1, 3]],
-	[[10, 3, 0], [5, 3, 1], [6, 2, 2], [10, 3, 0], [5, 3, 1], [6, 2, 2], [15, 1, 3]],
-	[[10, 3, 0], [5, 3, 1], [6, 2, 2], [10, 3, 0], [5, 3, 1], [6, 2, 2], [15, 1, 3]],
-	
-	[[10, 3, 1], [10, 2, 2], [15, 1, 3]],
-	[[10, 3, 1], [10, 2, 2], [15, 1, 3]],
-	[[10, 3, 1], [10, 2, 2], [15, 1, 3]],
-	[[10, 3, 1], [10, 2, 2], [15, 1, 3]],
-	[[10, 3, 1], [10, 2, 2], [15, 1, 3]],
-	
-	[[10, 3, 1], [10, 2, 2], [15, 1, 3]],
-	[[10, 3, 1], [10, 2, 2], [15, 1, 3]],
-	[[10, 3, 1], [10, 2, 2], [15, 1, 3]],
-	[[10, 3, 1], [10, 2, 2], [15, 1, 3]],
-	[[10, 3, 1], [10, 2, 2], [15, 1, 3]],
+	[[3, 3, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [15, 1, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1]],
+	[[3, 3, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [15, 1, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [3, 3, 1, 1]],
+	[[8, 3, 0, 1], [0, 0, 0, 1], [15, 1, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [5, 3, 1, 1]],
+	[[5, 3, 0, 1], [10, 2, 1, 1], [1, 1, 2, 1], [5, 3, 0, 2], [3, 1, 2, 1]], 
+	[[10, 3, 0, 1], [5, 3, 1, 0], [6, 2, 2, 0], [10, 3, 0, 1], [5, 3, 1, 0], [6, 2, 2, 0], [15, 1, 3, 0]],
+	[[10, 3, 1, 2], [10, 2, 2, 1], [15, 1, 3, 1]],
+	[[10, 3, 1, 2], [10, 2, 2, 2], [15, 1, 3, 2], [20, 1, 0, 3]], 
+	[[15, 1, 0, 3], [15, 2, 1, 3], [25, 1, 3, 2]],
+	[[10, 1, 2, 3], [10, 1, 1, 3], [10, 1, 3, 3]],
+	[[5, 1, 0, 3], [5, 1, 2, 3], [5, 1, 1, 3], [5, 1, 3, 3]], 
 ]
 var enemyGenerateInterval: float = 0.0
 var killEnemyCounter: int = 0
@@ -90,13 +78,6 @@ var killGeneRate: float = 0.0
 var generateBonus: float = 1.0
 
 var inWave: bool = false
-var lootSceneList = [
-	preload("res://scene/item/hyacinth.tscn"),
-	preload("res://scene/item/blue_mountain_leaf.tscn"),
-	preload("res://scene/item/wine_rose.tscn"),
-	preload("res://scene/item/raindrop_jasmine.tscn"),
-	preload("res://scene/item/catnip.tscn")
-]
 var coinList = []
 var gemList = []
 
@@ -114,16 +95,26 @@ func _ready():
 	start_game()
 	
 func start_game():
-	for i in range(10):
-		await one_wave()
-		if wave == 10 and GameInfo.config.get_value("Event", "first_to_wave_10") == false:
-			Events.story_triggered.emit("first_to_wave_10")
-		elif wave == 20 and GameInfo.config.get_value("Event", "first_to_wave_20") == false:
-			Events.story_triggered.emit("first_to_wave_20")
-
+	wave = 10
+	for i in range(1):
 		GameInfo.refresh()
 		await popocat_shop()
-		wave += 3
+		await one_wave()
+		#if wave == 10 and GameInfo.config.get_value("Event", "first_to_wave_10") == false:
+			#Events.story_triggered.emit("first_to_wave_10")
+		#elif wave == 20 and GameInfo.config.get_value("Event", "first_to_wave_20") == false:
+			#Events.story_triggered.emit("first_to_wave_20")
+
+		wave += 1
+	win()
+	
+func win():
+	var noteName: Array[String] = ["note"]
+	var board = UIScene._open_ui_group(noteName, {"text": "You win!", "button_text": "Back"})[0]
+	gameoverFlag = true
+	await board.click
+	get_tree().paused = false
+	
 	final_results()
 	
 func final_results():
@@ -277,6 +268,9 @@ func load_player():
 	self.player = player
 	
 	var playerIcon = player.sprite.duplicate()
+	
+	self.player.money = 20
+	self.player.refreshTime = 3
 	statsUI.atlas.add_child(playerIcon)
 	playerIcon.position = Vector2(100, 100)
 	
@@ -285,7 +279,7 @@ func player_updgrade():
 
 func player_dead():
 	var noteName: Array[String] = ["note"]
-	var board = UIScene.open_UI_board(noteName, {"text": "You Loss", "button_text": "Restart"})
+	var board = UIScene._open_ui_group(noteName, {"text": "You Loss", "button_text": "Restart"})[0]
 	gameoverFlag = true
 	await board.click
 	get_tree().paused = false
@@ -294,11 +288,11 @@ func player_dead():
 	
 # manage wave
 func one_wave():
-	wave_time = 27 + 2 * wave
+	wave_time = 25 + 10 * wave
 	waveTimer.start(wave_time)
 	inWave = true
 	
-	if wave >= 30:
+	if wave == 10:
 		var m = preload("res://scene/enemy/mr_scythe.tscn").instantiate()
 		enemyNode.add_child(m)
 		enemies.append(m)
@@ -331,7 +325,7 @@ func one_wave():
 		else:
 			generateBonus *= 3.0
 			
-		generateBonus = clamp(generateBonus, 0.5, 5)
+		generateBonus = clamp(generateBonus, 0.5, 3)
 			
 	clear_enemy()
 	clear_coin_and_gem()
@@ -365,13 +359,12 @@ func popocat_shop():
 	
 func _open_shop_board():
 	var shopName: Array[String] = ["shop"]
-	var shop: Node = UIScene.open_UI_board(shopName)
+	var shop: Node = UIScene._open_ui_group(shopName)[0]
 	shop.connect("close", shop_close)
 	
 func shop_close():
 	var shopName: Array[String] = ["shop"]
-	UIScene.UIFocusStack.erase(["shop"])
-	UIScene.close_UI_board(shopName)
+	UIScene._process_ui_signal(["shop"])
 
 # manage enemy
 func generate_enemies(ene: Array):
@@ -379,14 +372,14 @@ func generate_enemies(ene: Array):
 	for i in range(int(ene[0] * generateBonus)):
 		var pos = Utils.get_spawn_position_outside_camera(player.global_position, Vector2(1920, 1080))
 		for j in range(ene[1]):
-			generate_enemy(ene[2], pos + 100 * Vector2(randf(), randf()))
+			generate_enemy(ene[2], ene[3], pos + 100 * Vector2(randf(), randf()))
 			counter += 1
 	
 	return counter
 	
-func generate_enemy(idx: int, pos: Vector2):
+func generate_enemy(idx: int, level: int, pos: Vector2):
 	var i = idx % 4
-	var l = int(idx / 4) + 1
+	var l = level
 	var e: BaseEnemy = enemyList[i].instantiate()
 	enemyNode.add_child(e)
 	e.global_position = pos
@@ -411,8 +404,8 @@ func process_enemy_death(enemy: BaseEnemy, pos: Vector2, willLoot: bool):
 			coin.init(pos)
 			coinList.append(coin)
 			
-		if randf() < 0.008:
-			var loot = lootSceneList[Utils.random_weighted([0.2, 0.2, 0.2, 0.2, 0.2])].instantiate()
+		if randf() < LOOT_PROB:
+			var loot = lootSceneList[Utils.random_weighted(LOOT_PLANT_PROB)].instantiate()
 			itemNode.add_child(loot)
 			loot.global_position = pos
 			

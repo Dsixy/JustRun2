@@ -15,6 +15,7 @@ var playerList = []
 func _ready():
 	for player in availablePlayer:
 		register_player(player)
+	GameInfo.player = availablePlayer[0]
 
 func register_player(p: String):
 	var playerDisplay = playerDisplayScene.instantiate()
@@ -24,7 +25,7 @@ func register_player(p: String):
 	playerList.append(playerDisplay)
 
 func _on_texture_button_pressed():
-	GameInfo.cheat= cheatButton.button_pressed
+	GameInfo.cheat = cheatButton.button_pressed
 	get_tree().change_scene_to_file("res://scene/scene.tscn")
 
 func _on_player_clicked(node: Control):

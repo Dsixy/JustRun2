@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://caggsyvm441xe"]
 
 [ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_hre1d"]
-[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="2_p3urv"]
+[ext_resource type="Texture2D" uid="uid://bi3bmmkwy8x1y" path="res://asset/image/asset.png" id="2_p3urv"]
 [ext_resource type="Script" path="res://script/weapon/falling_blossom.gd" id="3_8bqqg"]
 [ext_resource type="PackedScene" uid="uid://c5i27r1u00pni" path="res://scene/effect/slash.tscn" id="4_6fl6u"]
 [ext_resource type="AudioStream" uid="uid://dta1gwr8q51y6" path="res://asset/SFX/weapon/falling_blossom.mp3" id="5_kmos7"]

@@ -5,7 +5,6 @@ extends BaseWeapon
 
 var rangeBonus: float = 1.0
 var attackInterval: float = 1.0
-var baseDamage: int = 3
 var whirlDamage: int = 15
 
 var emitWhirlWind:= false
@@ -14,6 +13,7 @@ var baseCritRate: float = 0.05
 var baseCritDamage: float = 1.5
 	
 func _ready():
+	self.baseDamage = [2, 4, 8, 16, 30]
 	hide()
 	
 func upgrade():
@@ -46,6 +46,6 @@ func attack():
 	
 func calculate_damage(name: String):
 	if name == "wind":
-		return self.baseDamage + 4 * self.level + 1 * self.player.insight
+		return self.baseDamage[self.level] + 2 * self.player.insight
 	else:
 		return self.whirlDamage + 2.5 * self.player.insight

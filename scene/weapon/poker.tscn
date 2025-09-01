@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ceqhhetrt7if2"]
 
-[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="1_83fav"]
+[ext_resource type="Texture2D" uid="uid://bi3bmmkwy8x1y" path="res://asset/image/asset.png" id="1_83fav"]
 [ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_yr4a2"]
 [ext_resource type="Script" path="res://script/weapon/poker.gd" id="2_axnrr"]
 [ext_resource type="PackedScene" uid="uid://cwsvbuprq45oy" path="res://scene/item/poker_bullet.tscn" id="3_mblgu"]

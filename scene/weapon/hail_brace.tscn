@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://db7ylg2e5ss6e"]
 
 [ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_hij36"]
-[ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="2_52tkd"]
+[ext_resource type="Texture2D" uid="uid://bi3bmmkwy8x1y" path="res://asset/image/asset.png" id="2_52tkd"]
 [ext_resource type="Script" path="res://script/weapon/hail_brace.gd" id="3_ae8fj"]
 [ext_resource type="PackedScene" uid="uid://ftvn45unn2fo" path="res://scene/effect/frost_wind.tscn" id="4_xmqh2"]
 [ext_resource type="PackedScene" uid="uid://buhgmefkaxje2" path="res://scene/effect/frost_whirl_wind.tscn" id="5_jhtoh"]

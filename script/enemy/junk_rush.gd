@@ -1,6 +1,7 @@
 extends BaseEnemy
 
 var isRush: bool = false
+const COLOR_MUDOLATE = [Color8(255, 255, 255), Color8(150, 0, 0), Color8(100, 100, 100)]
 
 func _ready():
 	self.speed = 180
@@ -15,11 +16,13 @@ func _physics_process(delta):
 	extraVel *= 0.95
 	
 func init(level: int, wave: int):
-	self.level = int(wave / 12) + 1
+	self.level = level
+	
+	$Sprite2D.modulate = COLOR_MUDOLATE[self.level - 1]
 	reset_properties(wave)
 	
 func reset_properties(wave: int = 0):
-	self.HP = 10 + (-2 + 4 * self.level) * wave
+	self.HP = (3 + self.level * 3) * self.WAVE_SCALE[wave-1]
 	self.damage.baseAmount = 20 * self.level + 10
 	
 func rush_to_target():
