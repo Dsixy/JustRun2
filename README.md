@@ -35,7 +35,7 @@ Just Run2没有引导，你需要记住的就是按 B 打开背包，将武器�
 # 🔽 Download
 
 直接通过以下链接下载游戏👉（目前使用的Windows11）：
-[Just Run2 第一版](https://github.com/Dsixy/JustRun2/releases/download/Game/Just.Run.zip)
+[Just Run2 第一版](https://github.com/Dsixy/JustRun2/releases/download/v1.0.1/Just.Run.zip)
 
 你也可以通过git clone下载游戏：
 ```
