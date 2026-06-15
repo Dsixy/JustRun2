@@ -39,6 +39,11 @@ func show_damage_label(damage: DamageInfo, pos:Vector2):
 	GameInfo.mainscene.add_child(label)
 	label.init(damage, pos)
 
+func show_floating_text(text: String, pos: Vector2, color: Color = Color8(255, 255, 0)) -> void:
+	var label = labelScene.instantiate()
+	GameInfo.mainscene.add_child(label)
+	label.init_text(text, pos, color)
+
 func set_price(level: int, rarityFactor: float = 1.0):
 	var wave = GameInfo.mainscene.wave
 	match int(wave / 2):

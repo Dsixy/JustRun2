@@ -13,6 +13,7 @@ var autoAttack: bool = false
 var options = []
 
 func _ready():
+	self.baseDamage = [3, 6, 12, 20, 35]
 	hide()
 	
 func upgrade():

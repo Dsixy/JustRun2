@@ -15,4 +15,4 @@ texture = SubResource("AtlasTexture_b2ii1")
 script = ExtResource("2_poybt")
 rocketScene = ExtResource("3_lhiax")
 crosshairScene = ExtResource("4_hjt5r")
-id = 20
+id = 30

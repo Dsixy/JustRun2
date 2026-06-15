@@ -16,7 +16,7 @@ extends Node
 @onready var effectNode = $PhysicalLayer/Effect
 @onready var sceneLayer = $PhysicalLayer
 
-const expGemProb = [
+const expGemProb = [ # index 1–10 对应第 1–10 波
 	[0, 0, 0],
 	[0.3, 0, 0],
 	[0.3, 0.05, 0],
@@ -40,6 +40,12 @@ const lootSceneList = [
 	preload("res://scene/item/catnip.tscn")
 ]
 
+# 单局 10 波
+const TOTAL_WAVES = 10
+const CARMOR_STORY_WAVE = 3
+const ALEW_STORY_WAVE = 6
+const BOSS_WAVE = 10
+
 var player: BasePlayer
 var player_init_position: Vector2 = Vector2(960, 540)
 	
@@ -58,13 +64,13 @@ var enemyList: Array[PackedScene] = [
 	preload("res://scene/enemy/wastewit.tscn")
 ]
 var enemies: Array[BaseEnemy] = []
-const enemyGenerate = [ # [num_group, item_per_group, enemy_idx, enemy_level
+const enemyGenerate = [ # index 1–10 对应第 1–10 波；[num_group, item_per_group, enemy_idx, enemy_level]
 	[],
 	[[3, 3, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [15, 1, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1]],
 	[[3, 3, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [15, 1, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [3, 3, 1, 1]],
 	[[8, 3, 0, 1], [0, 0, 0, 1], [15, 1, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [5, 3, 1, 1]],
 	[[5, 3, 0, 1], [10, 2, 1, 1], [1, 1, 2, 1], [5, 3, 0, 2], [3, 1, 2, 1]], 
-	[[10, 3, 0, 1], [5, 3, 1, 0], [6, 2, 2, 0], [10, 3, 0, 1], [5, 3, 1, 0], [6, 2, 2, 0], [15, 1, 3, 0]],
+	[[10, 3, 0, 1], [5, 3, 1, 1], [6, 2, 2, 1], [10, 3, 0, 1], [5, 3, 1, 1], [6, 2, 2, 1], [15, 1, 3, 1]],
 	[[10, 3, 1, 2], [10, 2, 2, 1], [15, 1, 3, 1]],
 	[[10, 3, 1, 2], [10, 2, 2, 2], [15, 1, 3, 2], [20, 1, 0, 3]], 
 	[[15, 1, 0, 3], [15, 2, 1, 3], [25, 1, 3, 2]],
@@ -95,24 +101,27 @@ func _ready():
 	start_game()
 	
 func start_game():
-	wave = 10
-	for i in range(1):
+	wave = 1
+	killEnemyCounter = 0
+	generateBonus = 1.0
+	for i in range(TOTAL_WAVES):
 		GameInfo.refresh()
 		await popocat_shop()
 		await one_wave()
-		#if wave == 10 and GameInfo.config.get_value("Event", "first_to_wave_10") == false:
-			#Events.story_triggered.emit("first_to_wave_10")
-		#elif wave == 20 and GameInfo.config.get_value("Event", "first_to_wave_20") == false:
-			#Events.story_triggered.emit("first_to_wave_20")
+		if wave == CARMOR_STORY_WAVE and not GameInfo.get_event("first_to_wave_3"):
+			Events.story_triggered.emit("first_to_wave_3")
+		elif wave == ALEW_STORY_WAVE and not GameInfo.get_event("first_to_wave_6"):
+			Events.story_triggered.emit("first_to_wave_6")
 
 		wave += 1
 	win()
 	
 func win():
 	var noteName: Array[String] = ["note"]
-	var board = UIScene._open_ui_group(noteName, {"text": "You win!", "button_text": "Back"})[0]
+	var board = UIScene._open_ui_group(noteName, {"text": "通关！", "button_text": "返回主菜单"})[0]
 	gameoverFlag = true
 	await board.click
+	UIScene._close_top_ui()
 	get_tree().paused = false
 	
 	final_results()
@@ -125,7 +134,7 @@ func final_results():
 		"resilience", "dexterrity",
 	]
 	for skill in properties:
-		if player.get(skill) == 20 and GameInfo.config.get_value("Event", "first_%s_to_20" % skill) == false:
+		if player.get(skill) == 20 and not GameInfo.get_event("first_%s_to_20" % skill):
 			Events.skill_triggered.emit(skill)
 			
 	GameInfo.player = ""
@@ -151,26 +160,25 @@ func load_cfg():
 		player.refreshTime = 1000
 		
 func _on_story_triggered(storyName: String):
-	pass
 	match storyName:
-		"first_to_wave_10": 
+		"first_to_wave_3":
 			carmor_come()
-			GameInfo.config.set_value("Event", "first_to_wave_10", true)
-		"first_to_wave_20": 
+			GameInfo.set_event("first_to_wave_3", true)
+		"first_to_wave_6":
 			alew_come()
-			GameInfo.config.set_value("Event", "first_to_wave_20", true)
-		_: pass
+			GameInfo.set_event("first_to_wave_6", true)
 		
 func _on_skill_triggered(skillName: String):
+	var weapon_key := ""
 	match skillName:
-		"stamina": GameInfo.config.set_value("WeaponUnlock", "mest", true)
-		"strength": pass
-		"insight": GameInfo.config.set_value("WeaponUnlock", "thought_bubble", true)
-		"agility": GameInfo.config.set_value("WeaponUnlock", "poker", true)
-		"charisma": GameInfo.config.set_value("WeaponUnlock", "song_of_soul", true)
-		"perception": pass
-		"resilience": pass
-		"dexerity": GameInfo.config.set_value("WeaponUnlock", "poker", true)
+		"stamina": weapon_key = "mest"
+		"insight": weapon_key = "thought_bubble"
+		"agility": weapon_key = "poker"
+		"charisma": weapon_key = "song_of_soul"
+		"dexterrity": weapon_key = "poker"
+	if weapon_key != "":
+		GameInfo.unlock_weapon(weapon_key)
+	GameInfo.set_event("first_%s_to_20" % skillName, true)
 		
 func _on_level_triggered(level: int):
 	pass
@@ -192,8 +200,9 @@ func carmor_come():
 	await dialogBubble.dialog_completed
 	carmor.queue_free()
 	
+	GameInfo.unlock_character("carmor")
 	var w = preload("res://scene/weapon/laser_gun.tscn").instantiate()
-	GameInfo.config.set_value("WeaponUnlock", "laser_gun", true)
+	GameInfo.unlock_weapon("laser_gun")
 	await show_item(w)
 	var i = player.get_empty_inventory_idx()
 	if i != -1:
@@ -220,8 +229,9 @@ func alew_come():
 	await dialogBubble.dialog_completed
 	alew.queue_free()
 	
+	GameInfo.unlock_character("alew")
 	var w = preload("res://scene/weapon/falling_blossom.tscn").instantiate()
-	GameInfo.config.set_value("WeaponUnlock", "falling_blossom", true)
+	GameInfo.unlock_weapon("falling_blossom")
 	await show_item(w)
 	var i = player.get_empty_inventory_idx()
 	if i != -1:
@@ -275,30 +285,37 @@ func load_player():
 	playerIcon.position = Vector2(100, 100)
 	
 func player_updgrade():
-	pass
+	var pos = player.global_position + Vector2(0, -50)
+	Utils.show_floating_text("升级！", pos, Color8(255, 220, 80))
+	Utils.show_floating_text("天赋点+2", pos + Vector2(0, -28), Color8(180, 255, 180))
 
 func player_dead():
 	var noteName: Array[String] = ["note"]
-	var board = UIScene._open_ui_group(noteName, {"text": "You Loss", "button_text": "Restart"})[0]
+	var board = UIScene._open_ui_group(noteName, {"text": "你失败了", "button_text": "返回主菜单"})[0]
 	gameoverFlag = true
 	await board.click
+	UIScene._close_top_ui()
 	get_tree().paused = false
 	
 	final_results()
 	
 # manage wave
+func _wave_table_index() -> int:
+	return clampi(wave, 1, enemyGenerate.size() - 1)
+
 func one_wave():
+	killEnemyCounter = 0
 	wave_time = 25 + 10 * wave
 	waveTimer.start(wave_time)
 	inWave = true
 	
-	if wave == 10:
+	if wave == BOSS_WAVE:
 		var m = preload("res://scene/enemy/mr_scythe.tscn").instantiate()
 		enemyNode.add_child(m)
 		enemies.append(m)
 		m.connect("death", process_enemy_death)
 	
-	var enemy_generate = enemyGenerate[wave]
+	var enemy_generate = enemyGenerate[_wave_table_index()]
 	var idx = 0
 	while inWave:
 		generate_enemies(enemy_generate[idx])
@@ -351,6 +368,13 @@ func clear_coin_and_gem():
 	gemList.clear()
 	
 func popocat_shop():
+	if not GameInfo.get_event("seen_popocat_hint"):
+		var noteName: Array[String] = ["note"]
+		var hint = UIScene._open_ui_group(noteName, {"text": "点击左侧波波猫打开商店", "button_text": "知道了"})[0]
+		await hint.click
+		UIScene._close_top_ui()
+		GameInfo.set_event("seen_popocat_hint", true)
+
 	var popocat = popocatScene.instantiate()
 	sceneLayer.add_child(popocat)
 	popocat.global_position = player.global_position + Vector2(-1000, 0)
@@ -378,8 +402,8 @@ func generate_enemies(ene: Array):
 	return counter
 	
 func generate_enemy(idx: int, level: int, pos: Vector2):
-	var i = idx % 4
-	var l = level
+	var i = idx % enemyList.size()
+	var l = maxi(level, 1)
 	var e: BaseEnemy = enemyList[i].instantiate()
 	enemyNode.add_child(e)
 	e.global_position = pos
@@ -391,7 +415,7 @@ func generate_enemy(idx: int, level: int, pos: Vector2):
 	
 func process_enemy_death(enemy: BaseEnemy, pos: Vector2, willLoot: bool):
 	if willLoot:
-		var expGemLevel = Utils.random_weighted(expGemProb[wave])
+		var expGemLevel = Utils.random_weighted(expGemProb[_wave_table_index()])
 		if expGemLevel < 3:
 			var expGem = expGemScene.instantiate()
 			itemNode.add_child(expGem)
@@ -429,4 +453,3 @@ func clear_enemy():
 		e.call_deferred("queue_free")
 	
 	self.enemies.clear()
-

@@ -15,4 +15,4 @@ func _on_texture_button_pressed():
 	emit_signal("click")
 
 func close_board():
-	pass
+	queue_free()

@@ -15,7 +15,7 @@ func _process(_delta):
 	expBar.value = player.expValue
 	HPBar.max_value = player.maxHP
 	HPBar.value = player.HP
-	waveLabel.text = "WAVE: %d" % GameInfo.mainscene.wave
-	timeLabel.text = "Rest Time: %d" % int(GameInfo.mainscene.waveTimer.time_left)
+	waveLabel.text = "第 %d 波" % GameInfo.mainscene.wave
+	timeLabel.text = "剩余时间: %d" % int(GameInfo.mainscene.waveTimer.time_left)
 	levelLabel.text = str(player.level)
 	moneyLabel.text = "%.1f" % player.money

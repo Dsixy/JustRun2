@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtb4g5jyus3iu"]
+[gd_scene load_steps=6 format=3 uid="uid://dtb4g5jyus3iu"]
 
 [ext_resource type="PackedScene" uid="uid://ctj376snmdfyc" path="res://scene/weapon/base_weapon.tscn" id="1_4impm"]
+[ext_resource type="PackedScene" uid="uid://c5i27r1u00pni" path="res://scene/effect/slash.tscn" id="3_slash"]
 [ext_resource type="Script" path="res://script/weapon/moon_phase_dial.gd" id="2_xr7jy"]
 [ext_resource type="Texture2D" uid="uid://cgr7460np6hw1" path="res://asset/image/asset.png" id="2_xrbe8"]
 
@@ -11,5 +12,5 @@ region = Rect2(400, 300, 100, 100)
 [node name="MoonPhaseDial" instance=ExtResource("1_4impm")]
 texture = SubResource("AtlasTexture_3pv1w")
 script = ExtResource("2_xr7jy")
-circleSlashScene = null
-id = 15
+circleSlashScene = ExtResource("3_slash")
+id = 29

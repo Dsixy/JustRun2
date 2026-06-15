@@ -9,45 +9,152 @@ var weaponAllPath = []
 
 var config = ConfigFile.new()
 
+# 新档默认解锁（其余靠事件 / 天赋解锁）
+const DEFAULT_WEAPON_UNLOCKS = ["pistol"]
+
+# 选角：patch 初始仅阿猴；卡莫 / 阿女剧情后解锁
+const CHARACTER_SCENES = {
+	"aho": "res://scene/player/aho.tscn",
+	"carmor": "res://scene/player/carmor.tscn",
+	"alew": "res://scene/player/alew.tscn",
+}
+const CHARACTER_ORDER = ["aho", "carmor", "alew"]
+const DEFAULT_CHARACTER_UNLOCKS = ["aho"]
+
+# 未设计完成，暂不出现在商店 / 作弊武器栏
+const DISABLED_WEAPONS = ["maiden_touch", "moon_phase_dial"]
+
+const DEFAULT_EVENTS = [
+	"first_to_wave_3",
+	"first_to_wave_6",
+	"seen_popocat_hint",
+]
+
 func _ready():
 	config.load("user://config.cfg")
-	
-	config.set_value("WeaponUnlock", "pistol", true)
-	config.set_value("WeaponUnlock", "poker", true)
-	config.set_value("WeaponUnlock", "shotgun", true)
-	config.set_value("WeaponUnlock", "sniping_riffe", true)
-	config.set_value("WeaponUnlock", "stellar_wrath", true)
-	config.set_value("WeaponUnlock", "thought_bubble", true)
-	config.set_value("WeaponUnlock", "hail_brace", true)
-	config.set_value("WeaponUnlock", "laser_sword", true)
-	config.set_value("WeaponUnlock", "song_of_soul", true)
-	config.set_value("WeaponUnlock", "poison_vial", true)
-	config.set_value("WeaponUnlock", "laser_gun", true)
-	config.set_value("WeaponUnlock", "perfume_bottle", true)
-	config.set_value("WeaponUnlock", "spider_silk", true)
-	config.set_value("WeaponUnlock", "mest", true)
-	config.set_value("WeaponUnlock", "delivery_guy", true)
-	config.set_value("WeaponUnlock", "falling_blossom", true)
-	config.set_value("WeaponUnlock", "comic_book", true)
-	config.set_value("WeaponUnlock", "coin_gun", true)
-	config.set_value("WeaponUnlock", "cat_trick", true)
-	config.set_value("WeaponUnlock", "wrench", true)
-	config.set_value("WeaponUnlock", "rocket_launcher", true)
-	#config.set_value("WeaponUnlock", "option", true)
-	config.set_value("WeaponUnlock", "lightwheel", true)
-	config.set_value("WeaponUnlock", "leaf", true)
-	config.set_value("WeaponUnlock", "spirit_conch", true)
-	config.set_value("WeaponUnlock", "replicator", true)
-	config.set_value("WeaponUnlock", "tear", true)
-	#
-	#config.save("user://config.cfg")
-	
+	_ensure_defaults()
+
+func _ensure_defaults() -> void:
+	var dirty := false
+	for weapon in DEFAULT_WEAPON_UNLOCKS:
+		if not config.has_section_key("WeaponUnlock", weapon):
+			config.set_value("WeaponUnlock", weapon, true)
+			dirty = true
+	for event in DEFAULT_EVENTS:
+		if not config.has_section_key("Event", event):
+			config.set_value("Event", event, false)
+			dirty = true
+	for character_key in DEFAULT_CHARACTER_UNLOCKS:
+		if not config.has_section_key("CharacterUnlock", character_key):
+			config.set_value("CharacterUnlock", character_key, true)
+			dirty = true
+	if dirty:
+		save()
+	_migrate_legacy_events()
+	_sync_character_unlocks_from_events()
+	_strip_disabled_weapon_unlocks()
+
+func _migrate_legacy_events() -> void:
+	var dirty := false
+	if config.get_value("Event", "first_to_wave_10", false):
+		config.set_value("Event", "first_to_wave_3", true)
+		dirty = true
+	if config.get_value("Event", "first_to_wave_20", false):
+		config.set_value("Event", "first_to_wave_6", true)
+		dirty = true
+	if config.get_value("Event", "first_to_wave_7", false):
+		config.set_value("Event", "first_to_wave_6", true)
+		dirty = true
+	if dirty:
+		save()
+
+func _sync_character_unlocks_from_events() -> void:
+	var dirty := false
+	if get_event("first_to_wave_3"):
+		if not is_character_unlocked("carmor"):
+			config.set_value("CharacterUnlock", "carmor", true)
+			dirty = true
+	if get_event("first_to_wave_6"):
+		if not is_character_unlocked("alew"):
+			config.set_value("CharacterUnlock", "alew", true)
+			dirty = true
+	if dirty:
+		save()
+
+func _strip_disabled_weapon_unlocks() -> void:
+	var dirty := false
+	for weapon in DISABLED_WEAPONS:
+		if config.get_value("WeaponUnlock", weapon, false):
+			config.set_value("WeaponUnlock", weapon, false)
+			dirty = true
+	if dirty:
+		save()
+
+func is_weapon_enabled(weapon_key: String) -> bool:
+	return weapon_key not in DISABLED_WEAPONS
+
 func refresh():
+	weaponAllPath.clear()
+	if not config.has_section("WeaponUnlock"):
+		return
 	for key in config.get_section_keys("WeaponUnlock"):
-		if config.get_value("WeaponUnlock", key):
+		if config.get_value("WeaponUnlock", key) and is_weapon_enabled(key):
 			weaponAllPath.append("res://scene/weapon/" + key + ".tscn")
-			
+
 func save():
 	config.save("user://config.cfg")
 
+func unlock_weapon(weapon_key: String) -> void:
+	if not is_weapon_enabled(weapon_key):
+		return
+	config.set_value("WeaponUnlock", weapon_key, true)
+	save()
 
+func is_character_unlocked(character_key: String) -> bool:
+	return config.get_value("CharacterUnlock", character_key, false)
+
+func unlock_character(character_key: String) -> void:
+	if character_key not in CHARACTER_SCENES:
+		return
+	config.set_value("CharacterUnlock", character_key, true)
+	save()
+
+func get_unlocked_character_scene_paths() -> Array[String]:
+	var paths: Array[String] = []
+	for character_key in CHARACTER_ORDER:
+		if is_character_unlocked(character_key):
+			paths.append(CHARACTER_SCENES[character_key])
+	return paths
+
+func get_all_character_scene_paths() -> Array[String]:
+	var paths: Array[String] = []
+	for character_key in CHARACTER_ORDER:
+		paths.append(CHARACTER_SCENES[character_key])
+	return paths
+
+## 选角列表：作弊时全部角色（不写 config）；否则读存档解锁
+func get_selectable_character_scene_paths() -> Array[String]:
+	if cheat:
+		return get_all_character_scene_paths()
+	return get_unlocked_character_scene_paths()
+
+func set_event(event_key: String, value: bool = true) -> void:
+	config.set_value("Event", event_key, value)
+	save()
+
+func get_event(event_key: String) -> bool:
+	return config.get_value("Event", event_key, false)
+
+func get_all_weapon_scene_paths() -> Array[String]:
+	var paths: Array[String] = []
+	var dir := DirAccess.open("res://scene/weapon/")
+	if dir == null:
+		return paths
+	for file_name in dir.get_files():
+		if not file_name.ends_with(".tscn") or file_name == "base_weapon.tscn":
+			continue
+		var weapon_key = file_name.get_basename()
+		if is_weapon_enabled(weapon_key):
+			paths.append("res://scene/weapon/" + file_name)
+	paths.sort()
+	return paths

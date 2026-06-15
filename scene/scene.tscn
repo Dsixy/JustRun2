@@ -54,7 +54,7 @@ layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 30
-text = "按 B 打开背包"
+text = "按 B 打开背包/武器"
 
 [node name="Label2" type="Label" parent="UI/HBoxContainer"]
 layout_mode = 2

@@ -28,8 +28,11 @@ func set_slot_item(idx: int, weight: Array = [0.7, 0.14, 0.14, 0.02]):
 	var content
 	match i:
 		0: 
-			var j = randi() % len(GameInfo.weaponAllPath)
-			content = load(GameInfo.weaponAllPath[j]).instantiate()
+			if GameInfo.weaponAllPath.is_empty():
+				content = rainbowSweetScene.instantiate()
+			else:
+				var j = randi() % len(GameInfo.weaponAllPath)
+				content = load(GameInfo.weaponAllPath[j]).instantiate()
 		1:
 			content = rainbowSweetScene.instantiate()
 		2:

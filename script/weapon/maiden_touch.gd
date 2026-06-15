@@ -1,10 +1,10 @@
+# 未设计完成，已禁用 — 见 GameInfo.DISABLED_WEAPONS
 extends BaseWeapon
 
 @export var grabScene: PackedScene
 
 var attackInterval: float = 1.2
 var grabScale: float = 1.0
-var baseDamage: int = 3
 		
 var baseCritRate: float = 0.05
 var baseCritDamage: float = 2.0

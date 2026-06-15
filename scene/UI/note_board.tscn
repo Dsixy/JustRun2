@@ -10,6 +10,7 @@ atlas = ExtResource("3_jqltm")
 region = Rect2(0, 700, 100, 100)
 
 [node name="NoteBoard" type="Control"]
+process_mode = 3
 custom_minimum_size = Vector2(500, 350)
 layout_mode = 3
 anchors_preset = 0
