@@ -128,6 +128,7 @@ func _on_pickup_area_area_entered(area):
 	elif area.is_in_group("coin"):
 		gain_coin()
 	elif area.is_in_group("flower"):
+		RunStats.record_plant_picked()
 		item.on_picked_up(self)
 		for weapon in self.weaponArm.weaponList:
 			if weapon and weapon.id == 16:
@@ -141,13 +142,27 @@ func gain_exp(exp: int):
 			upgrade()
 
 func gain_coin(value: float = 1, extra: float = 0.0):
-	self.money += (self.goldBonus + 1) * value + extra
+	var amount := (self.goldBonus + 1) * value + extra
+	self.money += amount
+	RunStats.record_money_earned(amount)
+
+func spend_money(amount: float) -> bool:
+	if amount <= 0.0:
+		return true
+	if self.money < amount:
+		return false
+	self.money -= amount
+	RunStats.record_money_spent(amount)
+	return true
 
 func upgrade():
 	self.level += 1
 	self.level = min(30, self.level)
 	self.abilityPoint += 2
 	self.HP += int(self.maxHP * 0.1)
+	self.refreshTime += 3
+	if self.level == 10:
+		Events.level_triggered.emit(10)
 	emit_signal("get_upgrade")
 	update()
 	

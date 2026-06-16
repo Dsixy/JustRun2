@@ -36,7 +36,7 @@ func can_player_buy():
 func _on_button_pressed():
 	var i = can_player_buy()
 	if i >= 0:
-		player.money -= price
+		player.spend_money(price)
 		_be_sold()
 		player.inventory[i] = self.content.duplicate()
 		if player.inventory[i].name == "RainbowSweet":

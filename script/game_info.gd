@@ -27,6 +27,7 @@ const DISABLED_WEAPONS = ["maiden_touch", "moon_phase_dial"]
 const DEFAULT_EVENTS = [
 	"first_to_wave_3",
 	"first_to_wave_6",
+	"first_to_level_10",
 	"seen_popocat_hint",
 ]
 
@@ -104,20 +105,30 @@ func refresh():
 func save():
 	config.save("user://config.cfg")
 
-func unlock_weapon(weapon_key: String) -> void:
+func unlock_weapon(weapon_key: String, silent: bool = false) -> bool:
 	if not is_weapon_enabled(weapon_key):
-		return
+		return false
+	if config.get_value("WeaponUnlock", weapon_key, false):
+		return false
 	config.set_value("WeaponUnlock", weapon_key, true)
 	save()
+	if not silent:
+		UnlockToast.enqueue_weapon(weapon_key)
+	return true
 
 func is_character_unlocked(character_key: String) -> bool:
 	return config.get_value("CharacterUnlock", character_key, false)
 
-func unlock_character(character_key: String) -> void:
+func unlock_character(character_key: String, silent: bool = false) -> bool:
 	if character_key not in CHARACTER_SCENES:
-		return
+		return false
+	if is_character_unlocked(character_key):
+		return false
 	config.set_value("CharacterUnlock", character_key, true)
 	save()
+	if not silent:
+		UnlockToast.enqueue_character(character_key)
+	return true
 
 func get_unlocked_character_scene_paths() -> Array[String]:
 	var paths: Array[String] = []
@@ -138,9 +149,35 @@ func get_selectable_character_scene_paths() -> Array[String]:
 		return get_all_character_scene_paths()
 	return get_unlocked_character_scene_paths()
 
+func get_character_key_from_path(scene_path: String) -> String:
+	for character_key in CHARACTER_ORDER:
+		if CHARACTER_SCENES[character_key] == scene_path:
+			return character_key
+	return scene_path.get_file().get_basename()
+
+func add_meta_stat(key: String, delta) -> void:
+	var current = config.get_value("Meta", key, 0)
+	if typeof(current) != typeof(delta):
+		current = 0
+	config.set_value("Meta", key, current + delta)
+	save()
+
+func get_meta_stat(key: String, default_value = 0):
+	return config.get_value("Meta", key, default_value)
+
 func set_event(event_key: String, value: bool = true) -> void:
+	var was_set := get_event(event_key)
 	config.set_value("Event", event_key, value)
 	save()
+	if value and not was_set:
+		_notify_event_achievement(event_key)
+
+func _notify_event_achievement(event_key: String) -> void:
+	match event_key:
+		"first_to_wave_3":
+			UnlockToast.enqueue_achievement("剧情成就", "抵达第 3 波 · 初遇卡莫")
+		"first_to_wave_6":
+			UnlockToast.enqueue_achievement("剧情成就", "抵达第 6 波 · 初遇阿女")
 
 func get_event(event_key: String) -> bool:
 	return config.get_value("Event", event_key, false)

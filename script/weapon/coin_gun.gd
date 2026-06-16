@@ -67,7 +67,7 @@ func attack():
 			bullet.init(global_position, direction + bias, bulletSpeed * (0.4 * randf() + 0.8), damage)
 		await get_tree().create_timer(0.1).timeout
 
-	self.player.money -= cost
+	self.player.spend_money(cost)
 	
 func calculate_damage():
 	return self.baseDamage[self.level] + 4 * self.player.perception

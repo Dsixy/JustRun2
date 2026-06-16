@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=3 uid="uid://cunlocktoast01"]
+
+[ext_resource type="Script" path="res://script/UI/unlock_toast_item.gd" id="1_toast"]
+[ext_resource type="StyleBox" uid="uid://c12gxnfx501sf" path="res://resource/board.tres" id="2_board"]
+[ext_resource type="FontFile" uid="uid://4pjyr76ukhtj" path="res://asset/font/PoplarStd.otf" id="3_font"]
+
+[node name="UnlockToastItem" type="Control"]
+custom_minimum_size = Vector2(360, 88)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 360.0
+offset_bottom = 88.0
+mouse_filter = 2
+script = ExtResource("1_toast")
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_board")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Icon" type="TextureRect" parent="Panel/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 4
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="Title" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.7, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 28
+text = "武器解锁"
+
+[node name="Subtitle" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 34
+text = "手枪"

@@ -113,18 +113,27 @@ func start_game():
 		elif wave == ALEW_STORY_WAVE and not GameInfo.get_event("first_to_wave_6"):
 			Events.story_triggered.emit("first_to_wave_6")
 
+		RunStats.record_wave_cleared(wave)
 		wave += 1
 	win()
-	
-func win():
+
+func _finish_run(victory: bool) -> void:
+	var weapon_list: Array = player.weaponArm.weaponList.duplicate()
+	RunStats.end_run(victory, player.level, weapon_list)
+	await UnlockToast.wait_until_idle()
 	var noteName: Array[String] = ["note"]
-	var board = UIScene._open_ui_group(noteName, {"text": "通关！", "button_text": "返回主菜单"})[0]
+	var board = UIScene._open_ui_group(noteName, {
+		"text": RunStats.get_summary_text(),
+		"button_text": "返回主菜单",
+	})[0]
 	gameoverFlag = true
 	await board.click
 	UIScene._close_top_ui()
 	get_tree().paused = false
-	
 	final_results()
+
+func win():
+	await _finish_run(true)
 	
 func final_results():
 	const properties = [
@@ -173,15 +182,17 @@ func _on_skill_triggered(skillName: String):
 	match skillName:
 		"stamina": weapon_key = "mest"
 		"insight": weapon_key = "thought_bubble"
-		"agility": weapon_key = "poker"
 		"charisma": weapon_key = "song_of_soul"
 		"dexterrity": weapon_key = "poker"
-	if weapon_key != "":
-		GameInfo.unlock_weapon(weapon_key)
+	if weapon_key != "" and GameInfo.unlock_weapon(weapon_key):
+		RunStats.notify_unlock(weapon_key)
 	GameInfo.set_event("first_%s_to_20" % skillName, true)
 		
 func _on_level_triggered(level: int):
-	pass
+	if level == 10 and not GameInfo.get_event("first_to_level_10"):
+		if GameInfo.unlock_weapon("hail_brace"):
+			RunStats.notify_unlock("hail_brace")
+		GameInfo.set_event("first_to_level_10", true)
 	
 func carmor_come():
 	var carmor = preload("res://scene/player/carmor.tscn").instantiate()
@@ -202,7 +213,8 @@ func carmor_come():
 	
 	GameInfo.unlock_character("carmor")
 	var w = preload("res://scene/weapon/laser_gun.tscn").instantiate()
-	GameInfo.unlock_weapon("laser_gun")
+	if GameInfo.unlock_weapon("laser_gun"):
+		RunStats.notify_unlock("laser_gun")
 	await show_item(w)
 	var i = player.get_empty_inventory_idx()
 	if i != -1:
@@ -231,7 +243,8 @@ func alew_come():
 	
 	GameInfo.unlock_character("alew")
 	var w = preload("res://scene/weapon/falling_blossom.tscn").instantiate()
-	GameInfo.unlock_weapon("falling_blossom")
+	if GameInfo.unlock_weapon("falling_blossom"):
+		RunStats.notify_unlock("falling_blossom")
 	await show_item(w)
 	var i = player.get_empty_inventory_idx()
 	if i != -1:
@@ -268,6 +281,7 @@ func show_item(item: Node):
 
 # manage player
 func load_player():
+	RunStats.begin_run(GameInfo.player)
 	player = load(GameInfo.player).instantiate()
 	sceneLayer.add_child(player)
 	
@@ -290,14 +304,7 @@ func player_updgrade():
 	Utils.show_floating_text("天赋点+2", pos + Vector2(0, -28), Color8(180, 255, 180))
 
 func player_dead():
-	var noteName: Array[String] = ["note"]
-	var board = UIScene._open_ui_group(noteName, {"text": "你失败了", "button_text": "返回主菜单"})[0]
-	gameoverFlag = true
-	await board.click
-	UIScene._close_top_ui()
-	get_tree().paused = false
-	
-	final_results()
+	await _finish_run(false)
 	
 # manage wave
 func _wave_table_index() -> int:
@@ -414,6 +421,7 @@ func generate_enemy(idx: int, level: int, pos: Vector2):
 	return e
 	
 func process_enemy_death(enemy: BaseEnemy, pos: Vector2, willLoot: bool):
+	RunStats.record_kill()
 	if willLoot:
 		var expGemLevel = Utils.random_weighted(expGemProb[_wave_table_index()])
 		if expGemLevel < 3:

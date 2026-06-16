@@ -24,6 +24,8 @@ config/icon="res://icon.svg"
 Utils="*res://script/utils.gd"
 GameInfo="*res://script/game_info.gd"
 Events="*res://script/Events.gd"
+RunStats="*res://script/run_stats.gd"
+UnlockToast="*res://script/unlock_toast.gd"
 
 [display]
 
