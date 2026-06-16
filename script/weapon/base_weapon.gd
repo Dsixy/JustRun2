@@ -24,6 +24,7 @@ func process_slot(cur: Node, drag: Node):
 	elif is_instance_of(cur, BaseWeapon):
 		if drag.id == cur.id and drag.level == cur.level and drag.level < 4:
 			cur.upgrade()
+			GameInfo.record_weapon_handbook_level(_weapon_key_from(cur), cur.level)
 			return [cur, null]
 	
 	return [drag, cur]
@@ -39,3 +40,8 @@ func dearm():
 	
 func follow_up_attack():
 	pass
+
+static func _weapon_key_from(weapon: BaseWeapon) -> String:
+	if weapon == null or weapon.get_script() == null:
+		return ""
+	return String(weapon.get_script().resource_path.get_file().get_basename())

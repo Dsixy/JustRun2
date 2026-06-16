@@ -22,7 +22,7 @@ const CHARACTER_ORDER = ["aho", "carmor", "alew"]
 const DEFAULT_CHARACTER_UNLOCKS = ["aho"]
 
 # 未设计完成，暂不出现在商店 / 作弊武器栏
-const DISABLED_WEAPONS = ["maiden_touch", "moon_phase_dial"]
+const DISABLED_WEAPONS = ["maiden_touch", "moon_phase_dial", "option"]
 
 const DEFAULT_EVENTS = [
 	"first_to_wave_3",
@@ -40,6 +40,9 @@ func _ensure_defaults() -> void:
 	for weapon in DEFAULT_WEAPON_UNLOCKS:
 		if not config.has_section_key("WeaponUnlock", weapon):
 			config.set_value("WeaponUnlock", weapon, true)
+			dirty = true
+		if not config.has_section_key("WeaponHandbook", weapon):
+			config.set_value("WeaponHandbook", weapon, 0)
 			dirty = true
 	for event in DEFAULT_EVENTS:
 		if not config.has_section_key("Event", event):
@@ -111,6 +114,8 @@ func unlock_weapon(weapon_key: String, silent: bool = false) -> bool:
 	if config.get_value("WeaponUnlock", weapon_key, false):
 		return false
 	config.set_value("WeaponUnlock", weapon_key, true)
+	if get_weapon_handbook_max_level(weapon_key) < 0:
+		config.set_value("WeaponHandbook", weapon_key, 0)
 	save()
 	if not silent:
 		UnlockToast.enqueue_weapon(weapon_key)
@@ -178,6 +183,37 @@ func _notify_event_achievement(event_key: String) -> void:
 			UnlockToast.enqueue_achievement("剧情成就", "抵达第 3 波 · 初遇卡莫")
 		"first_to_wave_6":
 			UnlockToast.enqueue_achievement("剧情成就", "抵达第 6 波 · 初遇阿女")
+
+func is_weapon_unlocked(weapon_key: String) -> bool:
+	return is_weapon_enabled(weapon_key) and config.get_value("WeaponUnlock", weapon_key, false)
+
+func get_weapon_handbook_max_level(weapon_key: String) -> int:
+	return int(config.get_value("WeaponHandbook", weapon_key, -1))
+
+func record_weapon_handbook_level(weapon_key: String, level: int) -> void:
+	if not is_weapon_unlocked(weapon_key):
+		return
+	var current := get_weapon_handbook_max_level(weapon_key)
+	if current < 0:
+		current = 0
+	if level > current:
+		config.set_value("WeaponHandbook", weapon_key, level)
+		save()
+
+func sync_weapon_handbook_defaults() -> void:
+	var dirty := false
+	if not config.has_section("WeaponUnlock"):
+		return
+	for weapon_key in config.get_section_keys("WeaponUnlock"):
+		if not config.get_value("WeaponUnlock", weapon_key, false):
+			continue
+		if not is_weapon_enabled(weapon_key):
+			continue
+		if get_weapon_handbook_max_level(weapon_key) < 0:
+			config.set_value("WeaponHandbook", weapon_key, 0)
+			dirty = true
+	if dirty:
+		save()
 
 func get_event(event_key: String) -> bool:
 	return config.get_value("Event", event_key, false)

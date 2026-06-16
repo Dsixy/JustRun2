@@ -26,7 +26,7 @@
 | 21 | 唤灵海螺 | `spirit_conch` | 待补充 📋 | ⚠️ | [spirit_conch.md](spirit_conch.md) |
 | 22 | 猫之计谋 | `cat_trick` | 待补充 📋 | ⚠️ | [cat_trick.md](cat_trick.md) |
 | 24 | 极速光轮 | `lightwheel` | 待补充 📋 | ⚠️ | [lightwheel.md](lightwheel.md) |
-| 25 | **浮游炮** | `option` | 待补充 📋 | ⚠️ | [option.md](option.md) |
+| 25 | **浮游炮** | `option` | — | 🚫 | [option.md](option.md) |
 | 26 | 复制器 | `replicator` | 待补充 📋 | ⚠️ | [replicator.md](replicator.md) |
 | 27 | 叶子 | `leaf` | 待补充 📋 | ⚠️ | [leaf.md](leaf.md) |
 | 28 | 泪水 | `tear` | 待补充 📋 | ⚠️ | [tear.md](tear.md) |
@@ -62,7 +62,7 @@
 
 ### 浮游炮 (ID 25 · `option`)
 
-补丁确认：**Option 即浮游炮**。自主攻击型辅助武器。→ [详情](option.md)
+🚫 **已禁用**（`DISABLED_WEAPONS`）：代理攻击架构不稳定，待重做。设计见 [详情](option.md)。
 
 ---
 
