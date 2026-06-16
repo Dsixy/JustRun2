@@ -2,13 +2,13 @@ extends BaseWeapon
 
 @export var leafBulletScene: PackedScene
 
-var attackInterval: float = 1.2
+var attackInterval: float = 0.3
 
-var baseCritRate: float = 0.00
+var baseCritRate: float = 0.05
 var baseCritDamage: float = 2.0
 
 var leafList = []
-var followUPProb: float = 1
+var followUPProb: float = 0.5
 var comeBackDamageBonus: float = 0
 var maxDistance: int = 800
 var extraFollowUp: bool = false

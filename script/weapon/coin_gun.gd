@@ -7,7 +7,7 @@ var shootAccuracy: float = 0.6
 var attackInterval: float = 0.4
 		
 var baseCritRate: float = 0.05
-var baseCritDamage: float = 2.0
+var baseCritDamage: float = 1.5
 var damageBonus: float = 0
 	
 var bulletNum: int = 1

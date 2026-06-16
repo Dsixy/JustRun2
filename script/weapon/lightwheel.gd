@@ -3,7 +3,6 @@ extends BaseWeapon
 @export var wheelScene: PackedScene
 
 var wheelSpeed: int = 700
-var shootAccuracy: float = 0.6
 var attackInterval: float = 1
 var wheelRangeBonus: float = 1
 var maxDist: int = 700
