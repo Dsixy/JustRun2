@@ -1,6 +1,8 @@
 class_name BasePlayer extends CharacterBody2D
 
-const expRequire = [20, 50, 100, 200, 300, 500, 600, 700, 800, 1000, 
+const WeaponIds = preload("res://script/weapon_ids.gd")
+
+const expRequire = [20, 50, 100, 200, 300, 500, 600, 700, 800, 1000,
 					1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000,
 					2500, 3000, 3500, 4000, 4500, 5000, 6000, 7000, 8000, 9000, 10000]
 					
@@ -131,7 +133,7 @@ func _on_pickup_area_area_entered(area):
 		RunStats.record_plant_picked()
 		item.on_picked_up(self)
 		for weapon in self.weaponArm.weaponList:
-			if weapon and weapon.id == 16:
+			if weapon and weapon.id == WeaponIds.PERFUME_BOTTLE:
 				weapon.gain(item.n)
 		
 func gain_exp(exp: int):

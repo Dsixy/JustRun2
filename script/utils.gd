@@ -1,5 +1,7 @@
 extends Node
 
+const ViewportConstants = preload("res://script/viewport_constants.gd")
+
 @onready var labelScene = preload("res://scene/UI/damage_label.tscn")
 var rng = RandomNumberGenerator.new()
 
@@ -14,7 +16,11 @@ func random_weighted(weight: Array):
 	
 	return len(weight)
 	
-func get_spawn_position_outside_camera(player_position: Vector2, camera_size: Vector2, margin: float = 200.0) -> Vector2:
+func get_spawn_position_outside_camera(
+		player_position: Vector2,
+		camera_size: Vector2 = ViewportConstants.SIZE,
+		margin: float = 200.0
+	) -> Vector2:
 	var side = randi() % 4  # 0=top, 1=bottom, 2=left, 3=right
 	var spawn_pos = player_position
 

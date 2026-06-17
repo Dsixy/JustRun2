@@ -1,5 +1,11 @@
 extends Node
 
+const ViewportConstants = preload("res://script/viewport_constants.gd")
+const PlayerSkillProperties = preload("res://script/player_skill_properties.gd")
+const WeaponIds = preload("res://script/weapon_ids.gd")
+const WaveDirector = preload("res://script/scene/wave_director.gd")
+const LootSpawner = preload("res://script/scene/loot_spawner.gd")
+
 @export var expGemScene: PackedScene
 @export var coinScene: PackedScene
 @export var weaponArmScene: PackedScene
@@ -16,67 +22,30 @@ extends Node
 @onready var effectNode = $PhysicalLayer/Effect
 @onready var sceneLayer = $PhysicalLayer
 
-const expGemProb = [ # index 1–10 对应第 1–10 波
-	[0, 0, 0],
-	[0.3, 0, 0],
-	[0.3, 0.05, 0],
-	[0.45, 0.07, 0],
-	[0, 0.3, 0],
-	[0.5, 0.1, 0],
-	[0.0, 0.5, 0.02],
-	[0.3, 0.25, 0],
-	[0, 0, 0.3],
-	[0.1, 0.4, 0],
-	[0, 0, 0.5]
-]
-
-const LOOT_PROB: float = 0.012
-const LOOT_PLANT_PROB = [0.1, 0.1, 0.5, 0.1, 0.2]
-const lootSceneList = [
-	preload("res://scene/item/hyacinth.tscn"),
-	preload("res://scene/item/blue_mountain_leaf.tscn"),
-	preload("res://scene/item/wine_rose.tscn"),
-	preload("res://scene/item/raindrop_jasmine.tscn"),
-	preload("res://scene/item/catnip.tscn")
-]
-
-# 单局 10 波
-const TOTAL_WAVES = 10
-const CARMOR_STORY_WAVE = 3
-const ALEW_STORY_WAVE = 6
-const BOSS_WAVE = 10
+const STORY_GUESTS := {
+	"carmor": preload("res://scene/player/carmor.tscn"),
+	"alew": preload("res://scene/player/alew.tscn"),
+}
+const STORY_WEAPONS := {
+	"laser_gun": preload("res://scene/weapon/laser_gun.tscn"),
+	"falling_blossom": preload("res://scene/weapon/falling_blossom.tscn"),
+}
 
 var player: BasePlayer
-var player_init_position: Vector2 = Vector2(960, 540)
-	
-# wave manage
+var player_init_position: Vector2 = ViewportConstants.CENTER
+
 var wave: int = 1
 var wave_time: int = 0
 var popocatScene = preload("res://scene/popocat.tscn")
-var nextWave: bool = false
 var gameoverFlag: bool = false
 
-# enemy manage
 var enemyList: Array[PackedScene] = [
 	preload("res://scene/enemy/evil_pea.tscn"),
 	preload("res://scene/enemy/junk_rush.tscn"),
 	preload("res://scene/enemy/clunker.tscn"),
-	preload("res://scene/enemy/wastewit.tscn")
+	preload("res://scene/enemy/wastewit.tscn"),
 ]
 var enemies: Array[BaseEnemy] = []
-const enemyGenerate = [ # index 1–10 对应第 1–10 波；[num_group, item_per_group, enemy_idx, enemy_level]
-	[],
-	[[3, 3, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [15, 1, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1]],
-	[[3, 3, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [15, 1, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [3, 3, 1, 1]],
-	[[8, 3, 0, 1], [0, 0, 0, 1], [15, 1, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [5, 3, 1, 1]],
-	[[5, 3, 0, 1], [10, 2, 1, 1], [1, 1, 2, 1], [5, 3, 0, 2], [3, 1, 2, 1]], 
-	[[10, 3, 0, 1], [5, 3, 1, 1], [6, 2, 2, 1], [10, 3, 0, 1], [5, 3, 1, 1], [6, 2, 2, 1], [15, 1, 3, 1]],
-	[[10, 3, 1, 2], [10, 2, 2, 1], [15, 1, 3, 1]],
-	[[10, 3, 1, 2], [10, 2, 2, 2], [15, 1, 3, 2], [20, 1, 0, 3]], 
-	[[15, 1, 0, 3], [15, 2, 1, 3], [25, 1, 3, 2]],
-	[[10, 1, 2, 3], [10, 1, 1, 3], [10, 1, 3, 3]],
-	[[5, 1, 0, 3], [5, 1, 2, 3], [5, 1, 1, 3], [5, 1, 3, 3]], 
-]
 var enemyGenerateInterval: float = 0.0
 var killEnemyCounter: int = 0
 var lastWaveGenerationNum: int = 0
@@ -87,11 +56,15 @@ var inWave: bool = false
 var coinList = []
 var gemList = []
 
-# some constant
 var enemySetDirectionInterval: float = 1.0
 var enemySetDirectionTimer: float = 0.0
 
+var _wave_director := WaveDirector.new()
+var _loot_spawner := LootSpawner.new()
+
 func _ready():
+	_wave_director.bind(self, _loot_spawner)
+	_loot_spawner.bind(self)
 	GameInfo.mainscene = self
 	load_player()
 	load_event()
@@ -99,18 +72,18 @@ func _ready():
 	statsUI.player = self.player
 	UIScene.player = self.player
 	start_game()
-	
+
 func start_game():
 	wave = 1
 	killEnemyCounter = 0
 	generateBonus = 1.0
-	for i in range(TOTAL_WAVES):
+	for i in range(WaveDirector.TOTAL_WAVES):
 		GameInfo.refresh()
 		await popocat_shop()
 		await one_wave()
-		if wave == CARMOR_STORY_WAVE and not GameInfo.get_event("first_to_wave_3"):
+		if wave == WaveDirector.CARMOR_STORY_WAVE and not GameInfo.get_event("first_to_wave_3"):
 			Events.story_triggered.emit("first_to_wave_3")
-		elif wave == ALEW_STORY_WAVE and not GameInfo.get_event("first_to_wave_6"):
+		elif wave == WaveDirector.ALEW_STORY_WAVE and not GameInfo.get_event("first_to_wave_6"):
 			Events.story_triggered.emit("first_to_wave_6")
 
 		RunStats.record_wave_cleared(wave)
@@ -134,18 +107,12 @@ func _finish_run(victory: bool) -> void:
 
 func win():
 	await _finish_run(true)
-	
+
 func final_results():
-	const properties = [
-		"stamina", "strength",
-		"insight", "agility",
-		"charisma", "perception",
-		"resilience", "dexterrity",
-	]
-	for skill in properties:
+	for skill in PlayerSkillProperties.ALL:
 		if player.get(skill) == 20 and not GameInfo.get_event("first_%s_to_20" % skill):
 			Events.skill_triggered.emit(skill)
-			
+
 	GameInfo.player = ""
 	get_tree().change_scene_to_file("res://scene/UI/main_menu.tscn")
 
@@ -156,27 +123,26 @@ func _process(delta):
 		enemySetDirectionTimer -= enemySetDirectionInterval
 		enemySetDirectionInterval = randf_range(0.6, 1.4)
 
-# manage event
 func load_event():
 	Events.connect("story_triggered", _on_story_triggered)
 	Events.connect("skill_triggered", _on_skill_triggered)
 	Events.connect("level_triggered", _on_level_triggered)
-	
+
 func load_cfg():
 	if GameInfo.cheat:
 		player.money = 10000
 		player.abilityPoint = 500
 		player.refreshTime = 1000
-		
+
 func _on_story_triggered(storyName: String):
 	match storyName:
 		"first_to_wave_3":
-			carmor_come()
+			await _story_guest_arrives("carmor", "laser_gun")
 			GameInfo.set_event("first_to_wave_3", true)
 		"first_to_wave_6":
-			alew_come()
+			await _story_guest_arrives("alew", "falling_blossom", 10)
 			GameInfo.set_event("first_to_wave_6", true)
-		
+
 func _on_skill_triggered(skillName: String):
 	var weapon_key := ""
 	match skillName:
@@ -187,117 +153,84 @@ func _on_skill_triggered(skillName: String):
 	if weapon_key != "" and GameInfo.unlock_weapon(weapon_key):
 		RunStats.notify_unlock(weapon_key)
 	GameInfo.set_event("first_%s_to_20" % skillName, true)
-		
+
 func _on_level_triggered(level: int):
 	if level == 10 and not GameInfo.get_event("first_to_level_10"):
 		if GameInfo.unlock_weapon("hail_brace"):
 			RunStats.notify_unlock("hail_brace")
 		GameInfo.set_event("first_to_level_10", true)
-	
-func carmor_come():
-	var carmor = preload("res://scene/player/carmor.tscn").instantiate()
-	var tween = get_tree().create_tween()
-	
-	focus()
-	sceneLayer.add_child(carmor)
-	carmor.global_position = player.global_position + Vector2(1000, 0)
-	tween.tween_property(carmor, "global_position", player.global_position + Vector2(100, 0), 2)
-	
-	await tween.finished
-	var dialogBubble = preload("res://scene/UI/dialog_bubble.tscn").instantiate()
-	var dialogResource = preload("res://resource/dialog/d1.tres")
-	carmor.add_child(dialogBubble)
-	dialogBubble.init(carmor.global_position + Vector2(0, -200), dialogResource)
-	await dialogBubble.dialog_completed
-	carmor.queue_free()
-	
-	GameInfo.unlock_character("carmor")
-	var w = preload("res://scene/weapon/laser_gun.tscn").instantiate()
-	if GameInfo.unlock_weapon("laser_gun"):
-		RunStats.notify_unlock("laser_gun")
-	await show_item(w)
-	var i = player.get_empty_inventory_idx()
-	if i != -1:
-		player.inventory[i] = w
-		w.hide()
-	else:
-		w.queue_free()
-	defocus()
-	
-func alew_come():
-	var alew = preload("res://scene/player/alew.tscn").instantiate()
-	var tween = get_tree().create_tween()
-	
-	focus()
-	sceneLayer.add_child(alew)
-	alew.global_position = player.global_position + Vector2(1000, 0)
-	tween.tween_property(alew, "global_position", player.global_position + Vector2(100, 0), 2)
-	
-	await tween.finished
-	var dialogBubble = preload("res://scene/UI/dialog_bubble.tscn").instantiate()
-	var dialogResource = preload("res://resource/dialog/d1.tres")
-	alew.add_child(dialogBubble)
-	dialogBubble.init(alew.global_position + Vector2(0, -200), dialogResource)
-	await dialogBubble.dialog_completed
-	alew.queue_free()
-	
-	GameInfo.unlock_character("alew")
-	var w = preload("res://scene/weapon/falling_blossom.tscn").instantiate()
-	if GameInfo.unlock_weapon("falling_blossom"):
-		RunStats.notify_unlock("falling_blossom")
-	await show_item(w)
-	var i = player.get_empty_inventory_idx()
-	if i != -1:
-		player.inventory[i] = w
-		w.hide()
-	else:
-		w.queue_free()
-	player.abilityPoint += 10
-	
-	defocus()
-	
-func focus():
-	self.player.set_process(false)
-	self.player.set_physics_process(false)
 
+func _story_guest_arrives(character_key: String, weapon_key: String, bonus_ability: int = 0) -> void:
+	var guest_scene: PackedScene = STORY_GUESTS[character_key]
+	var weapon_scene: PackedScene = STORY_WEAPONS[weapon_key]
+	var guest = guest_scene.instantiate()
 	var tween = get_tree().create_tween()
-	tween.tween_property(GameInfo.mainscene.player.camera, "zoom", Vector2(2, 2), 1)
-	
+
+	focus()
+	sceneLayer.add_child(guest)
+	guest.global_position = player.global_position + Vector2(1000, 0)
+	tween.tween_property(guest, "global_position", player.global_position + Vector2(100, 0), 2)
+	await tween.finished
+
+	var dialogBubble = preload("res://scene/UI/dialog_bubble.tscn").instantiate()
+	var dialogResource = preload("res://resource/dialog/d1.tres")
+	guest.add_child(dialogBubble)
+	dialogBubble.init(guest.global_position + Vector2(0, -200), dialogResource)
+	await dialogBubble.dialog_completed
+	guest.queue_free()
+
+	GameInfo.unlock_character(character_key)
+	var weapon = weapon_scene.instantiate()
+	if GameInfo.unlock_weapon(weapon_key):
+		RunStats.notify_unlock(weapon_key)
+	await show_item(weapon)
+	var i = player.get_empty_inventory_idx()
+	if i != -1:
+		player.inventory[i] = weapon
+		weapon.hide()
+	else:
+		weapon.queue_free()
+	if bonus_ability > 0:
+		player.abilityPoint += bonus_ability
+	defocus()
+
+func focus():
+	player.set_process(false)
+	player.set_physics_process(false)
+	var tween = get_tree().create_tween()
+	tween.tween_property(player.camera, "zoom", Vector2(2, 2), 1)
+
 func defocus():
-	self.player.set_process(true)
-	self.player.set_physics_process(true)
-	self.player.camera.zoom = Vector2(0.8, 0.8)
-	
+	player.set_process(true)
+	player.set_physics_process(true)
+	player.camera.zoom = Vector2(0.8, 0.8)
+
 func show_item(item: Node):
 	var effect = preload("res://scene/effect/gain_effect.tscn").instantiate()
 	UIcontainer.add_child(effect)
-	effect.position = Vector2(960, 540)
+	effect.position = ViewportConstants.CENTER
 	effect.add_child(item)
 	item.show()
 	await effect.click
-	
 	effect.remove_child(item)
 	effect.queue_free()
 
-# manage player
 func load_player():
 	RunStats.begin_run(GameInfo.player)
 	player = load(GameInfo.player).instantiate()
 	sceneLayer.add_child(player)
-	
 	player.init(player_init_position)
 	player.connect("get_upgrade", player_updgrade)
 	player.connect("go_die", player_dead)
 	player.camera.enabled = true
 	self.player = player
-	
+
 	var playerIcon = player.sprite.duplicate()
-	
-	self.player.money = 20
-	self.player.refreshTime = 3
+	player.money = 20
+	player.refreshTime = 3
 	statsUI.atlas.add_child(playerIcon)
 	playerIcon.position = Vector2(100, 100)
-	
+
 func player_updgrade():
 	var pos = player.global_position + Vector2(0, -50)
 	Utils.show_floating_text("升级！", pos, Color8(255, 220, 80))
@@ -305,79 +238,20 @@ func player_updgrade():
 
 func player_dead():
 	await _finish_run(false)
-	
-# manage wave
-func _wave_table_index() -> int:
-	return clampi(wave, 1, enemyGenerate.size() - 1)
 
 func one_wave():
-	killEnemyCounter = 0
-	wave_time = 25 + 10 * wave
-	waveTimer.start(wave_time)
-	inWave = true
-	
-	if wave == BOSS_WAVE:
-		var m = preload("res://scene/enemy/mr_scythe.tscn").instantiate()
-		enemyNode.add_child(m)
-		enemies.append(m)
-		m.connect("death", process_enemy_death)
-	
-	var enemy_generate = enemyGenerate[_wave_table_index()]
-	var idx = 0
-	while inWave:
-		generate_enemies(enemy_generate[idx])
-		lastWaveGenerationNum = enemyNode.get_child_count()
-		var generate_interval = clamp(0.5 + len(enemies) * 0.1, 0.5, 4)
-		enemyGenerateTimer.start(generate_interval)
-		await enemyGenerateTimer.timeout
-		
-		idx += 1
-		idx = idx % len(enemy_generate)
-	
-		if lastWaveGenerationNum == 0:
-			continue
-			
-		killGeneRate = killEnemyCounter / lastWaveGenerationNum
-		if killGeneRate <= 0.3:
-			generateBonus *= 0.5
-		elif killGeneRate <= 0.9:
-			generateBonus *= 0.8
-		elif killGeneRate <= 1.2:
-			generateBonus *= 1.25
-		elif killGeneRate <= 1.5:
-			generateBonus *= 1.6
-		else:
-			generateBonus *= 3.0
-			
-		generateBonus = clamp(generateBonus, 0.5, 3)
-			
-	clear_enemy()
-	clear_coin_and_gem()
+	await _wave_director.run_wave(wave)
 
 func _on_wave_timer_timeout():
-	inWave = false
+	_wave_director.end_wave()
 
-func clear_coin_and_gem():
-	for coin in coinList:
-		if is_instance_valid(coin) and randf() < 0.3:
-			player.pick(coin.area)
-		elif is_instance_valid(coin):
-			coin.queue_free()
-			
-	coinList.clear()
-	
-	for gem in gemList:
-		if is_instance_valid(gem) and randf() < 0.1:
-			player.pick(gem.area)
-		elif is_instance_valid(gem):
-			gem.queue_free()
-			
-	gemList.clear()
-	
 func popocat_shop():
 	if not GameInfo.get_event("seen_popocat_hint"):
 		var noteName: Array[String] = ["note"]
-		var hint = UIScene._open_ui_group(noteName, {"text": "点击左侧波波猫打开商店", "button_text": "知道了"})[0]
+		var hint = UIScene._open_ui_group(noteName, {
+			"text": "点击左侧波波猫打开商店",
+			"button_text": "知道了",
+		})[0]
 		await hint.click
 		UIScene._close_top_ui()
 		GameInfo.set_event("seen_popocat_hint", true)
@@ -387,77 +261,35 @@ func popocat_shop():
 	popocat.global_position = player.global_position + Vector2(-1000, 0)
 	popocat.connect("click", _open_shop_board)
 	await popocat.click
-	
+
 func _open_shop_board():
 	var shopName: Array[String] = ["shop"]
 	var shop: Node = UIScene._open_ui_group(shopName)[0]
 	shop.connect("close", shop_close)
-	
+
 func shop_close():
-	var shopName: Array[String] = ["shop"]
 	UIScene._process_ui_signal(["shop"])
 
-# manage enemy
-func generate_enemies(ene: Array):
-	var counter = 0
-	for i in range(int(ene[0] * generateBonus)):
-		var pos = Utils.get_spawn_position_outside_camera(player.global_position, Vector2(1920, 1080))
-		for j in range(ene[1]):
-			generate_enemy(ene[2], ene[3], pos + 100 * Vector2(randf(), randf()))
-			counter += 1
-	
-	return counter
-	
-func generate_enemy(idx: int, level: int, pos: Vector2):
-	var i = idx % enemyList.size()
-	var l = maxi(level, 1)
-	var e: BaseEnemy = enemyList[i].instantiate()
-	enemyNode.add_child(e)
-	e.global_position = pos
-	e.init(l, wave)
-	e.connect("death", process_enemy_death)
-	
-	enemies.append(e)
-	return e
-	
 func process_enemy_death(enemy: BaseEnemy, pos: Vector2, willLoot: bool):
 	RunStats.record_kill()
 	if willLoot:
-		var expGemLevel = Utils.random_weighted(expGemProb[_wave_table_index()])
-		if expGemLevel < 3:
-			var expGem = expGemScene.instantiate()
-			itemNode.add_child(expGem)
-			expGem.init(expGemLevel, pos)
-			gemList.append(expGem)
-		
-		if randf() < (self.wave * 0.01 + 0.4):
-			var coin = coinScene.instantiate()
-			itemNode.add_child(coin)
-			coin.init(pos)
-			coinList.append(coin)
-			
-		if randf() < LOOT_PROB:
-			var loot = lootSceneList[Utils.random_weighted(LOOT_PLANT_PROB)].instantiate()
-			itemNode.add_child(loot)
-			loot.global_position = pos
-			
+		_loot_spawner.spawn_enemy_loot(pos, _wave_director.wave_table_index(wave), wave)
 		killEnemyCounter += 1
 
-	for weapon in self.player.weaponArm.weaponList:
-		if weapon and weapon.id == 21 and weapon.collect:
+	for weapon in player.weaponArm.weaponList:
+		if weapon and weapon.id == WeaponIds.SPIRIT_CONCH and weapon.collect:
 			weapon.collectedSoul += 1
 	enemies.erase(enemy)
 	enemy.call_deferred("queue_free")
-	
+
 func set_enemy_direction():
 	for e in enemies:
 		e.update_target(player.global_position)
 
-func _on_enemy_generate_timer_timeout():
-	pass # Replace with function body.
-	
 func clear_enemy():
-	for e in self.enemies:
+	for e in enemies:
 		e.call_deferred("queue_free")
-	
-	self.enemies.clear()
+	enemies.clear()
+
+func _on_enemy_generate_timer_timeout():
+	pass

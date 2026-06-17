@@ -4,3 +4,4 @@
 .githooks/
 scripts/
 docs/
+*.tmp

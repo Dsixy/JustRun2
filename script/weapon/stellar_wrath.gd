@@ -38,7 +38,10 @@ func attack():
 		star.init(targetPos, attackRadius * attackBonus, damage)
 	
 func get_target_positions():
-	var screenArea = Rect2(player.camera.get_screen_center_position() - Vector2(960, 540), Vector2(1920, 1080))
+	var screenArea = Rect2(
+		player.camera.get_screen_center_position() - ViewportConstants.HALF,
+		ViewportConstants.SIZE
+	)
 	var posList = []
 	var childList = GameInfo.mainscene.bulletNode.get_children()
 	var bulletList = []
