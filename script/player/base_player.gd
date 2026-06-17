@@ -75,7 +75,7 @@ func _physics_process(_delta):
 	move_and_slide()
 	
 func process_input():
-	if GameInfo.mainscene.player != self:
+	if not GameInfo.is_active_player(self):
 		return
 		
 	direction = Vector2(0, 0)
@@ -93,7 +93,7 @@ func process_input():
 	direction = direction.normalized()
 		
 func _unhandled_input(event):
-	if GameInfo.mainscene.player != self:
+	if not GameInfo.is_active_player(self):
 		return
 		
 	if event.is_action_pressed("Attack") or autoAttack:

@@ -6,6 +6,11 @@ const ASSET_ATLAS := preload("res://asset/image/asset.png")
 
 const CONSUMABLE_ENTRIES: Array[Dictionary] = [
 	{
+		"name": "武装板",
+		"description": "按 B 打开背包时可编辑武装板。\n\n共 4 个武器槽，分三轮攻击：\n· 槽位 1：首轮单独触发\n· 槽位 2、3：同轮一起触发\n· 槽位 4：末轮单独触发\n\n将武器拖入槽位安装；同名同级武器可合成升级。",
+		"atlas_region": Rect2(900, 900, 100, 100),
+	},
+	{
 		"name": "升级套件",
 		"description": "非武器。拖拽该物品到其他武器上后可升级该武器。",
 		"atlas_region": Rect2(1000, 900, 100, 100),

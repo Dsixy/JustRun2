@@ -1,6 +1,14 @@
 extends Node
 
-var mainscene: Node = null
+var _run_scene: Node = null
+
+## 兼容旧代码；新逻辑优先用 get_run_scene() / is_run_active()
+var mainscene: Node:
+	get:
+		return _run_scene
+	set(value):
+		register_run_scene(value)
+
 var current_cursor_item = null
 var player: String = ""
 var cheat: bool = false
@@ -34,6 +42,37 @@ const DEFAULT_EVENTS = [
 func _ready():
 	config.load("user://config.cfg")
 	_ensure_defaults()
+
+func register_run_scene(scene: Node) -> void:
+	_run_scene = scene
+
+func clear_run_scene() -> void:
+	_run_scene = null
+
+func get_run_scene() -> Node:
+	return _run_scene
+
+func is_run_active() -> bool:
+	return _run_scene != null and _run_scene.get("gameoverFlag") == false
+
+func is_active_player(candidate: BasePlayer) -> bool:
+	return _run_scene != null and _run_scene.get("player") == candidate
+
+func get_run_wave() -> int:
+	if _run_scene == null:
+		return 0
+	return int(_run_scene.get("wave"))
+
+func get_run_wave_time_left() -> float:
+	if _run_scene == null:
+		return 0.0
+	var timer = _run_scene.get("waveTimer")
+	if timer:
+		return timer.time_left
+	return 0.0
+
+func get_run_overlay_root() -> Node:
+	return _run_scene if _run_scene else self
 
 func _ensure_defaults() -> void:
 	var dirty := false

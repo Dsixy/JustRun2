@@ -42,16 +42,16 @@ func get_spawn_position_outside_camera(
 
 func show_damage_label(damage: DamageInfo, pos:Vector2):
 	var label = labelScene.instantiate()
-	GameInfo.mainscene.add_child(label)
+	GameInfo.get_run_overlay_root().add_child(label)
 	label.init(damage, pos)
 
 func show_floating_text(text: String, pos: Vector2, color: Color = Color8(255, 255, 0)) -> void:
 	var label = labelScene.instantiate()
-	GameInfo.mainscene.add_child(label)
+	GameInfo.get_run_overlay_root().add_child(label)
 	label.init_text(text, pos, color)
 
 func set_price(level: int, rarityFactor: float = 1.0):
-	var wave = GameInfo.mainscene.wave
+	var wave = GameInfo.get_run_wave()
 	match int(wave / 2):
 		0: return 5 + (5 * rarityFactor + wave) * randf() + level * 1 
 		1: return 0 + (10 * rarityFactor + 3 * wave) * randf() + level * 1.5

@@ -78,9 +78,15 @@ func start_game():
 	killEnemyCounter = 0
 	generateBonus = 1.0
 	for i in range(WaveDirector.TOTAL_WAVES):
+		if gameoverFlag:
+			return
 		GameInfo.refresh()
 		await popocat_shop()
+		if gameoverFlag:
+			return
 		await one_wave()
+		if gameoverFlag:
+			return
 		if wave == WaveDirector.CARMOR_STORY_WAVE and not GameInfo.get_event("first_to_wave_3"):
 			Events.story_triggered.emit("first_to_wave_3")
 		elif wave == WaveDirector.ALEW_STORY_WAVE and not GameInfo.get_event("first_to_wave_6"):
@@ -88,9 +94,13 @@ func start_game():
 
 		RunStats.record_wave_cleared(wave)
 		wave += 1
-	win()
+	if not gameoverFlag:
+		win()
 
 func _finish_run(victory: bool) -> void:
+	if gameoverFlag:
+		return
+	gameoverFlag = true
 	var weapon_list: Array = player.weaponArm.weaponList.duplicate()
 	RunStats.end_run(victory, player.level, weapon_list)
 	await UnlockToast.wait_until_idle()
@@ -99,11 +109,38 @@ func _finish_run(victory: bool) -> void:
 		"text": RunStats.get_summary_text(),
 		"button_text": "返回主菜单",
 	})[0]
-	gameoverFlag = true
 	await board.click
 	UIScene._close_top_ui()
 	get_tree().paused = false
 	final_results()
+
+func early_settle() -> void:
+	if gameoverFlag:
+		return
+	_wave_director.end_wave()
+	waveTimer.stop()
+	enemyGenerateTimer.stop()
+	clear_enemy()
+	await _finish_run(false)
+
+func restart_run() -> void:
+	if gameoverFlag:
+		return
+	UIScene.force_close_all()
+	get_tree().reload_current_scene()
+
+func quit_to_main_menu() -> void:
+	if gameoverFlag:
+		return
+	gameoverFlag = true
+	inWave = false
+	waveTimer.stop()
+	enemyGenerateTimer.stop()
+	var weapon_list: Array = player.weaponArm.weaponList.duplicate()
+	RunStats.end_run(false, player.level, weapon_list)
+	UIScene.force_close_all()
+	GameInfo.clear_run_scene()
+	get_tree().change_scene_to_file("res://scene/UI/main_menu.tscn")
 
 func win():
 	await _finish_run(true)
@@ -114,6 +151,7 @@ func final_results():
 			Events.skill_triggered.emit(skill)
 
 	GameInfo.player = ""
+	GameInfo.clear_run_scene()
 	get_tree().change_scene_to_file("res://scene/UI/main_menu.tscn")
 
 func _process(delta):

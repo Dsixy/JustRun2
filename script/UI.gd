@@ -6,6 +6,7 @@ const bagBoardScene = preload("res://scene/UI/bag_board.tscn")
 const shopBoardScene = preload("res://scene/UI/shop_board.tscn")
 const noteBoardScene = preload("res://scene/UI/note_board.tscn")
 const illustratedHandbookScene = preload("res://scene/UI/illustrated_handbook.tscn")
+const pauseMenuScene = preload("res://scene/UI/pause_menu.tscn")
 
 @onready var container = $Container
 
@@ -19,7 +20,8 @@ var UIBoardDict := {
 	"bag": null,
 	"note": null,
 	"shop": null,
-	"book": null
+	"book": null,
+	"pause": null,
 }
 
 var player: BasePlayer
@@ -50,21 +52,36 @@ func _get_scene_by_name(ui_name: String) -> PackedScene:
 		"note": return noteBoardScene
 		"book": return illustratedHandbookScene
 		"shop": return shopBoardScene
+		"pause": return pauseMenuScene
 		_: return null
+
+
+func _game_shortcuts_blocked() -> bool:
+	return "pause" in _flatten_stack()
 
 
 # 输入处理
 func _unhandled_input(event):
+	if Input.is_action_just_pressed("ExitUI"):
+		if not UIFocusStack.is_empty():
+			_close_top_ui()
+		elif GameInfo.is_run_active():
+			_open_pause_menu()
+		return
+
+	if _game_shortcuts_blocked():
+		return
+
 	for action in input_to_ui.keys():
 		if Input.is_action_just_pressed(action):
 			_process_ui_signal(input_to_ui[action])
 
-	if Input.is_action_just_pressed("ExitUI"):
-		_close_top_ui()
-
 
 # 处理 UI 信号
 func _process_ui_signal(ui_group: Array) -> void:
+	if _game_shortcuts_blocked():
+		return
+
 	# 1. 如果栈顶就是这一组 UI → 关闭并弹栈
 	if not UIFocusStack.is_empty() and UIFocusStack.back() == ui_group:
 		_close_top_ui()
@@ -97,6 +114,8 @@ func _open_ui_group(ui_group: Array, cfg_dict: Dictionary = {}) -> Array:
 		UIBoardDict[ui_name] = instance
 		opened.append(ui_name)
 		instances.append(instance)
+		if ui_name == "pause" and instance.has_signal("closed"):
+			instance.connect("closed", _close_top_ui)
 
 	if opened.size() > 0:
 		UIFocusStack.append(opened)
@@ -117,5 +136,16 @@ func _close_top_ui() -> void:
 			UIBoardDict[ui_name] = null
 
 	# 栈空了 → 恢复游戏
-	if UIFocusStack.is_empty() and not GameInfo.mainscene.gameoverFlag:
+	if UIFocusStack.is_empty() and GameInfo.is_run_active():
+		get_tree().paused = false
+
+
+func _open_pause_menu() -> void:
+	_open_ui_group(["pause"])
+
+
+func force_close_all() -> void:
+	while not UIFocusStack.is_empty():
+		_close_top_ui()
+	if GameInfo.is_run_active():
 		get_tree().paused = false

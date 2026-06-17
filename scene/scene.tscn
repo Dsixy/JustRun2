@@ -30,39 +30,6 @@ mouse_filter = 2
 
 [node name="StatsUI" parent="UI" instance=ExtResource("6_osxhy")]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
-grow_vertical = 0
-theme_override_constants/separation = 20
-
-[node name="Label4" type="Label" parent="UI/HBoxContainer"]
-layout_mode = 2
-
-[node name="Label3" type="Label" parent="UI/HBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 30
-text = "按 T 打开图鉴"
-
-[node name="Label" type="Label" parent="UI/HBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 30
-text = "按 B 打开背包/武器"
-
-[node name="Label2" type="Label" parent="UI/HBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 30
-text = "按 M 打开能力点"
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI"]
 stream = ExtResource("7_tppv3")
 autoplay = true
