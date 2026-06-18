@@ -1,5 +1,7 @@
 extends BaseWeapon
 
+const DamageTypes = preload("res://script/damage_types.gd")
+
 @export var windEffectScene: PackedScene
 @export var whirlWindScene: PackedScene
 
@@ -33,7 +35,7 @@ func attack():
 
 	var damage = DamageInfo.new(calculate_damage("wind"), 0, 
 		randf() < self.baseCritRate + self.player.critRate,
-		self.baseCritDamage, player, "Ice")
+		self.baseCritDamage, player, DamageTypes.ICE)
 	windEffect.init(global_position, direction, rangeBonus, damage)
 	
 	if emitWhirlWind:
@@ -41,7 +43,7 @@ func attack():
 		GameInfo.mainscene.add_child(whirlWind)
 		damage = DamageInfo.new(calculate_damage("whirlWind"), 1, 
 			randf() < self.baseCritRate + self.player.critRate,
-			self.baseCritDamage, player, "Ice")
+			self.baseCritDamage, player, DamageTypes.ICE)
 		whirlWind.init(global_position, direction, 2, damage)
 	
 func calculate_damage(name: String):

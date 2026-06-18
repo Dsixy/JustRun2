@@ -1,5 +1,7 @@
 extends DotBuff
 
+const DamageTypes = preload("res://script/damage_types.gd")
+
 const maxStack:= 3
 var curStack: int = 0
 
@@ -10,7 +12,7 @@ func set_up(source):
 	
 	self.damage = DamageInfo.new(
 		2 + source.insight * 0.4 + source.level * 0.2,
-		0, false, 1.0, source, "Fire"
+		0, false, 1.0, source, DamageTypes.FIRE
 	)
 	
 func stack(buff: Buff):

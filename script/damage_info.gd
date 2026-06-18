@@ -2,6 +2,8 @@ extends Resource
 
 class_name DamageInfo
 
+const DamageTypes = preload("res://script/damage_types.gd")
+
 var baseAmount: float
 var bonus: float
 var source
@@ -14,24 +16,15 @@ var finalDamage: int:
 			return int(baseAmount * (1 + bonus) * critDamage)
 		else:
 			return int(baseAmount * (1 + bonus))
-			
-#const type2color = {
-	#"": Color8(255, 255, 0),
-	#"Poison": Color8(0, 255, 0),
-	#"Fire": Color8(255, 0, 0),
-	#"Ice": Color8(0, 0, 255),
-	#"Lightning": Color8(0, 150, 255),
-	#"Psychic": Color8(255, 150, 200),
-#}
 
 func _init(_damage: float = 0, _bonus: float = 0, _isCrit: bool = false,\
-			_critDamage: float = 1.0, _source: Node = null, _type: String = ""):
+			_critDamage: float = 1.0, _source: Node = null, _type: String = DamageTypes.PHYSICAL):
 	self.baseAmount = _damage
 	self.bonus = _bonus
 	self.isCrit = _isCrit
 	self.critDamage = _critDamage
 	self.source = _source
-	self.damageType = _type
+	self.damageType = DamageTypes.normalize(_type)
 
 func copy() -> DamageInfo:
 	var copy = DamageInfo.new()
@@ -42,3 +35,6 @@ func copy() -> DamageInfo:
 	copy.isCrit = isCrit
 	copy.source = source
 	return copy
+
+func get_type_display_name() -> String:
+	return DamageTypes.display_name(damageType)

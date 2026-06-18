@@ -49,6 +49,7 @@ var inventory = [null, null, null, null, null, null, null]
 var isInvincible: bool = false
 var refreshTime: int = 1
 var isDash: bool = false
+var mest_body_scale_applied: bool = false
 var elapse: float = 0.0
 var dashTime: float = 0.3
 var autoAttack: bool = true
@@ -173,7 +174,9 @@ func take_damage(damage: DamageInfo):
 	if not isInvincible and damage.baseAmount >= 1:
 		isInvincible = true
 		timer.start(0.6)
+		var hp_before := HP
 		self.HP -= 100.0 / (100 + self.armor) * damage.finalDamage
+		RunStats.record_hp_lost(hp_before - HP)
 		if self.HP <= 0:
 			dead()
 

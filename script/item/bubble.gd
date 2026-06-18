@@ -1,5 +1,7 @@
 extends HitArea
 
+const DamageTypes = preload("res://script/damage_types.gd")
+
 @onready var hitbox = $Hitbox
 var angVel: float = 0
 var radius: int = 0
@@ -45,5 +47,5 @@ func _on_hitbox_area_entered(area):
 		var ene = area.get_parent()
 		damage = DamageInfo.new(baseDamage, 0, 
 			false,
-			1.0, GameInfo.mainscene.player, "Psychic")
+			1.0, GameInfo.mainscene.player, DamageTypes.PSYCHIC)
 		ene.be_hit(damage)

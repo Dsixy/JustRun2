@@ -20,8 +20,10 @@ func upgrade():
 		self.level += 1
 		match self.level:
 			1: self.heal = 1
-			2: 
-				self.player.scale += Vector2.ONE * self.player.stamina * 0.1
+			2:
+				if player and not player.mest_body_scale_applied:
+					player.scale += Vector2.ONE * player.stamina * 0.1
+					player.mest_body_scale_applied = true
 			3: self.heal = 3
 			4:
 				self.dashTime += 1
@@ -44,9 +46,11 @@ func attack_once():
 		randf() < self.baseCritRate + player.critRate + 0.03 * self.player.resilience,
 		self.baseCritDamage, player)
 
-	dash.init("dash", direction, damage, dashScale * 3)
+	var body_scale := maxf(player.scale.x, player.scale.y)
+	dash.init("dash", direction, damage, dashScale * 3 * body_scale)
 	dash.extraVel = direction * 1200
 	dash.scale /= 2
+	dash.scale *= body_scale
 	dash.lifeSteal = heal
 
 	player.direction = direction

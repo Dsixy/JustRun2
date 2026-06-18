@@ -1,5 +1,7 @@
 extends BaseWeapon
 
+const DamageTypes = preload("res://script/damage_types.gd")
+
 @export var laserScene: PackedScene
 
 var attackInterval: float:
@@ -36,7 +38,7 @@ func attack():
 		
 		var damage = DamageInfo.new(calculate_damage(), 0, 
 			randf() < self.baseCritRate + self.player.critRate,
-			self.baseCritDamage, player)
+			self.baseCritDamage, player, DamageTypes.FIRE)
 		var angle = (target - self.global_position).angle() + (0.3 * i - 0.3 * 
 		laserNum + 0.3 * int(laserNum / 2) + 0.3)
 		laser.init(Vector2.from_angle(angle), damage, laserScale)

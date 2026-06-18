@@ -21,7 +21,7 @@ func upgrade():
 			1: self.slashScale += 0.4
 			2: 
 				self.anis.append("backFlowerSlash")
-			3: self.slashScale += 1.2
+			3: self.slashScale += 0.8
 			4:
 				self.anis = ["flowerSlash", "backFlowerSlash2",
 							"flowerSlash3", "backFlowerSlash",

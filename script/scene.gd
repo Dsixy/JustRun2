@@ -302,7 +302,11 @@ func popocat_shop():
 
 func _open_shop_board():
 	var shopName: Array[String] = ["shop"]
-	var shop: Node = UIScene._open_ui_group(shopName)[0]
+	var cfg := {}
+	if wave == WaveDirector.BOSS_WAVE and not GameInfo.is_weapon_unlocked("cat_trick"):
+		if randf() < 0.02:
+			cfg["cat_trick_offer"] = true
+	var shop: Node = UIScene._open_ui_group(shopName, cfg)[0]
 	shop.connect("close", shop_close)
 
 func shop_close():
@@ -310,6 +314,9 @@ func shop_close():
 
 func process_enemy_death(enemy: BaseEnemy, pos: Vector2, willLoot: bool):
 	RunStats.record_kill()
+	if enemy.get_script().resource_path.ends_with("mr_scythe.gd"):
+		if GameInfo.unlock_weapon("comic_book"):
+			RunStats.notify_unlock("comic_book")
 	if willLoot:
 		_loot_spawner.spawn_enemy_loot(pos, _wave_director.wave_table_index(wave), wave)
 		killEnemyCounter += 1

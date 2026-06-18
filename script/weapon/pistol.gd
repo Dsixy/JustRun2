@@ -1,5 +1,7 @@
 extends BaseWeapon
 
+const DamageTypes = preload("res://script/damage_types.gd")
+
 @export var bulletScene: PackedScene = preload("res://scene/item/bullet.tscn")
 var bulletSpeed: int = 1000
 var shootAccuracy: float:
@@ -45,7 +47,7 @@ func attack():
 		var bias: Vector2 = direction.orthogonal() * (randf() * 2 - 1) * (1 - shootAccuracy)
 		var damage = DamageInfo.new(calculate_damage(), 0, 
 			randf() < self.baseCritRate + self.player.critRate,
-			self.baseCritDamage, player)
+			self.baseCritDamage, player, DamageTypes.PHYSICAL)
 		bullet.init(global_position, direction + bias, bulletSpeed, damage)
 		await get_tree().create_timer(0.06).timeout
 	

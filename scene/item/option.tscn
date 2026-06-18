@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://hcryl6moqyoe"]
+[gd_scene format=3 uid="uid://hcryl6moqyoe"]
 
-[ext_resource type="Script" path="res://script/item/option.gd" id="1_vnkq6"]
-[ext_resource type="Texture2D" uid="uid://cfy2a5opnoaxu" path="res://asset/image/asset.png" id="2_h4f4h"]
+[ext_resource type="Script" uid="uid://cwu34hlt4tt2t" path="res://script/item/option.gd" id="1_vnkq6"]
+[ext_resource type="Texture2D" uid="uid://bi3bmmkwy8x1y" path="res://asset/image/asset.png" id="2_h4f4h"]
 [ext_resource type="PackedScene" uid="uid://b13cb8qc2ag3m" path="res://scene/item/bullet.tscn" id="2_qrxij"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c1326"]
@@ -41,25 +41,23 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e75vg"]
 _data = {
-"RESET": SubResource("Animation_l2n11"),
-"default": SubResource("Animation_klk5s")
+&"RESET": SubResource("Animation_l2n11"),
+&"default": SubResource("Animation_klk5s")
 }
 
-[node name="Option" type="Node2D"]
+[node name="Option" type="Node2D" unique_id=854802663]
 position = Vector2(0, 0.616174)
 scale = Vector2(0.4, 0.4)
 script = ExtResource("1_vnkq6")
 bulletScene = ExtResource("2_qrxij")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1241391918]
 texture = SubResource("AtlasTexture_c1326")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_e75vg")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1500348030]
+libraries/ = SubResource("AnimationLibrary_e75vg")
+autoplay = &"default"
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=6899134]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

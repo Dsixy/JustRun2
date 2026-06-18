@@ -1,6 +1,8 @@
 # 未设计完成，已禁用 — 见 GameInfo.DISABLED_WEAPONS（月相盘）
 extends BaseWeapon
 
+const DamageTypes = preload("res://script/damage_types.gd")
+
 @export var circleSlashScene: PackedScene
 
 var attackInterval: float = 0.6
@@ -45,9 +47,9 @@ func calculate_damage(name: String):
 		return DamageInfo.new(
 			self.pierceDamage[self.level] + 6 * self.player.strength, 0,
 			randf() < self.pierceCritRate + self.player.critRate,
-			self.pierceCritDamage, player, "Lightning")
+			self.pierceCritDamage, player, DamageTypes.LIGHTNING)
 	else:
 		return DamageInfo.new(
 			self.baseDamage[self.level] + 4 * self.player.strength, 0,
 			randf() < self.baseCritRate + self.player.critRate,
-			self.baseCritDamage, player, "Lightning")
+			self.baseCritDamage, player, DamageTypes.LIGHTNING)

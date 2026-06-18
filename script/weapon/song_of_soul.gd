@@ -1,5 +1,7 @@
 extends BaseWeapon
 
+const DamageTypes = preload("res://script/damage_types.gd")
+
 @export var SongEffectScene: PackedScene
 
 var baseRange: int = 500
@@ -34,7 +36,7 @@ func attack():
 
 	var damage = DamageInfo.new(calculate_damage(), 0, 
 		randf() < self.baseCritRate + self.player.critRate,
-		self.baseCritDamage, player, "Psychic")
+		self.baseCritDamage, player, DamageTypes.PSYCHIC)
 	songEffect.init(global_position, rangeBonus * baseRange, damage,\
 					canKnockBack, canPick)
 	

@@ -1,5 +1,7 @@
 extends BaseWeapon
 
+const DamageTypes = preload("res://script/damage_types.gd")
+
 @export var poisonBottleScene: PackedScene
 var attackInterval: float = 1
 var vialNum: int = 3
@@ -28,7 +30,7 @@ func attack():
 		
 		var damage = DamageInfo.new(calculate_damage(), 0, 
 			false,
-			0, player)
+			0, player, DamageTypes.POISON)
 		poisonBottle.init(global_position, global_position + bias, range, damage)
 	
 func calculate_damage():

@@ -54,7 +54,7 @@ func attack():
 			randf() < self.baseCritRate + self.player.critRate,
 			self.baseCritDamage, player)
 		wheel.init(global_position, target, wheelSpeed, wheelRangeBonus,
-				 damage, wheelDamage, maxRun, light, maxDist)
+				 damage, wheelDamage, maxRun, light, maxDist, player)
 		wheel.connect("death", _process_wheel_delete)
 		wheels.append(wheel)
 	

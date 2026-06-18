@@ -7,27 +7,33 @@ var player: BasePlayer
 @onready var mirrorScene = preload("res://scene/item/mirror.tscn")
 @onready var freshBotton = $RefreshBotton
 var currentFreshTime: int = 0
+var _cat_trick_offer := false
 signal close
 
-func _ready():
-	pass # Replace with function body.
-
-func init(player: BasePlayer, cfg_dict: Dictionary):
+func init(player: BasePlayer, cfg_dict: Dictionary = {}):
 	self.player = player
+	_cat_trick_offer = cfg_dict.get("cat_trick_offer", false)
 	for i in range(4):
 		slotList[i].player = self.player
 	refresh()
-	
+
 func refresh():
-	set_slot_item(0, [1])
-	for i in range(1, 4):
-		set_slot_item(i)
+	if _cat_trick_offer and not GameInfo.is_weapon_unlocked("cat_trick"):
+		var cat_trick = load("res://scene/weapon/cat_trick.tscn").instantiate()
+		slotList[0].set_content(cat_trick, Utils.set_price(player.level) * player.discountRate)
+		set_slot_item(1)
+		for i in range(2, 4):
+			set_slot_item(i)
+	else:
+		set_slot_item(0, [1])
+		for i in range(1, 4):
+			set_slot_item(i)
 
 func set_slot_item(idx: int, weight: Array = [0.7, 0.14, 0.14, 0.02]):
 	var i = Utils.random_weighted(weight)
 	var content
 	match i:
-		0: 
+		0:
 			if GameInfo.weaponAllPath.is_empty():
 				content = rainbowSweetScene.instantiate()
 			else:
@@ -39,7 +45,7 @@ func set_slot_item(idx: int, weight: Array = [0.7, 0.14, 0.14, 0.02]):
 			content = mirrorScene.instantiate()
 		3:
 			content = upgradeToolScene.instantiate()
-		
+
 	slotList[idx].set_content(content, Utils.set_price(player.level) * player.discountRate)
 
 func close_board():

@@ -18,7 +18,7 @@ var weaponAllPath = []
 var config = ConfigFile.new()
 
 # 新档默认解锁（其余靠事件 / 天赋解锁）
-const DEFAULT_WEAPON_UNLOCKS = ["pistol"]
+const DEFAULT_WEAPON_UNLOCKS = ["pistol", "poison_vial", "lightwheel"]
 
 # 选角：patch 初始仅阿猴；卡莫 / 阿女剧情后解锁
 const CHARACTER_SCENES = {

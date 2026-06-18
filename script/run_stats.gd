@@ -11,6 +11,8 @@ var kills: int = 0
 var money_earned: float = 0.0
 var money_spent: float = 0.0
 var plants_picked: int = 0
+var blue_mountain_leaves: int = 0
+var hp_lost: float = 0.0
 var waves_cleared: int = 0
 var victory: bool = false
 var player_level: int = 0
@@ -26,6 +28,8 @@ func begin_run(character_scene_path: String) -> void:
 	money_earned = 0.0
 	money_spent = 0.0
 	plants_picked = 0
+	blue_mountain_leaves = 0
+	hp_lost = 0.0
 	waves_cleared = 0
 	victory = false
 	player_level = 0
@@ -36,7 +40,7 @@ func end_run(won: bool, final_level: int, weapon_list: Array = []) -> void:
 	victory = won
 	player_level = final_level
 	active = false
-	_apply_meta_progress()
+	_apply_meta_progress(won)
 	_apply_unlocks(weapon_list)
 
 func notify_unlock(weapon_key: String) -> void:
@@ -62,6 +66,16 @@ func record_plant_picked() -> void:
 	if not active:
 		return
 	plants_picked += 1
+
+func record_blue_mountain_leaf() -> void:
+	if not active:
+		return
+	blue_mountain_leaves += 1
+
+func record_hp_lost(amount: float) -> void:
+	if not active or amount <= 0.0:
+		return
+	hp_lost += amount
 
 func record_wave_cleared(wave_index: int) -> void:
 	if not active:
@@ -95,25 +109,39 @@ func _character_display_name(key: String) -> String:
 		"alew": return "阿女"
 		_: return key if key != "" else "未知"
 
-func _apply_meta_progress() -> void:
+func _apply_meta_progress(won: bool) -> void:
 	if plants_picked > 0:
 		GameInfo.add_meta_stat("plants_picked_total", plants_picked)
-	if run_character_key == "carmor" and kills > 0:
-		GameInfo.add_meta_stat("kills_carmor_total", kills)
+	if blue_mountain_leaves > 0:
+		GameInfo.add_meta_stat("blue_mountain_leaf_total", blue_mountain_leaves)
+	if kills > 0:
+		GameInfo.add_meta_stat("kills_total", kills)
+	if not won:
+		GameInfo.add_meta_stat("run_failures_total", 1)
 
 func _apply_unlocks(weapon_list: Array) -> void:
 	if money_spent >= 4000.0:
-		_try_unlock_weapon("delivery_guy", "单局消费 4000 金币")
-	if money_earned >= 10000.0:
-		_try_unlock_weapon("coin_gun", "单局获得 10000 金币")
+		_try_unlock_weapon("delivery_guy")
+	if money_earned >= 6000.0:
+		_try_unlock_weapon("coin_gun")
 	if victory and _arm_loadout_all_dot(weapon_list):
-		_try_unlock_weapon("spider_silk", "通关时武装均为 DoT")
+		_try_unlock_weapon("spider_silk")
+	if victory and _has_duplicate_weapons(weapon_list):
+		_try_unlock_weapon("replicator")
 	if GameInfo.get_meta_stat("plants_picked_total") >= 100:
-		_try_unlock_weapon("perfume_bottle", "累计拾取 100 植物")
-	if GameInfo.get_meta_stat("kills_carmor_total") >= 5000:
-		_try_unlock_weapon("stellar_wrath", "卡莫累计击杀 5000")
+		_try_unlock_weapon("perfume_bottle")
+	if GameInfo.get_meta_stat("blue_mountain_leaf_total") >= 50:
+		_try_unlock_weapon("leaf")
+	if run_character_key == "carmor" and kills >= 1000:
+		_try_unlock_weapon("stellar_wrath")
+	if hp_lost >= 1000.0:
+		_try_unlock_weapon("spirit_conch")
+	if GameInfo.get_meta_stat("kills_total") >= 5000:
+		_try_unlock_weapon("wrench")
+	if GameInfo.get_meta_stat("run_failures_total") >= 20:
+		_try_unlock_weapon("tear")
 
-func _try_unlock_weapon(weapon_key: String, _reason: String) -> void:
+func _try_unlock_weapon(weapon_key: String) -> void:
 	if GameInfo.config.get_value("WeaponUnlock", weapon_key, false):
 		return
 	GameInfo.unlock_weapon(weapon_key)
@@ -133,6 +161,15 @@ func _weapon_display_name(key: String) -> String:
 		"perfume_bottle": return "香水瓶"
 		"stellar_wrath": return "群星之怒"
 		"hail_brace": return "冰霜手镯"
+		"leaf": return "叶子"
+		"replicator": return "复制器"
+		"spirit_conch": return "唤灵海螺"
+		"wrench": return "扳手"
+		"tear": return "泪水"
+		"comic_book": return "漫画书"
+		"cat_trick": return "猫之计谋"
+		"lightwheel": return "极速光轮"
+		"poison_vial": return "毒药瓶"
 		_: return key
 
 static func weapon_key_from(weapon: BaseWeapon) -> String:
@@ -159,3 +196,14 @@ static func _arm_loadout_all_dot(weapon_list: Array) -> bool:
 			if not weapon_has_dot_effect(weapon):
 				return false
 	return has_weapon
+
+static func _has_duplicate_weapons(weapon_list: Array) -> bool:
+	var seen: Dictionary = {}
+	for weapon in weapon_list:
+		if weapon == null:
+			continue
+		var wid: int = weapon.id
+		if seen.has(wid):
+			return true
+		seen[wid] = true
+	return false

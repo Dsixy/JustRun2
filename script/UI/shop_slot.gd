@@ -38,7 +38,13 @@ func _on_button_pressed():
 	if i >= 0:
 		player.spend_money(price)
 		_be_sold()
-		player.inventory[i] = self.content.duplicate()
+		var item = self.content.duplicate()
+		player.inventory[i] = item
+		if item is BaseWeapon:
+			var weapon_key := RunStats.weapon_key_from(item)
+			if weapon_key == "cat_trick" and not GameInfo.is_weapon_unlocked("cat_trick"):
+				GameInfo.unlock_weapon("cat_trick")
+				RunStats.notify_unlock("cat_trick")
 		if player.inventory[i].name == "RainbowSweet":
 			player.inventory[i] = null
 			player.abilityPoint += 1

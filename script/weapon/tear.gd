@@ -3,7 +3,7 @@ extends BaseWeapon
 @export var tearBulletScene: PackedScene
 @export var tearBallScene: PackedScene
 var baseCritRate: float = 0.05
-var baseCritDamage: float = 2.0
+var baseCritDamage: float = 1.5
 var attackInterval: float = 2.0
 
 var tearNum: int = 6

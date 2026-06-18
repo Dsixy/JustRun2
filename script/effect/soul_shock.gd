@@ -1,11 +1,13 @@
 extends HitArea
 
+const DamageTypes = preload("res://script/damage_types.gd")
+
 var maxRadius: int = 400
 
 func init(pos: Vector2, radiusBonus: float, damageAmount: int):
 	global_position = pos
 	self.damage = DamageInfo.new(damageAmount, 0,
-				false, 1.5, null, "Psychic")
+				false, 1.5, null, DamageTypes.PSYCHIC)
 	self.maxRadius = 5 * (1 + radiusBonus)
 	spread()
 				

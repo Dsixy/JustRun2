@@ -1,24 +1,21 @@
-[gd_resource type="Resource" script_class="DialogRes" load_steps=10 format=3 uid="uid://djkv3h3ih1fjs"]
+[gd_resource type="Resource" script_class="DialogRes" format=3 uid="uid://djkv3h3ih1fjs"]
 
-[ext_resource type="Script" path="res://resource/dialog/dialog_res.gd" id="1_3naxx"]
-[ext_resource type="Script" path="res://resource/dialog/choice.gd" id="1_7et3o"]
-[ext_resource type="Script" path="res://resource/dialog/dialog.gd" id="2_lhr60"]
+[ext_resource type="Script" uid="uid://b448cufsofxvp" path="res://resource/dialog/dialog_res.gd" id="1_3naxx"]
+[ext_resource type="Script" uid="uid://dmk51nq3r5d4s" path="res://resource/dialog/choice.gd" id="1_7et3o"]
+[ext_resource type="Script" uid="uid://b5thu0r7ohxx6" path="res://resource/dialog/dialog.gd" id="2_lhr60"]
 
 [sub_resource type="Resource" id="Resource_27m8i"]
 script = ExtResource("1_7et3o")
-text = ""
 next_id = 1
 
 [sub_resource type="Resource" id="Resource_t8pjf"]
 script = ExtResource("2_lhr60")
-id = 0
 speaker = "Carmor"
 text = "原来你在这"
 choice = Array[ExtResource("1_7et3o")]([SubResource("Resource_27m8i")])
 
 [sub_resource type="Resource" id="Resource_jp68p"]
 script = ExtResource("1_7et3o")
-text = ""
 next_id = 2
 
 [sub_resource type="Resource" id="Resource_saayn"]
