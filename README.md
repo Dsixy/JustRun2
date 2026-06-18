@@ -6,6 +6,7 @@
 
 # 📄 Content
 - [最新消息](#-news)
+- [游戏百科 (Wiki)](https://dsixy.github.io/JustRun2/wiki/)
 - [游戏介绍](#-introduction)
 - [游戏下载](#-download)
 

@@ -2,7 +2,52 @@
 
 > 2D Roguelike · Godot 4.2 · 单局 10 波
 
-本百科是 **规范化游戏说明**，供玩家查阅与开发对齐。内容综合自 [设计文档](../Just%20Run2.md) 与 [补丁决议](../patch.md)；当二者冲突时，以补丁标注的「代码为主 / 文档为主」为准。
+<div class="wiki-hero">
+  <div class="wiki-hero__grid">
+    <div>
+      <h1 class="wiki-hero__title">Just Run2 百科</h1>
+      <p class="wiki-hero__tagline">规范化游戏说明，供玩家查阅与开发对齐。内容综合自设计文档与补丁决议；当二者冲突时，以补丁标注的「代码为主 / 文档为主」为准。</p>
+    </div>
+    <img class="wiki-hero__img" src="../assets/images/screenshots/titlescene.png" alt="Just Run2 标题画面">
+  </div>
+</div>
+
+<div class="wiki-card-grid">
+  <a class="wiki-card" href="overview/">
+    <p class="wiki-card__title">游戏概览</p>
+    <p class="wiki-card__desc">10 波循环、核心系统与补丁差异</p>
+  </a>
+  <a class="wiki-card" href="controls/">
+    <p class="wiki-card__title">操作与界面</p>
+    <p class="wiki-card__desc">快捷键、背包、天赋与图鉴</p>
+  </a>
+  <a class="wiki-card" href="weapons/">
+    <p class="wiki-card__title">武器索引</p>
+    <p class="wiki-card__desc">27+ 把已实现武器与计划列表</p>
+  </a>
+  <a class="wiki-card" href="characters/">
+    <p class="wiki-card__title">角色与构筑</p>
+    <p class="wiki-card__desc">三名角色、八维属性与装甲臂</p>
+  </a>
+</div>
+
+## 游戏截图
+
+<div class="wiki-screenshots">
+  <img src="../assets/images/screenshots/choose.png" alt="选角界面">
+  <img src="../assets/images/screenshots/demo.png" alt="战斗画面">
+  <img src="../assets/images/screenshots/note.png" alt="武器图鉴">
+  <img src="../assets/images/screenshots/attribute.png" alt="天赋界面">
+</div>
+
+## 游戏素材
+
+<div class="wiki-screenshots">
+  <img src="../assets/images/game/awo_kong.png" alt="阿猴">
+  <img src="../assets/images/game/lady.png" alt="阿女">
+  <img src="../assets/images/game/shop.png" alt="波波猫商店">
+  <img src="../assets/images/game/back.png" alt="背景">
+</div>
 
 ---
 

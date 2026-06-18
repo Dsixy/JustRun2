@@ -1,5 +1,10 @@
 # 游戏概览
 
+<div class="wiki-screenshots">
+  <img src="../assets/images/screenshots/demo.png" alt="战斗画面">
+  <img src="../assets/images/screenshots/choose.png" alt="选角界面">
+</div>
+
 ## 简介
 
 **Just Run2** 是一款俯视角 Roguelike 生存游戏。玩家在固定 **10 个波次** 中对抗不断刷新的敌人，通过击杀获取经验与金币，在波间商店购买武器、合成升级，并用天赋点强化八维属性，最终在第 10 波击败 Boss **镰刀先生** 通关。

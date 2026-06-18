@@ -1,0 +1,2 @@
+# Copied at build time from asset/image/ and readme/
+# Do not commit PNG files here — see wiki/build.ps1 or GitHub Actions workflow

@@ -1,0 +1,176 @@
+# JustRun2 Wiki — MkDocs Material
+# Local: pip install -r wiki/requirements.txt && mkdocs serve
+# Site:  https://dsixy.github.io/JustRun2/
+
+site_name: Just Run2 百科
+site_description: Just Run2 2D Roguelike 游戏百科 — 武器、角色、波次与构筑说明
+site_url: https://dsixy.github.io/JustRun2/
+repo_url: https://github.com/Dsixy/JustRun2
+repo_name: Dsixy/JustRun2
+edit_uri: edit/main/docs/
+
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: material
+  language: zh
+  custom_dir: docs/overrides
+  logo: assets/images/icon.svg
+  favicon: assets/images/icon.svg
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: slate
+      accent: blue
+      toggle:
+        icon: material/brightness-7
+        name: 切换到深色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: slate
+      accent: blue
+      toggle:
+        icon: material/brightness-4
+        name: 切换到浅色模式
+  font:
+    text: Nunito
+    code: Roboto Mono
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.tabs.link
+    - toc.follow
+
+plugins:
+  - search:
+      lang:
+        - zh
+        - en
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+extra_css:
+  - stylesheets/extra.css
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Dsixy/JustRun2
+  generator: false
+
+nav:
+  - 首页: index.md
+  - 百科:
+      - 百科首页: wiki/README.md
+  - 入门:
+      - 游戏概览: wiki/overview.md
+      - 操作与界面: wiki/controls.md
+  - 构筑:
+      - 角色: wiki/characters.md
+      - 属性: wiki/attributes.md
+      - 装甲臂: wiki/weapon-arm.md
+      - 武器索引: wiki/weapons/index.md
+      - 已实现武器: wiki/weapons/implemented.md
+      - 计划中武器: wiki/weapons/planned.md
+  - 单局:
+      - 波次与流程: wiki/progression.md
+      - 商店: wiki/shop.md
+      - 敌人: wiki/enemies.md
+      - 掉落物: wiki/items.md
+  - 战斗:
+      - Buff 与伤害: wiki/buffs-and-damage.md
+  - 进度:
+      - 解锁条件: wiki/unlocks.md
+      - 剧情与事件: wiki/events.md
+  - 武器详表:
+      - 手枪: wiki/weapons/pistol.md
+      - 狙击枪: wiki/weapons/sniping_riffe.md
+      - 霰弹枪: wiki/weapons/shotgun.md
+      - 激光剑: wiki/weapons/laser_sword.md
+      - 花刀玉手: wiki/weapons/falling_blossom.md
+      - 思维泡泡: wiki/weapons/thought_bubble.md
+      - 冰霜手镯: wiki/weapons/hail_brace.md
+      - 群星之怒: wiki/weapons/stellar_wrath.md
+      - 扑克牌: wiki/weapons/poker.md
+      - 心之歌: wiki/weapons/song_of_soul.md
+      - 毒药瓶: wiki/weapons/poison_vial.md
+      - 激光枪: wiki/weapons/laser_gun.md
+      - 肉蛋葱鸡: wiki/weapons/mest.md
+      - 外卖员: wiki/weapons/delivery_guy.md
+      - 蛛丝: wiki/weapons/spider_silk.md
+      - 漫画书: wiki/weapons/comic_book.md
+      - 香水瓶: wiki/weapons/perfume_bottle.md
+      - 金币枪: wiki/weapons/coin_gun.md
+      - 扳手: wiki/weapons/wrench.md
+      - 唤灵海螺: wiki/weapons/spirit_conch.md
+      - 猫之计谋: wiki/weapons/cat_trick.md
+      - 极速光轮: wiki/weapons/lightwheel.md
+      - 浮游炮: wiki/weapons/option.md
+      - 复制器: wiki/weapons/replicator.md
+      - 叶子: wiki/weapons/leaf.md
+      - 泪水: wiki/weapons/tear.md
+      - 月相盘: wiki/weapons/moon_phase_dial.md
+      - 火箭炮: wiki/weapons/rocket_launcher.md
+      - 少女温柔的抚摸: wiki/weapons/maiden_touch.md
+      - 计划 · 冲锋枪: wiki/weapons/planned/submachine-gun.md
+      - 计划 · 加特林: wiki/weapons/planned/gatling.md
+      - 计划 · 靶向枪: wiki/weapons/planned/targeting-gun.md
+      - 计划 · 羽扇: wiki/weapons/planned/feather-fan.md
+      - 计划 · 奶茶: wiki/weapons/planned/milk-tea.md
+      - 计划 · 高斯炮: wiki/weapons/planned/gauss-cannon.md
+      - 计划 · 粉色水球: wiki/weapons/planned/pink-water-ball.md
+      - 计划 · 阳爻: wiki/weapons/planned/yang-yao.md
+      - 计划 · 阴爻: wiki/weapons/planned/yin-yao.md
+      - 计划 · 太极: wiki/weapons/planned/taiji.md
+      - 计划 · 鼓动的心: wiki/weapons/planned/beating-heart.md
+  - 设计文档:
+      - Just Run2 设计: Just Run2.md
+      - 补丁决议: patch.md
+      - 打磨计划: POLISH_PLAN.md
+  - 维护:
+      - 文档来源与状态: wiki/meta/sources.md

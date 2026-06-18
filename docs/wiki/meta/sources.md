@@ -4,9 +4,9 @@
 
 | 文件 | 角色 |
 |------|------|
-| [Just Run2.md](../Just%20Run2.md) | 原始设计：数值、武器全文、30 波剧情蓝图 |
-| [patch.md](../patch.md) | **裁决层**：文档 vs 代码冲突时的优先级 |
-| [POLISH_PLAN.md](../POLISH_PLAN.md) | 打磨任务与验收清单 |
+| [Just Run2.md](../../Just%20Run2.md) | 原始设计：数值、武器全文、30 波剧情蓝图 |
+| [patch.md](../../patch.md) | **裁决层**：文档 vs 代码冲突时的优先级 |
+| [POLISH_PLAN.md](../../POLISH_PLAN.md) | 打磨任务与验收清单 |
 | 代码库 `script/`、`scene/` | 已实现行为 |
 
 > 未找到 `Just Run3.md`；本百科基于 **Just Run2 设计文档 + patch** 撰写。
@@ -55,4 +55,4 @@
 
 ## 反馈
 
-设计文档 § 玩家反馈（ZZY / DYL）仍有效，见 [Just Run2.md](../Just%20Run2.md#玩家反馈)。
+设计文档 § 玩家反馈（ZZY / DYL）仍有效，见 [Just Run2.md](../../Just%20Run2.md#玩家反馈)。

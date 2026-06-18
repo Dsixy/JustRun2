@@ -3,5 +3,9 @@
 .cursor/
 .githooks/
 scripts/
-docs/
+# docs/
 *.tmp
+site/
+docs/assets/images/game/
+docs/assets/images/screenshots/
+docs/assets/images/icon.svg
