@@ -4,7 +4,7 @@ extends BaseWeapon
 
 var attackInterval: float = 1.2
 
-var baseCritRate: float = 0.00
+var baseCritRate: float = 0.05
 var baseCritDamage: float = 2.0
 
 var spiritRadiusBonus: float = 0.0
@@ -37,7 +37,8 @@ func attack():
 		GameInfo.mainscene.itemNode.add_child(spirit)
 		spirit.init(global_position, spiritRadiusBonus, 
 		spiritHP + 20 * self.player.insight + 15 * self.level, 
-		calculate_damage(), self.level)
+		calculate_damage(), self.level,
+		baseCritRate + player.critRate, baseCritDamage, player)
 		spirits.append(spirit)
 		spirit.connect("disappear", process_spirit_disappear)
 	elif self.collect:

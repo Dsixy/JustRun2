@@ -4,10 +4,11 @@ const DamageTypes = preload("res://script/damage_types.gd")
 
 var maxRadius: int = 400
 
-func init(pos: Vector2, radiusBonus: float, damageAmount: int):
+func init(pos: Vector2, radiusBonus: float, damageAmount: int,
+		p_crit_rate: float = 0.05, p_crit_damage: float = 1.5, source: Node = null):
 	global_position = pos
 	self.damage = DamageInfo.new(damageAmount, 0,
-				false, 1.5, null, DamageTypes.PSYCHIC)
+				randf() < p_crit_rate, p_crit_damage, source, DamageTypes.PSYCHIC)
 	self.maxRadius = 5 * (1 + radiusBonus)
 	spread()
 				

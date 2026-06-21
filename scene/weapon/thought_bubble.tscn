@@ -15,6 +15,7 @@ texture = SubResource("AtlasTexture_fvajv")
 script = ExtResource("2_2gl2x")
 bubbleScene = ExtResource("3_25p34")
 id = 5
+na = "思维泡泡"
 
 [node name="AudioStreamPlayer" parent="." index="0"]
 stream = ExtResource("5_r2hvq")

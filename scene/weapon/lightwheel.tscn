@@ -14,3 +14,4 @@ texture = SubResource("AtlasTexture_l5lfp")
 script = ExtResource("2_8aqh1")
 wheelScene = ExtResource("3_l57wd")
 id = 24
+na = "极速光轮"

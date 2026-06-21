@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://kbqau6e3kwc3"]
+
+[ext_resource type="Script" path="res://script/buff/lightning_buff.gd" id="1_lightning"]
+
+[node name="LightningBuff" type="Node"]
+script = ExtResource("1_lightning")
+ID = 7

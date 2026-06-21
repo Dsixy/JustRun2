@@ -2,14 +2,13 @@
 
 ## 百科依据
 
-| 文件 | 角色 |
+| 来源 | 角色 |
 |------|------|
-| [Just Run2.md](../../Just%20Run2.md) | 原始设计：数值、武器全文、30 波剧情蓝图 |
 | [patch.md](../../patch.md) | **裁决层**：文档 vs 代码冲突时的优先级 |
-| [POLISH_PLAN.md](../../POLISH_PLAN.md) | 打磨任务与验收清单 |
+| [wiki/](../README.md) | 玩家向百科与各武器/系统说明 |
 | 代码库 `script/`、`scene/` | 已实现行为 |
 
-> 未找到 `Just Run3.md`；本百科基于 **Just Run2 设计文档 + patch** 撰写。
+> 本百科以 **patch + 代码** 为准；计划武器见 [planned.md](../weapons/planned.md) 各页摘要。
 
 ## 补丁裁决摘要
 
@@ -26,7 +25,7 @@
 | 元素反应 | TODO，不做 | 📋 |
 | Boss 威慑 | 新 Buff +50 伤 | 📋 |
 | 波次 / 等级 / 属性公式 | 代码为主 | ✅ |
-| 未实现武器 | 留设计文档 | [planned.md](../weapons/planned.md) |
+| 未实现武器 | 留 wiki 计划页 | [planned.md](../weapons/planned.md) |
 | Option | = 浮游炮 | ✅ |
 
 ## 实现度概览（2026-06）
@@ -50,9 +49,5 @@
 
 1. **改代码** → 同步更新对应 wiki 页与 ⚠️ 标记  
 2. **改 patch** → 先改 patch.md，再改 wiki  
-3. **新武器** → `implemented.md` + 设计文档章节  
+3. **新武器** → `implemented.md` + 武器详表页  
 4. 玩家向说明避免引用 `GameInfo`、`scene.gd` 等内部名（本页除外）
-
-## 反馈
-
-设计文档 § 玩家反馈（ZZY / DYL）仍有效，见 [Just Run2.md](../../Just%20Run2.md#玩家反馈)。

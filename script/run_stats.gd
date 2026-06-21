@@ -170,6 +170,7 @@ func _weapon_display_name(key: String) -> String:
 		"cat_trick": return "猫之计谋"
 		"lightwheel": return "极速光轮"
 		"poison_vial": return "毒药瓶"
+		"rocket_launcher": return "火箭发射器"
 		_: return key
 
 static func weapon_key_from(weapon: BaseWeapon) -> String:

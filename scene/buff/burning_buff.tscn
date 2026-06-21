@@ -5,3 +5,4 @@
 
 [node name="BurningBuff" instance=ExtResource("1_m8xg1")]
 script = ExtResource("2_v2lpx")
+ID = 0

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cweakenbuff8"]
+
+[ext_resource type="Script" path="res://script/buff/weaken_buff.gd" id="1_weaken"]
+
+[node name="WeakenBuff" type="Node"]
+script = ExtResource("1_weaken")
+ID = 8

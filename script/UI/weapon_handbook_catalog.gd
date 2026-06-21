@@ -22,7 +22,7 @@ const NAMES: Dictionary = {
 	"comic_book": "漫画书",
 	"perfume_bottle": "香水瓶",
 	"coin_gun": "金币枪",
-	"rocket_launcher": "火箭炮",
+	"rocket_launcher": "火箭发射器",
 	"wrench": "扳手",
 	"spirit_conch": "唤灵海螺",
 	"cat_trick": "猫之计谋",

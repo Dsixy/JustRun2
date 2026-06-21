@@ -44,7 +44,7 @@ func dearm():
 func _clear_super_pro_buffs() -> void:
 	if player == null or player.buffManager == null:
 		return
-	var manager := player.buffManager
+	var manager = player.buffManager
 	if manager.activeBuff.has(SUPER_PRO_BUFF_ID):
 		var buff: Buff = manager.activeBuff[SUPER_PRO_BUFF_ID]
 		buff.expire()

@@ -5,7 +5,7 @@
 | **百科 Key** | `planned/pink-water-ball` |
 | **实现状态** | 📋 **仅设计 · 无代码实现** |
 
-> 来源：`docs/Just Run2.md` § 粉色水球
+> 设计章节：粉色水球
 
 ---
 

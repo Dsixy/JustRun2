@@ -2,8 +2,7 @@
 .godot/
 .cursor/
 .githooks/
-scripts/
-# docs/
+build/
 *.tmp
 site/
 docs/assets/images/game/

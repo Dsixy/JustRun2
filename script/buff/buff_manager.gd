@@ -15,6 +15,12 @@ func add_buff(buff: Buff):
 		activeBuff[buff.ID] = buff
 		buff.apply(get_parent())
 
+func has_buff(buff_id: int) -> bool:
+	return buff_id in activeBuff
+
+func get_buff(buff_id: int) -> Buff:
+	return activeBuff.get(buff_id)
+
 func modify_damage(damage: DamageInfo):
 	for buffID in activeBuff:
 		damage = activeBuff[buffID].modify_damage(damage)

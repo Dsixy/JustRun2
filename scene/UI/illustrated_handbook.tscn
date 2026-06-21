@@ -342,7 +342,7 @@ itemTexture = SubResource("AtlasTexture_t6t4c")
 [node name="BookSlot22" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]
 layout_mode = 2
 description = "攻击在指定区域生成锚点，随后释放若干火箭轰击"
-item_name = "火箭炮"
+item_name = "火箭发射器"
 itemTexture = SubResource("AtlasTexture_at36n")
 
 [node name="BookSlot23" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("3_0qdbq")]

@@ -14,13 +14,6 @@ func apply(o):
 	_owner.speed -= 50
 	_owner.modulate = Color8(100, 100, 200)
 	
-func modify_damage(damage: DamageInfo):
-	damage.baseAmount += bonus
-	trigger += 1
-	if trigger >= maxTrigger:
-		expire()
-	return damage
-	
 func stack(buff: Buff):
 	super.stack(buff)
 	trigger = 0

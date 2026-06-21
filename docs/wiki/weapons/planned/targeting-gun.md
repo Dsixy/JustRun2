@@ -5,7 +5,7 @@
 | **百科 Key** | `planned/targeting-gun` |
 | **实现状态** | 📋 **仅设计 · 无代码实现** |
 
-> 来源：`docs/Just Run2.md` § 靶向枪
+> 设计章节：靶向枪
 
 ---
 

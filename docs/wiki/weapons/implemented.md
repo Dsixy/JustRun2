@@ -5,9 +5,9 @@
 | ID | 名称 | Key | 解锁条件 | 状态 | 详情 |
 |----|------|-----|----------|------|------|
 | 0 | 手枪 | `pistol` | 默认 | ✅ | [pistol.md](pistol.md) |
-| 1 | 狙击枪 | `sniping_riffe` | 待补充事件 📋 | ⚠️ | [sniping_riffe.md](sniping_riffe.md) |
-| 2 | 霰弹枪 | `shotgun` | 待补充 📋 | ⚠️ | [shotgun.md](shotgun.md) |
-| 3 | 激光剑 | `laser_sword` | 待补充 📋 | ⚠️ | [laser_sword.md](laser_sword.md) |
+| 1 | 狙击枪 | `sniping_riffe` | 默认 | ✅ | [sniping_riffe.md](sniping_riffe.md) |
+| 2 | 霰弹枪 | `shotgun` | 第 3 波 · 卡莫剧情 | ✅ | [shotgun.md](shotgun.md) |
+| 3 | 激光剑 | `laser_sword` | 第 3 波 · 卡莫剧情 | ✅ | [laser_sword.md](laser_sword.md) |
 | 4 | 花刀玉手 | `falling_blossom` | 阿女剧情 | ✅ | [falling_blossom.md](falling_blossom.md) |
 | 5 | 思维泡泡 | `thought_bubble` | 启迪 → 20 | ✅ | [thought_bubble.md](thought_bubble.md) |
 | 6 | 冰霜手镯 | `hail_brace` | **等级 → 10** 📋 | ⚠️ | [hail_brace.md](hail_brace.md) |
@@ -30,7 +30,7 @@
 | 26 | 复制器 | `replicator` | 两相同武器通关 | ✅ | [replicator.md](replicator.md) |
 | 27 | 叶子 | `leaf` | 累计 50 蓝山绿叶 | ✅ | [leaf.md](leaf.md) |
 | 28 | 泪水 | `tear` | 累计失败 20 次 | ✅ | [tear.md](tear.md) |
-| 30 | 火箭炮 | `rocket_launcher` | 健忘症剧情 📋 | ⚠️ | [rocket_launcher.md](rocket_launcher.md) |
+| 30 | 火箭炮 | `rocket_launcher` | 击杀 junk_rush 0.03% | ✅ | [rocket_launcher.md](rocket_launcher.md) |
 | — | 少女温柔的抚摸 | `maiden_touch` | 大力士剧情 | 🚫 | [maiden_touch.md](maiden_touch.md) |
 | 29 | 月相盘 | `moon_phase_dial` | 待设计 | 🚫 | [moon_phase_dial.md](moon_phase_dial.md) |
 

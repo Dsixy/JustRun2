@@ -13,6 +13,9 @@ var baseDamage: int
 
 var hit = 1
 var time := 0.0
+var critRate: float = 0.05
+var critDamage: float = 1.5
+var damageSource: Node = null
 
 func _process(delta):
 	phase += delta * angVel
@@ -24,13 +27,17 @@ func _process(delta):
 	position = GameInfo.mainscene.player.global_position + \
 				Vector2.from_angle(phase) * radius
 	
-func init(pos: Vector2, phase: float, radius: int, angVel: int, damage: int, maxHit: int, radiusMove: bool):
+func init(pos: Vector2, phase: float, radius: int, angVel: int, damage: int, maxHit: int, radiusMove: bool,
+		p_crit_rate: float = 0.05, p_crit_damage: float = 1.5, source: Node = null):
 	self.global_position = pos
 	self.phase = phase
 	self.radius = radius
 	self.angVel = angVel
 	self.baseDamage = damage
 	self.maxHit = maxHit
+	self.critRate = p_crit_rate
+	self.critDamage = p_crit_damage
+	self.damageSource = source if source else GameInfo.mainscene.player
 	if maxHit == -1:
 		hit = 0
 		
@@ -45,7 +52,7 @@ func _on_hitbox_area_entered(area):
 			delete()
 		maxHit -= hit
 		var ene = area.get_parent()
-		damage = DamageInfo.new(baseDamage, 0, 
-			false,
-			1.0, GameInfo.mainscene.player, DamageTypes.PSYCHIC)
+		damage = DamageInfo.new(baseDamage, 0,
+			randf() < critRate,
+			critDamage, damageSource, DamageTypes.PSYCHIC)
 		ene.be_hit(damage)

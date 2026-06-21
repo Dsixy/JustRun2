@@ -5,7 +5,7 @@
 | **百科 Key** | `planned/feather-fan` |
 | **实现状态** | 📋 **仅设计 · 无代码实现** |
 
-> 来源：`docs/Just Run2.md` § 羽扇
+> 设计章节：羽扇
 
 ---
 

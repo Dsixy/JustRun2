@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="DialogRes" format=3 uid="uid://balewwave6dlg"]
+
+[ext_resource type="Script" path="res://resource/dialog/dialog_res.gd" id="1_res"]
+[ext_resource type="Script" path="res://resource/dialog/choice.gd" id="2_choice"]
+[ext_resource type="Script" path="res://resource/dialog/dialog.gd" id="3_dialog"]
+
+[sub_resource type="Resource" id="Choice_0"]
+script = ExtResource("2_choice")
+next_id = 1
+
+[sub_resource type="Resource" id="Dialog_0"]
+script = ExtResource("3_dialog")
+speaker = "Alew"
+text = "终于找到你了。"
+choice = Array[ExtResource("2_choice")]([SubResource("Choice_0")])
+
+[sub_resource type="Resource" id="Choice_1"]
+script = ExtResource("2_choice")
+next_id = 2
+
+[sub_resource type="Resource" id="Dialog_1"]
+script = ExtResource("3_dialog")
+id = 1
+speaker = "Alew"
+text = "卡莫已经回去了。"
+choice = Array[ExtResource("2_choice")]([SubResource("Choice_1")])
+
+[sub_resource type="Resource" id="Choice_2"]
+script = ExtResource("2_choice")
+text = "我今天不回去吃..."
+next_id = 3
+
+[sub_resource type="Resource" id="Dialog_2"]
+script = ExtResource("3_dialog")
+id = 2
+speaker = "Alew"
+text = "等你结束我做饭一起吃。"
+choice = Array[ExtResource("2_choice")]([SubResource("Choice_2")])
+
+[sub_resource type="Resource" id="Choice_3"]
+script = ExtResource("2_choice")
+next_id = -1
+
+[sub_resource type="Resource" id="Dialog_3"]
+script = ExtResource("3_dialog")
+id = 3
+speaker = "Alew"
+text = "那这个给你，注意安全。"
+choice = Array[ExtResource("2_choice")]([SubResource("Choice_3")])
+
+[resource]
+script = ExtResource("1_res")
+dialog = Array[ExtResource("3_dialog")]([SubResource("Dialog_0"), SubResource("Dialog_1"), SubResource("Dialog_2"), SubResource("Dialog_3")])

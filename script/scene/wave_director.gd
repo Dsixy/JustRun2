@@ -22,6 +22,10 @@ const ENEMY_GENERATE = [
 	[[5, 1, 0, 3], [5, 1, 2, 3], [5, 1, 1, 3], [5, 1, 3, 3]],
 ]
 
+const WAVE_TIME = [
+	30, 35, 40, 45, 45, 50, 50, 50, 55, 60
+]
+
 var _scene: Node
 var _loot: LootSpawner
 
@@ -34,7 +38,7 @@ func wave_table_index(wave: int) -> int:
 
 func run_wave(wave: int) -> void:
 	_scene.killEnemyCounter = 0
-	_scene.wave_time = 25 + 10 * wave
+	_scene.wave_time = WAVE_TIME[wave-1]
 	_scene.waveTimer.start(_scene.wave_time)
 	_scene.inWave = true
 

@@ -5,7 +5,7 @@
 | **百科 Key** | `planned/beating-heart` |
 | **实现状态** | 📋 **仅设计 · 无代码实现** |
 
-> 来源：`docs/Just Run2.md` § 鼓动的心
+> 设计章节：鼓动的心
 
 ---
 

@@ -30,6 +30,11 @@ const STORY_WEAPONS := {
 	"laser_gun": preload("res://scene/weapon/laser_gun.tscn"),
 	"falling_blossom": preload("res://scene/weapon/falling_blossom.tscn"),
 }
+## 剧情角色登场时一并写入 WeaponUnlock（进商店池）
+const STORY_BONUS_UNLOCKS := {
+	"carmor": ["shotgun", "laser_sword"],
+	"alew": [],
+}
 
 var player: BasePlayer
 var player_init_position: Vector2 = ViewportConstants.CENTER
@@ -138,6 +143,7 @@ func quit_to_main_menu() -> void:
 	enemyGenerateTimer.stop()
 	var weapon_list: Array = player.weaponArm.weaponList.duplicate()
 	RunStats.end_run(false, player.level, weapon_list)
+	_apply_endgame_skill_unlocks()
 	UIScene.force_close_all()
 	GameInfo.clear_run_scene()
 	get_tree().change_scene_to_file("res://scene/UI/main_menu.tscn")
@@ -146,13 +152,16 @@ func win():
 	await _finish_run(true)
 
 func final_results():
-	for skill in PlayerSkillProperties.ALL:
-		if player.get(skill) == 20 and not GameInfo.get_event("first_%s_to_20" % skill):
-			Events.skill_triggered.emit(skill)
+	_apply_endgame_skill_unlocks()
 
 	GameInfo.player = ""
 	GameInfo.clear_run_scene()
 	get_tree().change_scene_to_file("res://scene/UI/main_menu.tscn")
+
+func _apply_endgame_skill_unlocks() -> void:
+	for skill in PlayerSkillProperties.ALL:
+		if player.get(skill) == 20 and not GameInfo.get_event("first_%s_to_20" % skill):
+			Events.skill_triggered.emit(skill)
 
 func _process(delta):
 	enemySetDirectionTimer += delta
@@ -178,7 +187,7 @@ func _on_story_triggered(storyName: String):
 			await _story_guest_arrives("carmor", "laser_gun")
 			GameInfo.set_event("first_to_wave_3", true)
 		"first_to_wave_6":
-			await _story_guest_arrives("alew", "falling_blossom", 10)
+			await _story_guest_arrives("alew", "falling_blossom", 10, "res://resource/dialog/alew_wave6.tres")
 			GameInfo.set_event("first_to_wave_6", true)
 
 func _on_skill_triggered(skillName: String):
@@ -198,7 +207,7 @@ func _on_level_triggered(level: int):
 			RunStats.notify_unlock("hail_brace")
 		GameInfo.set_event("first_to_level_10", true)
 
-func _story_guest_arrives(character_key: String, weapon_key: String, bonus_ability: int = 0) -> void:
+func _story_guest_arrives(character_key: String, weapon_key: String, bonus_ability: int = 0, dialog_path: String = "res://resource/dialog/d1.tres") -> void:
 	var guest_scene: PackedScene = STORY_GUESTS[character_key]
 	var weapon_scene: PackedScene = STORY_WEAPONS[weapon_key]
 	var guest = guest_scene.instantiate()
@@ -211,13 +220,16 @@ func _story_guest_arrives(character_key: String, weapon_key: String, bonus_abili
 	await tween.finished
 
 	var dialogBubble = preload("res://scene/UI/dialog_bubble.tscn").instantiate()
-	var dialogResource = preload("res://resource/dialog/d1.tres")
+	var dialogResource = load(dialog_path) as DialogRes
 	guest.add_child(dialogBubble)
 	dialogBubble.init(guest.global_position + Vector2(0, -200), dialogResource)
 	await dialogBubble.dialog_completed
 	guest.queue_free()
 
 	GameInfo.unlock_character(character_key)
+	for bonus_key in STORY_BONUS_UNLOCKS.get(character_key, []):
+		if GameInfo.unlock_weapon(bonus_key):
+			RunStats.notify_unlock(bonus_key)
 	var weapon = weapon_scene.instantiate()
 	if GameInfo.unlock_weapon(weapon_key):
 		RunStats.notify_unlock(weapon_key)
@@ -312,11 +324,19 @@ func _open_shop_board():
 func shop_close():
 	UIScene._process_ui_signal(["shop"])
 
+const ROCKET_LAUNCHER_DROP_CHANCE := 0.0003 # 0.03% from junk_rush
+
 func process_enemy_death(enemy: BaseEnemy, pos: Vector2, willLoot: bool):
 	RunStats.record_kill()
-	if enemy.get_script().resource_path.ends_with("mr_scythe.gd"):
+	var enemy_script: String = String(enemy.get_script().resource_path)
+	if enemy_script.ends_with("mr_scythe.gd"):
 		if GameInfo.unlock_weapon("comic_book"):
 			RunStats.notify_unlock("comic_book")
+	elif enemy_script.ends_with("junk_rush.gd"):
+		if not GameInfo.is_weapon_unlocked("rocket_launcher") \
+				and randf() < ROCKET_LAUNCHER_DROP_CHANCE:
+			if GameInfo.unlock_weapon("rocket_launcher"):
+				RunStats.notify_unlock("rocket_launcher")
 	if willLoot:
 		_loot_spawner.spawn_enemy_loot(pos, _wave_director.wave_table_index(wave), wave)
 		killEnemyCounter += 1

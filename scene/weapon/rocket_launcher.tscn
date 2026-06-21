@@ -16,3 +16,4 @@ script = ExtResource("2_poybt")
 rocketScene = ExtResource("3_lhiax")
 crosshairScene = ExtResource("4_hjt5r")
 id = 30
+na = "火箭发射器"

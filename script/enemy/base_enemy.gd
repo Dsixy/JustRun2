@@ -1,5 +1,10 @@
 class_name BaseEnemy extends CharacterBody2D
 
+const DamageTypes = preload("res://script/damage_types.gd")
+const LightningBuffScene = preload("res://scene/buff/lightning_buff.tscn")
+const WeakenBuffScene = preload("res://scene/buff/weaken_buff.tscn")
+const BuffElementReactions = preload("res://script/buff/buff_element_reactions.gd")
+
 @onready var animationPlayer = $AnimationPlayer
 @onready var buffManager = $BuffManager
 @onready var statusIcon = $StatusIcon
@@ -40,11 +45,59 @@ func update_target(goal: Vector2):
 	target = goal
 	
 func be_hit(damage: DamageInfo):
-	damage = buffManager.modify_damage(damage)
+	var hit_damage := damage.copy()
+	var reaction_ctx := BuffElementReactions.apply(self, hit_damage)
+	hit_damage = reaction_ctx.damage
+	hit_damage = buffManager.modify_damage(hit_damage)
+	Utils.show_damage_label(hit_damage, global_position + Vector2.UP * 50)
+	HP -= hit_damage.finalDamage
+	_try_apply_lightning_buff(hit_damage, reaction_ctx)
+	_try_apply_weaken_buff(hit_damage)
+	if HP <= 0:
+		dead()
+
+func _apply_bonus_damage(damage: DamageInfo) -> void:
 	Utils.show_damage_label(damage, global_position + Vector2.UP * 50)
 	HP -= damage.finalDamage
 	if HP <= 0:
 		dead()
+
+func _try_apply_lightning_buff(damage: DamageInfo, reaction_ctx = null) -> void:
+	if not damage.apply_lightning_buff:
+		return
+	if DamageTypes.normalize(damage.damageType) != DamageTypes.LIGHTNING:
+		return
+	var source = damage.source
+	if source == null:
+		var scene := GameInfo.get_run_scene()
+		if scene and scene.get("player"):
+			source = scene.player
+	if source == null:
+		return
+	var buff = LightningBuffScene.instantiate()
+	buff.set_up(source)
+	if reaction_ctx:
+		if reaction_ctx.lightning_chain_range > 0.0:
+			buff.chain_range = reaction_ctx.lightning_chain_range
+		if reaction_ctx.lightning_max_targets > 0:
+			buff.max_chain_targets = reaction_ctx.lightning_max_targets
+		if reaction_ctx.spread_burning_stacks > 0:
+			buff.spread_burning_stacks = reaction_ctx.spread_burning_stacks
+	buffManager.add_buff(buff)
+
+func _try_apply_weaken_buff(damage: DamageInfo) -> void:
+	if not damage.isCrit:
+		return
+	if DamageTypes.normalize(damage.damageType) != DamageTypes.PSYCHIC:
+		return
+	var source = damage.source
+	if source == null:
+		var scene := GameInfo.get_run_scene()
+		if scene and scene.get("player"):
+			source = scene.player
+	var buff = WeakenBuffScene.instantiate()
+	buff.set_up(source)
+	buffManager.add_buff(buff)
 	
 func dead(willLoot: bool = true):
 	emit_signal("death", self, global_position, willLoot)

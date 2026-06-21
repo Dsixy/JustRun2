@@ -169,8 +169,6 @@ nav:
       - 计划 · 太极: wiki/weapons/planned/taiji.md
       - 计划 · 鼓动的心: wiki/weapons/planned/beating-heart.md
   - 设计文档:
-      - Just Run2 设计: Just Run2.md
       - 补丁决议: patch.md
-      - 打磨计划: POLISH_PLAN.md
   - 维护:
       - 文档来源与状态: wiki/meta/sources.md

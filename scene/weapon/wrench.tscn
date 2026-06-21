@@ -14,3 +14,4 @@ texture = SubResource("AtlasTexture_fem2v")
 script = ExtResource("2_u22hd")
 turretScene = ExtResource("3_n541c")
 id = 20
+na = "扳手"

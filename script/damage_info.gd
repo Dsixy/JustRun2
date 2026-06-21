@@ -10,6 +10,10 @@ var source
 var damageType: String
 var isCrit: bool
 var critDamage: float = 1.0
+## 为 false 时命中不附加闪电 Buff（用于闪电链衍生伤害）
+var apply_lightning_buff: bool = true
+## 为 true 时跳过元素对 Buff 的二级反应（用于反应衍生伤害）
+var skip_element_reactions: bool = false
 var finalDamage: int:
 	get:
 		if isCrit:
@@ -34,6 +38,8 @@ func copy() -> DamageInfo:
 	copy.damageType = damageType
 	copy.isCrit = isCrit
 	copy.source = source
+	copy.apply_lightning_buff = apply_lightning_buff
+	copy.skip_element_reactions = skip_element_reactions
 	return copy
 
 func get_type_display_name() -> String:

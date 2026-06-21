@@ -6,7 +6,7 @@ var bubbleAngVel: float = 2 * PI
 var attackInterval: float = 0.6
 var radius: int = 150
 		
-var baseCritRate: float = 0
+var baseCritRate: float = 0.05
 var baseCritDamage: float = 1.5
 
 var bubbleNum: int = 3
@@ -43,7 +43,8 @@ func attack():
 		GameInfo.mainscene.bulletNode.add_child(bubble)
 
 		bubble.init(global_position, 2 * PI * i / bubbleNum, radius,
-				bubbleAngVel, int(calculate_damage()), bubbleMaxHit, bubbleRadiusMove)
+				bubbleAngVel, int(calculate_damage()), bubbleMaxHit, bubbleRadiusMove,
+				baseCritRate + player.critRate, baseCritDamage, player)
 				
 		bubbleList.append(bubble)
 	

@@ -18,7 +18,7 @@ var weaponAllPath = []
 var config = ConfigFile.new()
 
 # 新档默认解锁（其余靠事件 / 天赋解锁）
-const DEFAULT_WEAPON_UNLOCKS = ["pistol", "poison_vial", "lightwheel"]
+const DEFAULT_WEAPON_UNLOCKS = ["pistol", "sniping_riffe", "poison_vial", "lightwheel"]
 
 # 选角：patch 初始仅阿猴；卡莫 / 阿女剧情后解锁
 const CHARACTER_SCENES = {
@@ -95,6 +95,7 @@ func _ensure_defaults() -> void:
 		save()
 	_migrate_legacy_events()
 	_sync_character_unlocks_from_events()
+	_sync_story_weapon_unlocks_from_events()
 	_strip_disabled_weapon_unlocks()
 
 func _migrate_legacy_events() -> void:
@@ -121,6 +122,18 @@ func _sync_character_unlocks_from_events() -> void:
 		if not is_character_unlocked("alew"):
 			config.set_value("CharacterUnlock", "alew", true)
 			dirty = true
+	if dirty:
+		save()
+
+func _sync_story_weapon_unlocks_from_events() -> void:
+	var dirty := false
+	if get_event("first_to_wave_3"):
+		for weapon_key in ["shotgun", "laser_sword"]:
+			if not config.get_value("WeaponUnlock", weapon_key, false):
+				config.set_value("WeaponUnlock", weapon_key, true)
+				if get_weapon_handbook_max_level(weapon_key) < 0:
+					config.set_value("WeaponHandbook", weapon_key, 0)
+				dirty = true
 	if dirty:
 		save()
 
