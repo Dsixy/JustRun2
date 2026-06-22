@@ -12,7 +12,7 @@ func set_up(source):
 	self.tickInterval = 1.0
 	
 	self.damage = DamageInfo.new(
-		2 + source.insight * 0.4 + source.level * 0.2,
+		2 + source.insight * 1 + source.level * 0.8,
 		0, false, 1.0, source, DamageTypes.FIRE
 	)
 	
@@ -48,7 +48,7 @@ static func apply_stacks_to(target: BaseEnemy, source, stacks: int) -> void:
 func _sync_damage_from_stack() -> void:
 	if _source == null:
 		return
-	damage.baseAmount = 2 + curStack * (_source.insight * 0.4 + _source.level * 0.2)
+	damage.baseAmount = 2 + curStack * (_source.insight + _source.level * 0.8)
 	
 func expire():
 	super.expire()

@@ -6,7 +6,7 @@ func apply(o):
 	
 func set_up(player: BasePlayer):
 	super.set_up(player)
-	self.duration = 15.0
+	self.duration = 10.0
 	
 func expire():
 	self._owner.isInvincible = false
