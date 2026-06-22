@@ -17,6 +17,7 @@ const SCRIPT_PATHS: Array[String] = [
 	"res://script/buff/poison_buff.gd",
 	"res://script/buff/lightning_buff.gd",
 	"res://script/buff/weaken_buff.gd",
+	"res://script/buff/frenzy_buff.gd",
 	"res://script/effect/lightning_bolt.gd",
 	"res://script/utils.gd",
 	"res://script/game_info.gd",

@@ -43,8 +43,10 @@ func run_wave(wave: int) -> void:
 	_scene.inWave = true
 
 	if wave == BOSS_WAVE:
-		var boss = preload("res://scene/enemy/mr_scythe.tscn").instantiate()
+		var boss: BaseEnemy = preload("res://scene/enemy/mr_scythe.tscn").instantiate()
 		_scene.enemyNode.add_child(boss)
+		boss.init(1, wave)
+		boss.update_target(_scene.player.global_position)
 		_scene.enemies.append(boss)
 		boss.connect("death", _scene.process_enemy_death)
 

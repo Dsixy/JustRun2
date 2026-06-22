@@ -27,15 +27,82 @@
 
 .md-typeset {
   font-family: var(--jr-body);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+
+/* —— Density: tighter Material defaults —— */
+.md-grid {
+  max-width: 72rem;
+}
+
+.md-content__inner {
+  margin-top: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.md-typeset h1 {
+  margin: 0 0 0.65rem;
+  font-size: 1.65rem;
+  line-height: 1.25;
+}
+
+.md-typeset h2 {
+  margin: 1.35rem 0 0.5rem;
+  font-size: 1.2rem;
+  line-height: 1.3;
+  padding-bottom: 0.25rem;
+}
+
+.md-typeset h3 {
+  margin: 1rem 0 0.4rem;
+  font-size: 1.05rem;
+}
+
+.md-typeset p,
+.md-typeset ul,
+.md-typeset ol,
+.md-typeset blockquote {
+  margin-top: 0.45rem;
+  margin-bottom: 0.45rem;
+}
+
+.md-typeset hr {
+  margin: 0.85rem 0;
+}
+
+.md-typeset table:not([class]) th,
+.md-typeset table:not([class]) td {
+  padding: 0.45rem 0.65rem;
+}
+
+.md-typeset pre {
+  margin: 0.65rem 0;
+}
+
+.md-typeset code {
+  font-size: 0.85em;
+}
+
+.md-sidebar--primary .md-nav__link {
+  font-size: 0.8125rem;
+  padding-top: 0.15rem;
+  padding-bottom: 0.15rem;
+}
+
+.md-nav--secondary .md-nav__link {
+  font-size: 0.75rem;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
 }
 
 /* Hero banner on wiki home */
 .wiki-hero {
   display: grid;
-  gap: 1.5rem;
-  margin: 0 0 2rem;
-  padding: 1.75rem;
-  border-radius: 12px;
+  gap: 0.85rem;
+  margin: 0 0 1rem;
+  padding: 1rem 1.15rem;
+  border-radius: 10px;
   background: linear-gradient(135deg, #e2e8f0 0%, #f8fafc 55%, #dbeafe 100%);
   border: 1px solid #cbd5e1;
 }
@@ -47,8 +114,8 @@
 
 .wiki-hero__grid {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 1.5rem;
+  grid-template-columns: 1fr minmax(180px, 42%);
+  gap: 0.85rem 1rem;
   align-items: center;
 }
 
@@ -58,10 +125,22 @@
   }
 }
 
+.wiki-hero__badge {
+  display: inline-block;
+  margin: 0 0 0.35rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--jr-accent);
+  background: rgba(37, 99, 235, 0.1);
+}
+
 .wiki-hero__title {
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.3rem;
   font-family: var(--jr-heading);
-  font-size: 2rem;
+  font-size: 1.55rem;
   font-weight: 700;
   line-height: 1.2;
   color: var(--jr-text);
@@ -73,27 +152,61 @@
 
 .wiki-hero__tagline {
   margin: 0;
-  font-size: 1.05rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
   color: var(--jr-secondary);
 }
 
 .wiki-hero__img {
   width: 100%;
-  max-height: 220px;
+  max-height: 150px;
   object-fit: contain;
   border-radius: 8px;
   box-shadow: 0 4px 24px rgba(15, 23, 42, 0.12);
 }
 
+/* Homepage: cards + screenshots side by side on wide screens */
+.wiki-home-split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin: 0 0 0.75rem;
+}
+
+@media (min-width: 960px) {
+  .wiki-home-split {
+    grid-template-columns: 1.15fr 0.85fr;
+    align-items: start;
+  }
+}
+
 .wiki-screenshots {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  margin: 1.5rem 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.wiki-screenshots--strip {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (max-width: 640px) {
+  .wiki-screenshots--strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Collapse duplicate page title when hero provides the headline */
+.md-typeset > h1:first-child:has(+ .wiki-hero) {
+  display: none;
 }
 
 .wiki-screenshots img {
   width: 100%;
+  max-height: 88px;
+  object-fit: cover;
+  object-position: top center;
   border-radius: 8px;
   border: 1px solid #e2e8f0;
   transition: box-shadow 200ms ease, transform 200ms ease;
@@ -115,16 +228,60 @@
   }
 }
 
+.wiki-quick-ref {
+  margin: 0.5rem 0 0;
+  padding: 0;
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.wiki-quick-ref th,
+.wiki-quick-ref td {
+  padding: 0.3rem 0.5rem;
+  border: 1px solid #e2e8f0;
+  text-align: left;
+  vertical-align: top;
+}
+
+[data-md-color-scheme="slate"] .wiki-quick-ref th,
+[data-md-color-scheme="slate"] .wiki-quick-ref td {
+  border-color: #334155;
+}
+
+.wiki-quick-ref th {
+  width: 5.5rem;
+  font-weight: 600;
+  color: var(--jr-accent);
+  background: rgba(37, 99, 235, 0.06);
+}
+
+.wiki-section-label {
+  margin: 0.65rem 0 0.4rem;
+  font-family: var(--jr-heading);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--jr-secondary);
+  letter-spacing: 0.02em;
+}
+
 .wiki-card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
-  margin: 1.5rem 0;
+  grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+  gap: 0.55rem;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .wiki-card-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 .wiki-card {
   display: block;
-  padding: 1rem 1.15rem;
+  padding: 0.55rem 0.7rem;
   border-radius: 10px;
   border: 1px solid #e2e8f0;
   background: #fff;
@@ -145,15 +302,17 @@
 }
 
 .wiki-card__title {
-  margin: 0 0 0.35rem;
+  margin: 0 0 0.2rem;
   font-family: var(--jr-heading);
+  font-size: 0.88rem;
   font-weight: 600;
   color: var(--jr-accent);
 }
 
 .wiki-card__desc {
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 0.78rem;
+  line-height: 1.35;
   color: var(--jr-secondary);
 }
 
@@ -166,7 +325,249 @@
   font-weight: 600;
 }
 
-/* Status badges in tables */
+/* Tables — compact but readable (≥16px effective on mobile via root scale) */
 .md-typeset table:not([class]) {
-  font-size: 0.85rem;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  margin: 0.5rem 0;
 }
+
+/* Character sheets (characters.md) */
+.wiki-char-compare {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin: 0.65rem 0 1rem;
+}
+
+@media (max-width: 900px) {
+  .wiki-char-compare {
+    grid-template-columns: 1fr;
+  }
+}
+
+.wiki-char-compare__item {
+  padding: 0.55rem 0.7rem;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+}
+
+[data-md-color-scheme="slate"] .wiki-char-compare__item {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.wiki-char-compare__name {
+  margin: 0 0 0.35rem;
+  font-family: var(--jr-heading);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--jr-accent);
+}
+
+.wiki-char-compare__meta {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--jr-secondary);
+}
+
+.wiki-char-sheet {
+  margin: 1rem 0 1.15rem;
+  padding: 0.75rem 0.85rem;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
+[data-md-color-scheme="slate"] .wiki-char-sheet {
+  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  border-color: #334155;
+}
+
+.wiki-char-sheet__top {
+  display: grid;
+  grid-template-columns: minmax(200px, 280px) 1fr;
+  gap: 0.75rem;
+  align-items: start;
+  margin-bottom: 0.65rem;
+}
+
+@media (max-width: 768px) {
+  .wiki-char-sheet__top {
+    grid-template-columns: 1fr;
+  }
+}
+
+.wiki-char-sheet__visuals {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.wiki-char-frame {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-height: 110px;
+}
+
+.wiki-char-frame__media {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 96px;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px dashed #cbd5e1;
+  background: #f1f5f9;
+  overflow: hidden;
+}
+
+[data-md-color-scheme="slate"] .wiki-char-frame__media {
+  background: #0f172a;
+  border-color: #475569;
+}
+
+.wiki-char-frame__media img {
+  width: 100%;
+  max-height: 110px;
+  object-fit: contain;
+}
+
+.wiki-char-frame__placeholder {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  text-align: center;
+  color: var(--jr-secondary);
+}
+
+.wiki-char-frame__label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--jr-secondary);
+  letter-spacing: 0.02em;
+}
+
+.wiki-char-sheet__blurb {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--jr-text);
+}
+
+.wiki-char-sheet__blurb p {
+  margin: 0 0 0.55rem;
+}
+
+.wiki-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem 0.75rem;
+}
+
+@media (max-width: 640px) {
+  .wiki-stat-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.wiki-stat-block {
+  padding: 0.5rem 0.65rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+[data-md-color-scheme="slate"] .wiki-stat-block {
+  background: rgba(15, 23, 42, 0.55);
+  border-color: #334155;
+}
+
+.wiki-stat-block__title {
+  margin: 0 0 0.45rem;
+  font-family: var(--jr-heading);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--jr-accent);
+  text-transform: none;
+}
+
+.wiki-stat-block__body {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.65;
+  color: var(--jr-text);
+}
+
+.wiki-stat-inline {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.7;
+}
+
+.wiki-stat-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.84rem;
+  line-height: 1.65;
+}
+
+.wiki-stat-list li {
+  margin: 0.15rem 0;
+}
+
+.wiki-arm-rhythm {
+  margin: 0.75rem 0 0;
+  padding: 0.65rem 0.85rem;
+  border-radius: 8px;
+  border-left: 3px solid var(--jr-accent);
+  background: rgba(37, 99, 235, 0.06);
+  font-size: 0.84rem;
+  line-height: 1.6;
+}
+
+[data-md-color-scheme="slate"] .wiki-arm-rhythm {
+  background: rgba(37, 99, 235, 0.12);
+}
+
+.wiki-arm-rhythm code {
+  font-size: 0.8em;
+}
+
+/* Loot / plant cards — non-link cards */
+.wiki-card--static {
+  cursor: default;
+}
+
+.wiki-card--static:hover {
+  border-color: #e2e8f0;
+  box-shadow: none;
+}
+
+[data-md-color-scheme="slate"] .wiki-card--static:hover {
+  border-color: #334155;
+}
+
+
+.wiki-loot-table {
+  margin: 0.5rem 0 0.75rem;
+}
+
+.wiki-loot-table table {
+  width: 100%;
+}
+
+.wiki-img-ph {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--jr-secondary);
+  text-align: center;
+}
+
+

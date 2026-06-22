@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8frenzybuff11"]
+
+[ext_resource type="PackedScene" uid="uid://l6lkh2jgk082" path="res://scene/buff/time_buff.tscn" id="1_time"]
+[ext_resource type="Script" path="res://script/buff/frenzy_buff.gd" id="2_frenzy"]
+
+[node name="FrenzyBuff" instance=ExtResource("1_time")]
+script = ExtResource("2_frenzy")
+ID = 11

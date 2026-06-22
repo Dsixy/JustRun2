@@ -107,27 +107,16 @@ nav:
   - 首页: index.md
   - 百科:
       - 百科首页: wiki/README.md
-  - 入门:
-      - 游戏概览: wiki/overview.md
-      - 操作与界面: wiki/controls.md
-  - 构筑:
+      - 游戏机制: wiki/mechanics.md
       - 角色: wiki/characters.md
       - 属性: wiki/attributes.md
-      - 装甲臂: wiki/weapon-arm.md
+      - 敌人: wiki/enemies.md
+      - 掉落物: wiki/items.md
+      - Buff 与伤害: wiki/buffs-and-damage.md
+  - 武器:
       - 武器索引: wiki/weapons/index.md
       - 已实现武器: wiki/weapons/implemented.md
       - 计划中武器: wiki/weapons/planned.md
-  - 单局:
-      - 波次与流程: wiki/progression.md
-      - 商店: wiki/shop.md
-      - 敌人: wiki/enemies.md
-      - 掉落物: wiki/items.md
-  - 战斗:
-      - Buff 与伤害: wiki/buffs-and-damage.md
-  - 进度:
-      - 解锁条件: wiki/unlocks.md
-      - 剧情与事件: wiki/events.md
-  - 武器详表:
       - 手枪: wiki/weapons/pistol.md
       - 狙击枪: wiki/weapons/sniping_riffe.md
       - 霰弹枪: wiki/weapons/shotgun.md

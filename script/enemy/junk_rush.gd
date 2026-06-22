@@ -22,7 +22,8 @@ func init(level: int, wave: int):
 	reset_properties(wave)
 	
 func reset_properties(wave: int = 0):
-	self.HP = (3 + self.level * 3) * self.WAVE_SCALE[wave-1]
+	self.maxHP = (3 + self.level * 3) * self.WAVE_SCALE[wave-1]
+	self.HP = self.maxHP
 	self.damage.baseAmount = 20 * self.level + 10
 	
 func rush_to_target():

@@ -15,6 +15,7 @@ var extraVel: Vector2 = Vector2.ZERO
 var staggerTime: float = 0.0
 var speed: int = 100
 var HP: int = 100
+var maxHP: int = 100
 var damage: DamageInfo = DamageInfo.new()
 var level: int = 1
 
