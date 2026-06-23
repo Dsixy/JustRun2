@@ -1,4 +1,4 @@
-# 掉落物
+﻿# 掉落物
 
 击杀敌人时，会在其位置独立判定是否掉落 **经验宝石**、**金币** 与 **植物**（三者互不影响）。波次越高，高级经验宝石出现率通常越高。波次与系数见 [游戏机制 · 波次](mechanics.md#波次)。
 
@@ -18,11 +18,38 @@
 
 拾取后获得经验，是升级与获取天赋点的主要来源。实际经验受角色 **感知** 加成。
 
-| 等级 | 经验值 |
-|------|--------|
-| 基础 | 10 |
-| 中级 | 50 |
-| 高级 | 500 |
+<div class="wiki-exp-gems">
+<div class="wiki-exp-gems__table">
+<table>
+<thead><tr><th>等级</th><th>经验值</th></tr></thead>
+<tbody>
+<tr><td>基础</td><td>10</td></tr>
+<tr><td>中级</td><td>50</td></tr>
+<tr><td>高级</td><td>500</td></tr>
+</tbody>
+</table>
+</div>
+<div class="wiki-exp-gems__icons">
+  <figure class="wiki-char-frame">
+    <div class="wiki-char-frame__media">
+      <img src="/JustRun2/assets/images/wiki/exp_gem_basic.png" alt="基础经验宝石">
+    </div>
+    <figcaption class="wiki-char-frame__label">基础 · 10 EXP</figcaption>
+  </figure>
+  <figure class="wiki-char-frame">
+    <div class="wiki-char-frame__media">
+      <img src="/JustRun2/assets/images/wiki/exp_gem_mid.png" alt="中级经验宝石">
+    </div>
+    <figcaption class="wiki-char-frame__label">中级 · 50 EXP</figcaption>
+  </figure>
+  <figure class="wiki-char-frame">
+    <div class="wiki-char-frame__media">
+      <img src="/JustRun2/assets/images/wiki/exp_gem_high.png" alt="高级经验宝石">
+    </div>
+    <figcaption class="wiki-char-frame__label">高级 · 500 EXP</figcaption>
+  </figure>
+</div>
+</div>
 
 ### 各波掉落权重
 
@@ -41,48 +68,24 @@
 | 9 | 10% | 40% | — |
 | 10 | — | — | 50% |
 
-<div class="wiki-char-sheet">
-  <div class="wiki-char-sheet__top">
-    <div class="wiki-char-sheet__visuals">
-      <figure class="wiki-char-frame">
-        <div class="wiki-char-frame__media">
-          <p class="wiki-char-frame__placeholder">基础宝石<br>待补</p>
-        </div>
-        <figcaption class="wiki-char-frame__label">基础 · 10 EXP</figcaption>
-      </figure>
-      <figure class="wiki-char-frame">
-        <div class="wiki-char-frame__media">
-          <p class="wiki-char-frame__placeholder">中级宝石<br>待补</p>
-        </div>
-        <figcaption class="wiki-char-frame__label">中级 · 50 EXP</figcaption>
-      </figure>
-      <figure class="wiki-char-frame">
-        <div class="wiki-char-frame__media">
-          <p class="wiki-char-frame__placeholder">高级宝石<br>待补</p>
-        </div>
-        <figcaption class="wiki-char-frame__label">高级 · 500 EXP</figcaption>
-      </figure>
-    </div>
-  </div>
-</div>
 
 ---
 
 ## 金币
 
-<div class="wiki-char-sheet">
+<div class="wiki-char-sheet wiki-char-sheet--split">
   <div class="wiki-char-sheet__top">
     <div class="wiki-char-sheet__visuals">
       <figure class="wiki-char-frame">
         <div class="wiki-char-frame__media">
-          <p class="wiki-char-frame__placeholder">金币<br>待补</p>
+          <img src="/JustRun2/assets/images/wiki/coin.png" alt="金币">
         </div>
         <figcaption class="wiki-char-frame__label">金币</figcaption>
       </figure>
     </div>
     <div class="wiki-char-sheet__blurb">
       <p>主要金币来源。击杀时按 <strong>波次×1% + 40%</strong> 概率掉落一枚。</p>
-      <p>拾取固定为 <strong>1</strong> 枚，再乘以角色的金币加成（与感知相关）。用于波波猫商店购物与部分武器解锁条件。</p>
+      <p>拾取固定为 <strong>1</strong> 枚，再乘以角色的金币加成（与感知相关）。用于饱饱猫商店购物与部分武器解锁条件。</p>
     </div>
   </div>
 </div>
@@ -101,31 +104,31 @@
 | 雨滴茉莉 | 10% | 获得 [无敌](buffs-and-damage.md#无敌)（10 秒） |
 | 猫薄荷 | 20% | **+1** 商店刷新次数 |
 
-<div class="wiki-card-grid">
+<div class="wiki-card-grid wiki-card-grid--plants">
   <div class="wiki-card wiki-card--static">
+    <img class="wiki-card__icon" src="/JustRun2/assets/images/wiki/plant_hyacinth.png" alt="风信子">
     <p class="wiki-card__title">风信子</p>
     <p class="wiki-card__desc">狂暴 · 攻速 ↑</p>
-    <span class="wiki-img-ph">立绘待补</span>
   </div>
   <div class="wiki-card wiki-card--static">
+    <img class="wiki-card__icon" src="/JustRun2/assets/images/wiki/plant_blue_mountain_leaf.png" alt="蓝山绿叶">
     <p class="wiki-card__title">蓝山绿叶</p>
     <p class="wiki-card__desc">立刻升 1 级</p>
-    <span class="wiki-img-ph">立绘待补</span>
   </div>
   <div class="wiki-card wiki-card--static">
+    <img class="wiki-card__icon" src="/JustRun2/assets/images/wiki/plant_wine_rose.png" alt="酒色玫瑰">
     <p class="wiki-card__title">酒色玫瑰</p>
     <p class="wiki-card__desc">+99 HP · 最常见</p>
-    <span class="wiki-img-ph">立绘待补</span>
   </div>
   <div class="wiki-card wiki-card--static">
+    <img class="wiki-card__icon" src="/JustRun2/assets/images/wiki/plant_raindrop_jasmine.png" alt="雨滴茉莉">
     <p class="wiki-card__title">雨滴茉莉</p>
     <p class="wiki-card__desc">无敌 10 秒</p>
-    <span class="wiki-img-ph">立绘待补</span>
   </div>
   <div class="wiki-card wiki-card--static">
+    <img class="wiki-card__icon" src="/JustRun2/assets/images/wiki/plant_catnip.png" alt="猫薄荷">
     <p class="wiki-card__title">猫薄荷</p>
     <p class="wiki-card__desc">+1 商店刷新</p>
-    <span class="wiki-img-ph">立绘待补</span>
   </div>
 </div>
 

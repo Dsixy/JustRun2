@@ -1,0 +1,587 @@
+[
+  {
+    "id": "character_aho",
+    "file": "character_aho.png",
+    "rect": [
+      1500,
+      0,
+      100,
+      100
+    ],
+    "confidence": "review",
+    "note": "阿猴 Body 部件；完整角色含 Hair/Tail",
+    "wiki_path": "../assets/images/wiki/character_aho.png"
+  },
+  {
+    "id": "character_carmor",
+    "file": "character_carmor.png",
+    "rect": [
+      1000,
+      300,
+      100,
+      100
+    ],
+    "confidence": "review",
+    "note": "卡莫 Head 部件；含耳朵/刘海",
+    "wiki_path": "../assets/images/wiki/character_carmor.png"
+  },
+  {
+    "id": "character_alew",
+    "file": "character_alew.png",
+    "rect": [
+      700,
+      200,
+      100,
+      100
+    ],
+    "confidence": "review",
+    "note": "阿女 Head 部件；含双马尾/皇冠",
+    "wiki_path": "../assets/images/wiki/character_alew.png"
+  },
+  {
+    "id": "enemy_evil_pea",
+    "file": "enemy_evil_pea.png",
+    "rect": [
+      1500,
+      200,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "邪恶小豆豆；三等级靠 modulate 变色",
+    "wiki_path": "../assets/images/wiki/enemy_evil_pea.png"
+  },
+  {
+    "id": "enemy_wastewit",
+    "file": "enemy_wastewit.png",
+    "rect": [
+      800,
+      100,
+      200,
+      100
+    ],
+    "confidence": "review",
+    "note": "废物 Head；Body/腿为独立图块",
+    "wiki_path": "../assets/images/wiki/enemy_wastewit.png"
+  },
+  {
+    "id": "enemy_clunker",
+    "file": "enemy_clunker.png",
+    "rect": [
+      1200,
+      200,
+      200,
+      100
+    ],
+    "confidence": "review",
+    "note": "破烂 Head；Body 为 1000,100 200×200",
+    "wiki_path": "../assets/images/wiki/enemy_clunker.png"
+  },
+  {
+    "id": "enemy_junk_rush",
+    "file": "enemy_junk_rush.png",
+    "rect": [
+      1000,
+      0,
+      200,
+      100
+    ],
+    "confidence": "review",
+    "note": "垃圾 Head；组合精灵",
+    "wiki_path": "../assets/images/wiki/enemy_junk_rush.png"
+  },
+  {
+    "id": "enemy_mr_scythe",
+    "file": "enemy_mr_scythe.png",
+    "rect": [
+      1500,
+      300,
+      100,
+      100
+    ],
+    "confidence": "review",
+    "note": "镰刀先生 Head；Body/镰刀为独立图块",
+    "wiki_path": "../assets/images/wiki/enemy_mr_scythe.png"
+  },
+  {
+    "id": "exp_gem_basic",
+    "file": "exp_gem_basic.png",
+    "rect": [
+      1300,
+      900,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "经验宝石 hframes 第 1 帧",
+    "wiki_path": "../assets/images/wiki/exp_gem_basic.png"
+  },
+  {
+    "id": "exp_gem_mid",
+    "file": "exp_gem_mid.png",
+    "rect": [
+      1400,
+      900,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "经验宝石 hframes 第 2 帧",
+    "wiki_path": "../assets/images/wiki/exp_gem_mid.png"
+  },
+  {
+    "id": "exp_gem_high",
+    "file": "exp_gem_high.png",
+    "rect": [
+      1500,
+      900,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "经验宝石 hframes 第 3 帧",
+    "wiki_path": "../assets/images/wiki/exp_gem_high.png"
+  },
+  {
+    "id": "coin",
+    "file": "coin.png",
+    "rect": [
+      1500,
+      600,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/coin.png"
+  },
+  {
+    "id": "plant_hyacinth",
+    "file": "plant_hyacinth.png",
+    "rect": [
+      1400,
+      800,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/plant_hyacinth.png"
+  },
+  {
+    "id": "plant_blue_mountain_leaf",
+    "file": "plant_blue_mountain_leaf.png",
+    "rect": [
+      1100,
+      800,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/plant_blue_mountain_leaf.png"
+  },
+  {
+    "id": "plant_wine_rose",
+    "file": "plant_wine_rose.png",
+    "rect": [
+      1300,
+      800,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/plant_wine_rose.png"
+  },
+  {
+    "id": "plant_raindrop_jasmine",
+    "file": "plant_raindrop_jasmine.png",
+    "rect": [
+      1200,
+      800,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/plant_raindrop_jasmine.png"
+  },
+  {
+    "id": "plant_catnip",
+    "file": "plant_catnip.png",
+    "rect": [
+      1000,
+      800,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/plant_catnip.png"
+  },
+  {
+    "id": "weapon_pistol",
+    "file": "weapon_pistol.png",
+    "rect": [
+      0,
+      0,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/weapon_pistol.png"
+  },
+  {
+    "id": "weapon_sniping_riffe",
+    "file": "weapon_sniping_riffe.png",
+    "rect": [
+      100,
+      0,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/weapon_sniping_riffe.png"
+  },
+  {
+    "id": "weapon_shotgun",
+    "file": "weapon_shotgun.png",
+    "rect": [
+      200,
+      0,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/weapon_shotgun.png"
+  },
+  {
+    "id": "weapon_laser_sword",
+    "file": "weapon_laser_sword.png",
+    "rect": [
+      300,
+      0,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/weapon_laser_sword.png"
+  },
+  {
+    "id": "weapon_falling_blossom",
+    "file": "weapon_falling_blossom.png",
+    "rect": [
+      400,
+      0,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/weapon_falling_blossom.png"
+  },
+  {
+    "id": "weapon_thought_bubble",
+    "file": "weapon_thought_bubble.png",
+    "rect": [
+      0,
+      100,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/weapon_thought_bubble.png"
+  },
+  {
+    "id": "weapon_hail_brace",
+    "file": "weapon_hail_brace.png",
+    "rect": [
+      100,
+      100,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/weapon_hail_brace.png"
+  },
+  {
+    "id": "weapon_stellar_wrath",
+    "file": "weapon_stellar_wrath.png",
+    "rect": [
+      200,
+      100,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/weapon_stellar_wrath.png"
+  },
+  {
+    "id": "weapon_poker",
+    "file": "weapon_poker.png",
+    "rect": [
+      300,
+      100,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/weapon_poker.png"
+  },
+  {
+    "id": "weapon_song_of_soul",
+    "file": "weapon_song_of_soul.png",
+    "rect": [
+      400,
+      100,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/weapon_song_of_soul.png"
+  },
+  {
+    "id": "weapon_poison_vial",
+    "file": "weapon_poison_vial.png",
+    "rect": [
+      0,
+      200,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/weapon_poison_vial.png"
+  },
+  {
+    "id": "weapon_laser_gun",
+    "file": "weapon_laser_gun.png",
+    "rect": [
+      100,
+      200,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/weapon_laser_gun.png"
+  },
+  {
+    "id": "weapon_mest",
+    "file": "weapon_mest.png",
+    "rect": [
+      200,
+      200,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/weapon_mest.png"
+  },
+  {
+    "id": "weapon_delivery_guy",
+    "file": "weapon_delivery_guy.png",
+    "rect": [
+      300,
+      200,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/weapon_delivery_guy.png"
+  },
+  {
+    "id": "weapon_spider_silk",
+    "file": "weapon_spider_silk.png",
+    "rect": [
+      400,
+      200,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/weapon_spider_silk.png"
+  },
+  {
+    "id": "weapon_comic_book",
+    "file": "weapon_comic_book.png",
+    "rect": [
+      0,
+      300,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/weapon_comic_book.png"
+  },
+  {
+    "id": "weapon_perfume_bottle",
+    "file": "weapon_perfume_bottle.png",
+    "rect": [
+      100,
+      300,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/weapon_perfume_bottle.png"
+  },
+  {
+    "id": "weapon_moon_phase_dial",
+    "file": "weapon_moon_phase_dial.png",
+    "rect": [
+      400,
+      300,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/weapon_moon_phase_dial.png"
+  },
+  {
+    "id": "weapon_coin_gun",
+    "file": "weapon_coin_gun.png",
+    "rect": [
+      0,
+      400,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/weapon_coin_gun.png"
+  },
+  {
+    "id": "weapon_wrench",
+    "file": "weapon_wrench.png",
+    "rect": [
+      300,
+      400,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/weapon_wrench.png"
+  },
+  {
+    "id": "weapon_cat_trick",
+    "file": "weapon_cat_trick.png",
+    "rect": [
+      400,
+      400,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/weapon_cat_trick.png"
+  },
+  {
+    "id": "weapon_lightwheel",
+    "file": "weapon_lightwheel.png",
+    "rect": [
+      0,
+      500,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/weapon_lightwheel.png"
+  },
+  {
+    "id": "weapon_spirit_conch",
+    "file": "weapon_spirit_conch.png",
+    "rect": [
+      300,
+      500,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/weapon_spirit_conch.png"
+  },
+  {
+    "id": "weapon_leaf",
+    "file": "weapon_leaf.png",
+    "rect": [
+      200,
+      500,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/weapon_leaf.png"
+  },
+  {
+    "id": "weapon_tear",
+    "file": "weapon_tear.png",
+    "rect": [
+      0,
+      600,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/weapon_tear.png"
+  },
+  {
+    "id": "weapon_option",
+    "file": "weapon_option.png",
+    "rect": [
+      100,
+      500,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/weapon_option.png"
+  },
+  {
+    "id": "weapon_replicator",
+    "file": "weapon_replicator.png",
+    "rect": [
+      400,
+      500,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/weapon_replicator.png"
+  },
+  {
+    "id": "weapon_rocket_launcher",
+    "file": "weapon_rocket_launcher.png",
+    "rect": [
+      100,
+      400,
+      100,
+      100
+    ],
+    "confidence": "sure",
+    "note": "",
+    "wiki_path": "../assets/images/wiki/weapon_rocket_launcher.png"
+  }
+]

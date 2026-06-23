@@ -23,20 +23,20 @@ theme:
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: slate
-      accent: blue
+      primary: deep purple
+      accent: amber
       toggle:
         icon: material/brightness-7
         name: 切换到深色模式
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: slate
-      accent: blue
+      primary: deep purple
+      accent: amber
       toggle:
         icon: material/brightness-4
         name: 切换到浅色模式
   font:
-    text: Nunito
+    text: Noto Sans SC
     code: Roboto Mono
   features:
     - navigation.instant
@@ -105,14 +105,12 @@ extra:
 
 nav:
   - 首页: index.md
-  - 百科:
-      - 百科首页: wiki/README.md
-      - 游戏机制: wiki/mechanics.md
-      - 角色: wiki/characters.md
-      - 属性: wiki/attributes.md
-      - 敌人: wiki/enemies.md
-      - 掉落物: wiki/items.md
-      - Buff 与伤害: wiki/buffs-and-damage.md
+  - 概览: wiki/README.md
+  - 游戏机制: wiki/mechanics.md
+  - 角色: wiki/characters.md
+  - 敌人: wiki/enemies.md
+  - 掉落物: wiki/items.md
+  - Buff 与伤害: wiki/buffs-and-damage.md
   - 武器:
       - 武器索引: wiki/weapons/index.md
       - 已实现武器: wiki/weapons/implemented.md
@@ -157,7 +155,3 @@ nav:
       - 计划 · 阴爻: wiki/weapons/planned/yin-yao.md
       - 计划 · 太极: wiki/weapons/planned/taiji.md
       - 计划 · 鼓动的心: wiki/weapons/planned/beating-heart.md
-  - 设计文档:
-      - 补丁决议: patch.md
-  - 维护:
-      - 文档来源与状态: wiki/meta/sources.md

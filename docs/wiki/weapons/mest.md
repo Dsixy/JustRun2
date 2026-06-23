@@ -1,11 +1,21 @@
 # 肉蛋葱鸡
 
+<!-- wiki-weapon-header -->
+<div class="wiki-weapon-sheet" markdown="1">
+<div class="wiki-weapon-sheet__grid" markdown="1">
+<div class="wiki-weapon-sheet__icon"><img src="/JustRun2/assets/images/wiki/weapon_mest.png" alt="肉蛋葱鸡" width="96" height="96"></div>
+<div class="wiki-weapon-sheet__meta" markdown="1">
+
 | 字段 | 值 |
 |------|-----|
 | **ID** | 12 |
 | **资源 Key** | `mest` |
 | **中文名** | 肉蛋葱鸡 |
 | **解锁** | 体力首次到达 20 |
+
+</div>
+</div>
+</div>
 
 ---
 
@@ -37,4 +47,3 @@
 - 攻击间隔：0.6s
 - 基础暴击率：5%
 - 基础暴击伤害：200%
-

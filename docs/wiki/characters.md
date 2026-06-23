@@ -1,6 +1,6 @@
-# 角色
+﻿# 角色
 
-三名可玩角色拥有不同的属性成长、固定绑定的装甲臂与起手武器。八维天赋见 [属性](attributes.md)。
+三名可玩角色拥有不同的属性成长、固定绑定的装甲臂与起手武器。八维天赋说明见 [八维天赋](#八维天赋)。
 
 ---
 
@@ -32,18 +32,18 @@
 
 ## 阿猴 {#阿猴}
 
-<div class="wiki-char-sheet">
+<div class="wiki-char-sheet wiki-char-sheet--profile">
   <div class="wiki-char-sheet__top">
     <div class="wiki-char-sheet__visuals">
       <figure class="wiki-char-frame">
         <div class="wiki-char-frame__media">
-          <p class="wiki-char-frame__placeholder">角色立绘<br>待补</p>
+          <img src="/JustRun2/assets/images/wiki/character_aho.png" alt="阿猴">
         </div>
         <figcaption class="wiki-char-frame__label">阿猴</figcaption>
       </figure>
       <figure class="wiki-char-frame">
         <div class="wiki-char-frame__media">
-          <img src="../assets/images/game/awo_kong.png" alt="悟空臂武装板示意图">
+          <img src="/JustRun2/assets/images/game/awo_kong.png" alt="悟空臂武装板示意图">
         </div>
         <figcaption class="wiki-char-frame__label">悟空臂</figcaption>
       </figure>
@@ -78,18 +78,18 @@
 
 ## 卡莫 {#卡莫}
 
-<div class="wiki-char-sheet">
+<div class="wiki-char-sheet wiki-char-sheet--profile">
   <div class="wiki-char-sheet__top">
     <div class="wiki-char-sheet__visuals">
       <figure class="wiki-char-frame">
         <div class="wiki-char-frame__media">
-          <p class="wiki-char-frame__placeholder">角色立绘<br>待补</p>
+          <img src="/JustRun2/assets/images/wiki/character_carmor.png" alt="卡莫">
         </div>
         <figcaption class="wiki-char-frame__label">卡莫</figcaption>
       </figure>
       <figure class="wiki-char-frame">
         <div class="wiki-char-frame__media">
-          <img src="../assets/images/game/car.png" alt="卡莫臂武装板示意图">
+          <img src="/JustRun2/assets/images/game/car.png" alt="卡莫臂武装板示意图">
         </div>
         <figcaption class="wiki-char-frame__label">卡莫臂</figcaption>
       </figure>
@@ -124,18 +124,18 @@
 
 ## 阿女 {#阿女}
 
-<div class="wiki-char-sheet">
+<div class="wiki-char-sheet wiki-char-sheet--profile">
   <div class="wiki-char-sheet__top">
     <div class="wiki-char-sheet__visuals">
       <figure class="wiki-char-frame">
         <div class="wiki-char-frame__media">
-          <p class="wiki-char-frame__placeholder">角色立绘<br>待补</p>
+          <img src="/JustRun2/assets/images/wiki/character_alew.png" alt="阿女">
         </div>
         <figcaption class="wiki-char-frame__label">阿女</figcaption>
       </figure>
       <figure class="wiki-char-frame">
         <div class="wiki-char-frame__media">
-          <img src="../assets/images/game/lady.png" alt="淑女臂武装板示意图">
+          <img src="/JustRun2/assets/images/game/lady.png" alt="淑女臂武装板示意图">
         </div>
         <figcaption class="wiki-char-frame__label">淑女臂</figcaption>
       </figure>
@@ -168,9 +168,36 @@
 
 ---
 
+## 八维天赋 {#八维天赋}
+
+在 `M` 天赋面板分配，每项 **0～20**，升级每次 **+2** 点。单项满 **20** 可解锁对应武器（见 [已实现武器 · 解锁](weapons/implemented.md)）。
+
+| 属性 | 作用 |
+|------|------|
+| 体力 | 提升最大生命；部分武器伤害与效果受体力加成 |
+| 力量 | 提升部分近战武器伤害 |
+| 启迪 | 提升法术类武器伤害；部分持续伤害受启迪加成 |
+| 敏捷 | 提升移速与暴击率 |
+| 魅力 | 提升部分心灵武器伤害；降低商店价格 |
+| 感知 | 提升拾取范围、金币与经验加成 |
+| 坚韧 | 提升护甲；部分武器伤害受坚韧加成 |
+| 熟练 | 提升部分武器攻速与拾取范围；部分武器伤害受熟练加成 |
+
+### 基础属性
+
+| 属性 | 说明 |
+|------|------|
+| 生命 | 归零即失败 |
+| 移速 | 受敏捷等天赋影响 |
+| 护甲 | 减伤，受坚韧等影响 |
+| 暴击率 | 受敏捷、等级等影响 |
+| 拾取范围 | 受感知、熟练等影响 |
+
+---
+
 ## 未开放角色
 
-<div class="wiki-char-compare">
+<div class="wiki-char-compare wiki-char-compare--duo">
   <div class="wiki-char-compare__item">
     <p class="wiki-char-compare__name">健忘症</p>
     <p class="wiki-char-compare__meta">📋 计划中<br>探索地图极远区域触发剧情</p>

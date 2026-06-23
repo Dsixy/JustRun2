@@ -299,7 +299,7 @@ func popocat_shop():
 	if not GameInfo.get_event("seen_popocat_hint"):
 		var noteName: Array[String] = ["note"]
 		var hint = UIScene._open_ui_group(noteName, {
-			"text": "点击左侧波波猫打开商店",
+			"text": "点击左侧饱饱猫打开商店",
 			"button_text": "知道了",
 		})[0]
 		await hint.click

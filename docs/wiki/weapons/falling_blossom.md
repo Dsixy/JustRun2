@@ -1,11 +1,21 @@
 # 花刀玉手
 
+<!-- wiki-weapon-header -->
+<div class="wiki-weapon-sheet" markdown="1">
+<div class="wiki-weapon-sheet__grid" markdown="1">
+<div class="wiki-weapon-sheet__icon"><img src="/JustRun2/assets/images/wiki/weapon_falling_blossom.png" alt="花刀玉手" width="96" height="96"></div>
+<div class="wiki-weapon-sheet__meta" markdown="1">
+
 | 字段 | 值 |
 |------|-----|
 | **ID** | 4 |
 | **资源 Key** | `falling_blossom` |
 | **中文名** | 花刀玉手 |
 | **解锁** | 解锁 **阿女** |
+
+</div>
+</div>
+</div>
 
 > 花刀玉手，刀光所在，如银辉细雪，如落英缤纷
 
@@ -36,4 +46,3 @@
 - 攻击间隔：1s
 - 基础暴击率：5%
 - 基础暴击伤害：200%
-

@@ -1,11 +1,21 @@
 # 猫之计谋
 
+<!-- wiki-weapon-header -->
+<div class="wiki-weapon-sheet" markdown="1">
+<div class="wiki-weapon-sheet__grid" markdown="1">
+<div class="wiki-weapon-sheet__icon"><img src="/JustRun2/assets/images/wiki/weapon_cat_trick.png" alt="猫之计谋" width="96" height="96"></div>
+<div class="wiki-weapon-sheet__meta" markdown="1">
+
 | 字段 | 值 |
 |------|-----|
 | **ID** | 22 |
 | **资源 Key** | `cat_trick` |
 | **中文名** | 猫之计谋 |
 | **解锁** | 第 9 与第 10 波之间饱饱猫商店 2% 刷新购买 |
+
+</div>
+</div>
+</div>
 
 > 饱饱猫是神秘的商人，神秘的商人总要为自己留点底牌~
 ---

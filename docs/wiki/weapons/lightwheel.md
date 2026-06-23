@@ -1,11 +1,21 @@
 # 极速光轮
 
+<!-- wiki-weapon-header -->
+<div class="wiki-weapon-sheet" markdown="1">
+<div class="wiki-weapon-sheet__grid" markdown="1">
+<div class="wiki-weapon-sheet__icon"><img src="/JustRun2/assets/images/wiki/weapon_lightwheel.png" alt="极速光轮" width="96" height="96"></div>
+<div class="wiki-weapon-sheet__meta" markdown="1">
+
 | 字段 | 值 |
 |------|-----|
 | **ID** | 24 |
 | **资源 Key** | `lightwheel` |
 | **中文名** | 极速光轮 |
 | **解锁** | 默认解锁 |
+
+</div>
+</div>
+</div>
 
 ---
 
@@ -48,7 +58,8 @@
 
 ## 代码 ↔ 文档差异
 
-- 场景未配置 `na`、`descriptions`。
+- 场景未配置 
+a`、`descriptions`。
 - 2 级「大小 +60%」对应代码 `wheelRangeBonus += 0.6`（影响切割范围，非精灵 scale）。
 - 设计写解锁条件；代码 **`DEFAULT_WEAPON_UNLOCKS` 默认解锁**。
 - 二次唤起消耗电量、收回逻辑在 `wheel.gd` 中实现。

@@ -1,11 +1,21 @@
 # 金币枪
 
+<!-- wiki-weapon-header -->
+<div class="wiki-weapon-sheet" markdown="1">
+<div class="wiki-weapon-sheet__grid" markdown="1">
+<div class="wiki-weapon-sheet__icon"><img src="/JustRun2/assets/images/wiki/weapon_coin_gun.png" alt="金币枪" width="96" height="96"></div>
+<div class="wiki-weapon-sheet__meta" markdown="1">
+
 | 字段 | 值 |
 |------|-----|
 | **ID** | 19 |
 | **资源 Key** | `coin_gun` |
 | **中文名** | 金币枪 |
 | **解锁** | 单局获得 6000 金币 |
+
+</div>
+</div>
+</div>
 
 > 你的意思是说，我撒出去的钱，全都会消失吗？
 ---

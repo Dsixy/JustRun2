@@ -18,12 +18,12 @@
 
 ## 邪恶小豆豆
 
-<div class="wiki-char-sheet">
+<div class="wiki-char-sheet wiki-char-sheet--split">
   <div class="wiki-char-sheet__top">
     <div class="wiki-char-sheet__visuals">
       <figure class="wiki-char-frame">
         <div class="wiki-char-frame__media">
-          <p class="wiki-char-frame__placeholder">立绘 · 三等级<br>待补</p>
+          <img src="/JustRun2/assets/images/wiki/enemy_evil_pea.png" alt="邪恶小豆豆">
         </div>
         <figcaption class="wiki-char-frame__label">邪恶小豆豆</figcaption>
       </figure>
@@ -44,12 +44,12 @@
 
 ## 废物
 
-<div class="wiki-char-sheet">
+<div class="wiki-char-sheet wiki-char-sheet--split">
   <div class="wiki-char-sheet__top">
     <div class="wiki-char-sheet__visuals">
       <figure class="wiki-char-frame">
         <div class="wiki-char-frame__media">
-          <p class="wiki-char-frame__placeholder">立绘 · 三等级<br>待补</p>
+          <img src="/JustRun2/assets/images/wiki/enemy_wastewit.png" alt="废物">
         </div>
         <figcaption class="wiki-char-frame__label">废物</figcaption>
       </figure>
@@ -73,12 +73,12 @@
 
 ## 破烂
 
-<div class="wiki-char-sheet">
+<div class="wiki-char-sheet wiki-char-sheet--split">
   <div class="wiki-char-sheet__top">
     <div class="wiki-char-sheet__visuals">
       <figure class="wiki-char-frame">
         <div class="wiki-char-frame__media">
-          <p class="wiki-char-frame__placeholder">立绘 · 三等级<br>待补</p>
+          <img src="/JustRun2/assets/images/wiki/enemy_clunker.png" alt="破烂">
         </div>
         <figcaption class="wiki-char-frame__label">破烂</figcaption>
       </figure>
@@ -100,12 +100,12 @@
 
 ## 垃圾
 
-<div class="wiki-char-sheet">
+<div class="wiki-char-sheet wiki-char-sheet--split">
   <div class="wiki-char-sheet__top">
     <div class="wiki-char-sheet__visuals">
       <figure class="wiki-char-frame">
         <div class="wiki-char-frame__media">
-          <p class="wiki-char-frame__placeholder">立绘 · 三等级<br>待补</p>
+          <img src="/JustRun2/assets/images/wiki/enemy_junk_rush.png" alt="垃圾">
         </div>
         <figcaption class="wiki-char-frame__label">垃圾</figcaption>
       </figure>
@@ -129,12 +129,12 @@
 
 ## 镰刀先生（Boss） {#镰刀先生}
 
-<div class="wiki-char-sheet">
+<div class="wiki-char-sheet wiki-char-sheet--split wiki-char-sheet--boss">
   <div class="wiki-char-sheet__top">
     <div class="wiki-char-sheet__visuals">
       <figure class="wiki-char-frame">
         <div class="wiki-char-frame__media">
-          <p class="wiki-char-frame__placeholder">Boss 立绘<br>待补</p>
+          <img src="/JustRun2/assets/images/wiki/enemy_mr_scythe.png" alt="镰刀先生">
         </div>
         <figcaption class="wiki-char-frame__label">镰刀先生</figcaption>
       </figure>

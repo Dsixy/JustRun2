@@ -1,11 +1,21 @@
 # 唤灵海螺
 
+<!-- wiki-weapon-header -->
+<div class="wiki-weapon-sheet" markdown="1">
+<div class="wiki-weapon-sheet__grid" markdown="1">
+<div class="wiki-weapon-sheet__icon"><img src="/JustRun2/assets/images/wiki/weapon_spirit_conch.png" alt="唤灵海螺" width="96" height="96"></div>
+<div class="wiki-weapon-sheet__meta" markdown="1">
+
 | 字段 | 值 |
 |------|-----|
 | **ID** | 21 |
 | **资源 Key** | `spirit_conch` |
 | **中文名** | 唤灵海螺 |
 | **解锁** | 单局累计失血 ≥ 1000 |
+
+</div>
+</div>
+</div>
 
 ---
 

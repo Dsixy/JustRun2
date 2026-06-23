@@ -1,11 +1,21 @@
 # 浮游炮
 
+<!-- wiki-weapon-header -->
+<div class="wiki-weapon-sheet" markdown="1">
+<div class="wiki-weapon-sheet__grid" markdown="1">
+<div class="wiki-weapon-sheet__icon"><img src="/JustRun2/assets/images/wiki/weapon_option.png" alt="浮游炮" width="96" height="96"></div>
+<div class="wiki-weapon-sheet__meta" markdown="1">
+
 | 字段 | 值 |
 |------|-----|
 | **ID** | 25 |
 | **资源 Key** | `option` |
 | **中文名** | 浮游炮 |
 | **解锁** | 🚫 已禁用（架构待重做） |
+
+</div>
+</div>
+</div>
 
 > 补丁：`option` 即浮游炮。  
 > **当前状态**：已加入 `GameInfo.DISABLED_WEAPONS`，不出现在商店 / 作弊栏；代理攻击架构已撤销，待重做后再启用。
@@ -42,7 +52,8 @@
 
 ## 代码 ↔ 文档差异
 
-- 场景 `na = "Option"`，中文名未改
+- 场景 
+a = "Option"`，中文名未改
 - 设计 1 级「伤害 +5」；代码 L1 **`pass`**，未实装
 - 浮游炮 i 绑定 `inventory[i]`，非独立 UI 槽位
 - 代理攻击（背包武器出射 / 音效 / 场景树）架构不稳定 → **整武器禁用**，相关 `attack_origin` 重构已撤销

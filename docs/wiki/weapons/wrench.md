@@ -1,11 +1,21 @@
 # 扳手
 
+<!-- wiki-weapon-header -->
+<div class="wiki-weapon-sheet" markdown="1">
+<div class="wiki-weapon-sheet__grid" markdown="1">
+<div class="wiki-weapon-sheet__icon"><img src="/JustRun2/assets/images/wiki/weapon_wrench.png" alt="扳手" width="96" height="96"></div>
+<div class="wiki-weapon-sheet__meta" markdown="1">
+
 | 字段 | 值 |
 |------|-----|
 | **ID** | 20 |
 | **资源 Key** | `wrench` |
 | **中文名** | 扳手 |
 | **解锁** | 累计击杀 5000 |
+
+</div>
+</div>
+</div>
 
 ---
 
@@ -35,4 +45,3 @@
 - 炮台攻击间隔：0.8s → 0.6s → 0.3s
 - 基础暴击率：5%（继承玩家暴击率加成）
 - 基础暴击伤害：200%
-

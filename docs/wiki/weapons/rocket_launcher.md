@@ -1,11 +1,21 @@
 # 火箭发射器
 
+<!-- wiki-weapon-header -->
+<div class="wiki-weapon-sheet" markdown="1">
+<div class="wiki-weapon-sheet__grid" markdown="1">
+<div class="wiki-weapon-sheet__icon"><img src="/JustRun2/assets/images/wiki/weapon_rocket_launcher.png" alt="火箭发射器" width="96" height="96"></div>
+<div class="wiki-weapon-sheet__meta" markdown="1">
+
 | 字段 | 值 |
 |------|-----|
 | **ID** | 30 |
 | **资源 Key** | `rocket_launcher` |
 | **中文名** | 火箭发射器 |
 | **解锁** | 击杀 `junk_rush` **0.03%** 概率解锁 |
+
+</div>
+</div>
+</div>
 
 ---
 
@@ -44,5 +54,6 @@
 
 - 设计文档 ID 标注 **(20)**；实装 ID **30**（20 为扳手）。
 - 设计攻击间隔 1s；代码 **0.9s**。
-- 场景未配置 `na`、`descriptions`。
+- 场景未配置 
+a`、`descriptions`。
 - 设计 3 级「3 个准星各 +2 火箭」；代码为 **2 个额外准星** + 主准星，`extraCrosshairNum = 2`。

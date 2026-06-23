@@ -5,6 +5,7 @@
 build/
 *.tmp
 site/
+docs/**/*.import
 docs/assets/images/game/
 docs/assets/images/screenshots/
 docs/assets/images/icon.svg

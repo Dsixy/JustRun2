@@ -1,11 +1,21 @@
 # 外卖员
 
+<!-- wiki-weapon-header -->
+<div class="wiki-weapon-sheet" markdown="1">
+<div class="wiki-weapon-sheet__grid" markdown="1">
+<div class="wiki-weapon-sheet__icon"><img src="/JustRun2/assets/images/wiki/weapon_delivery_guy.png" alt="外卖员" width="96" height="96"></div>
+<div class="wiki-weapon-sheet__meta" markdown="1">
+
 | 字段 | 值 |
 |------|-----|
 | **ID** | 13 |
 | **资源 Key** | `delivery_guy` |
 | **中文名** | 外卖员 |
 | **解锁** | 单局消费 4000 金币 |
+
+</div>
+</div>
+</div>
 
 > *团外卖，恭喜你获得老朋友回归90元消费券！满2000可用
 ---

@@ -1,11 +1,21 @@
 # 泪水
 
+<!-- wiki-weapon-header -->
+<div class="wiki-weapon-sheet" markdown="1">
+<div class="wiki-weapon-sheet__grid" markdown="1">
+<div class="wiki-weapon-sheet__icon"><img src="/JustRun2/assets/images/wiki/weapon_tear.png" alt="泪水" width="96" height="96"></div>
+<div class="wiki-weapon-sheet__meta" markdown="1">
+
 | 字段 | 值 |
 |------|-----|
 | **ID** | 28 |
 | **资源 Key** | `tear` |
 | **中文名** | 泪水 |
 | **解锁** | 累计失败 20 次 |
+
+</div>
+</div>
+</div>
 
 ---
 

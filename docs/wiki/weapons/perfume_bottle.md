@@ -1,11 +1,21 @@
 # 香水瓶
 
+<!-- wiki-weapon-header -->
+<div class="wiki-weapon-sheet" markdown="1">
+<div class="wiki-weapon-sheet__grid" markdown="1">
+<div class="wiki-weapon-sheet__icon"><img src="/JustRun2/assets/images/wiki/weapon_perfume_bottle.png" alt="香水瓶" width="96" height="96"></div>
+<div class="wiki-weapon-sheet__meta" markdown="1">
+
 | 字段 | 值 |
 |------|-----|
 | **ID** | 16 |
 | **资源 Key** | `perfume_bottle` |
 | **中文名** | 香水瓶 |
 | **解锁** | 累计拾取 100 植物 |
+
+</div>
+</div>
+</div>
 
 ---
 
@@ -37,5 +47,4 @@
 - 伤害类型：毒素伤害（Poison）
 - 攻击间隔：0.8s（`intervalBonus` 字段 **未在代码中使用**）
 - 暴击：**不可暴击**
-
 

@@ -1,11 +1,21 @@
 # 霰弹枪
 
+<!-- wiki-weapon-header -->
+<div class="wiki-weapon-sheet" markdown="1">
+<div class="wiki-weapon-sheet__grid" markdown="1">
+<div class="wiki-weapon-sheet__icon"><img src="/JustRun2/assets/images/wiki/weapon_shotgun.png" alt="霰弹枪" width="96" height="96"></div>
+<div class="wiki-weapon-sheet__meta" markdown="1">
+
 | 字段 | 值 |
 |------|-----|
 | **ID** | 2 |
 | **资源 Key** | `shotgun` |
 | **中文名** | 霰弹枪 |
 | **解锁** | 设计为初始拥有 |
+
+</div>
+</div>
+</div>
 
 ---
 
@@ -37,4 +47,3 @@
 - 攻击间隔：0.9s（4 级 0.6s）
 - 基础暴击率：5%
 - 基础暴击伤害：150%（2 级后 200%）
-

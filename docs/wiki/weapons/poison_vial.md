@@ -1,11 +1,21 @@
 # 毒药瓶
 
+<!-- wiki-weapon-header -->
+<div class="wiki-weapon-sheet" markdown="1">
+<div class="wiki-weapon-sheet__grid" markdown="1">
+<div class="wiki-weapon-sheet__icon"><img src="/JustRun2/assets/images/wiki/weapon_poison_vial.png" alt="毒药瓶" width="96" height="96"></div>
+<div class="wiki-weapon-sheet__meta" markdown="1">
+
 | 字段 | 值 |
 |------|-----|
 | **ID** | 10 |
 | **资源 Key** | `poison_vial` |
 | **中文名** | 毒药瓶 |
 | **解锁** | 默认解锁 |
+
+</div>
+</div>
+</div>
 
 ---
 

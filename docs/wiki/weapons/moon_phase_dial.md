@@ -1,11 +1,21 @@
 # 月相盘
 
+<!-- wiki-weapon-header -->
+<div class="wiki-weapon-sheet" markdown="1">
+<div class="wiki-weapon-sheet__grid" markdown="1">
+<div class="wiki-weapon-sheet__icon"><img src="/JustRun2/assets/images/wiki/weapon_moon_phase_dial.png" alt="月相盘" width="96" height="96"></div>
+<div class="wiki-weapon-sheet__meta" markdown="1">
+
 | 字段 | 值 |
 |------|-----|
 | **ID** | 29 |
 | **资源 Key** | `moon_phase_dial` |
 | **中文名** | 月相盘 |
 | **解锁** | 待设计；**已禁用** 🚫 |
+
+</div>
+</div>
+</div>
 
 ---
 
@@ -42,6 +52,7 @@
 ## 代码 ↔ 文档差异
 
 - 列入 `GameInfo.DISABLED_WEAPONS`。
-- 场景未配置 `na`、`descriptions`；无月相/月能专用机制。
+- 场景未配置 
+a`、`descriptions`；无月相/月能专用机制。
 - 与激光剑差异：L3 范围 +0.4（非 +0.45）；L4 戳刺暴伤 +0.5（激光剑 +2）；缩放 ×3（激光剑 ×4）。
 - 设计文档中的月相系统 **未实装**。

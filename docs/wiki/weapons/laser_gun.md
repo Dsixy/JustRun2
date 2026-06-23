@@ -1,11 +1,21 @@
 # 激光枪
 
+<!-- wiki-weapon-header -->
+<div class="wiki-weapon-sheet" markdown="1">
+<div class="wiki-weapon-sheet__grid" markdown="1">
+<div class="wiki-weapon-sheet__icon"><img src="/JustRun2/assets/images/wiki/weapon_laser_gun.png" alt="激光枪" width="96" height="96"></div>
+<div class="wiki-weapon-sheet__meta" markdown="1">
+
 | 字段 | 值 |
 |------|-----|
 | **ID** | 11 |
 | **资源 Key** | `laser_gun` |
 | **中文名** | 激光枪 | 
 | **解锁** | 解锁 **卡莫** |
+
+</div>
+</div>
+</div>
 
 > 人们常常问卡莫是怎么制作如此强大的武器的，卡莫总是笑笑不回答，它不会告诉别人：自己偷偷考取了电子工程博士学位
 ---
@@ -35,4 +45,3 @@
 - 攻击间隔：1.2-0.02x熟练-(0.4)
 - 基础暴击率：5%
 - 基础暴击伤害：150%
-

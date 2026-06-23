@@ -62,5 +62,10 @@ git clone https://github.com/Doney123/JustRun2.git
 
 这个项目就当是练手，练习一下自己的代码能力，也希望能在这个项目中学习到一些东西。对于整个游戏的设计，我会考虑公开我的设计文档。
 
+# 🛠 开发
+
+- **验证**：`powershell -NoProfile -ExecutionPolicy Bypass -File scripts/validate.ps1`（需 Godot 4.2.2+）
+- **玩家百科**：[在线 Wiki](https://dsixy.github.io/JustRun2/wiki/) · 源文件在 `docs/wiki/`
+- **本地预览百科**：`pip install -r wiki/requirements.txt`，再运行 `powershell -File wiki/build.ps1 -Serve`
 
 

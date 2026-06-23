@@ -32,5 +32,6 @@
 
 - 列入 `GameInfo.DISABLED_WEAPONS`，不进商店池。
 - `upgrade()` 使用 `slashScale`、`anis`、`pierceCritRate` 等 **未声明字段**；`attack()` 未使用 `calculate_damage()` 结果。
-- 场景未配置 `id`、`na`、`descriptions`。
+- 场景未配置 `id`、
+a`、`descriptions`。
 - 关联大力士 3000 杀剧情，解锁事件 **未接入**。

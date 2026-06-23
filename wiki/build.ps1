@@ -1,6 +1,7 @@
 # Prepare image assets and build the wiki locally.
 param(
-    [switch]$Serve
+    [switch]$Serve,
+    [switch]$RefreshImages
 )
 
 $ErrorActionPreference = "Stop"
@@ -13,6 +14,11 @@ $shotDir = Join-Path $Root "docs/assets/images/screenshots"
 $assetsDir = Join-Path $Root "docs/assets/images"
 
 New-Item -ItemType Directory -Force -Path $gameDir, $shotDir | Out-Null
+
+if ($RefreshImages) {
+    python (Join-Path $PSScriptRoot "apply_wiki_images.py")
+    python (Join-Path $PSScriptRoot "patch_weapon_pages.py")
+}
 
 Copy-Item -Force (Join-Path $Root "icon.svg") $assetsDir
 Copy-Item -Force (Join-Path $Root "asset/image/*.png") $gameDir

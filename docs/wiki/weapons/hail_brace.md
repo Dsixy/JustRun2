@@ -1,11 +1,21 @@
 # 冰霜手镯
 
+<!-- wiki-weapon-header -->
+<div class="wiki-weapon-sheet" markdown="1">
+<div class="wiki-weapon-sheet__grid" markdown="1">
+<div class="wiki-weapon-sheet__icon"><img src="/JustRun2/assets/images/wiki/weapon_hail_brace.png" alt="冰霜手镯" width="96" height="96"></div>
+<div class="wiki-weapon-sheet__meta" markdown="1">
+
 | 字段 | 值 |
 |------|-----|
 | **ID** | 6 |
 | **资源 Key** | `hail_brace` |
 | **中文名** | 冰霜手镯 |
 | **解锁** | 等级首次到达 10（代码已接入） |
+
+</div>
+</div>
+</div>
 
 > 冰冷的手镯，通过的气流都会变成凛冽的寒风，有很多妙用，但是什么就别问了。
 

@@ -1,11 +1,21 @@
 # 叶子
 
+<!-- wiki-weapon-header -->
+<div class="wiki-weapon-sheet" markdown="1">
+<div class="wiki-weapon-sheet__grid" markdown="1">
+<div class="wiki-weapon-sheet__icon"><img src="/JustRun2/assets/images/wiki/weapon_leaf.png" alt="叶子" width="96" height="96"></div>
+<div class="wiki-weapon-sheet__meta" markdown="1">
+
 | 字段 | 值 |
 |------|-----|
 | **ID** | 27 |
 | **资源 Key** | `leaf` |
 | **中文名** | 叶子 |
 | **解锁** | 累计拾取 50 个蓝山绿叶 |
+
+</div>
+</div>
+</div>
 
 >好朋友点外卖的备注名字，我觉得还莫名可爱的
 ---

@@ -1,11 +1,21 @@
 # 漫画书
 
+<!-- wiki-weapon-header -->
+<div class="wiki-weapon-sheet" markdown="1">
+<div class="wiki-weapon-sheet__grid" markdown="1">
+<div class="wiki-weapon-sheet__icon"><img src="/JustRun2/assets/images/wiki/weapon_comic_book.png" alt="漫画书" width="96" height="96"></div>
+<div class="wiki-weapon-sheet__meta" markdown="1">
+
 | 字段 | 值 |
 |------|-----|
 | **武器 ID** | 15 |
 | **资源 Key** | `comic_book` |
 | **中文名** | 漫画书 |
 | **解锁** | 首次击败镰刀先生 |
+
+</div>
+</div>
+</div>
 
 > 坚持住！猴超人会来拯救我们的！
 ---

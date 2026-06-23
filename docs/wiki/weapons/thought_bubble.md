@@ -1,11 +1,21 @@
 # 思维泡泡
 
+<!-- wiki-weapon-header -->
+<div class="wiki-weapon-sheet" markdown="1">
+<div class="wiki-weapon-sheet__grid" markdown="1">
+<div class="wiki-weapon-sheet__icon"><img src="/JustRun2/assets/images/wiki/weapon_thought_bubble.png" alt="思维泡泡" width="96" height="96"></div>
+<div class="wiki-weapon-sheet__meta" markdown="1">
+
 | 字段 | 值 |
 |------|-----|
 | **ID** | 5 |
 | **资源 Key** | `thought_bubble` |
 | **中文名** | 思维泡泡 |
 | **解锁** | 启迪首次到达 20 |
+
+</div>
+</div>
+</div>
 
 ---
 
@@ -36,4 +46,3 @@
 - 0～2 级：每颗泡泡命中 5 次后消失；场上仍有泡泡时不会再次召唤
 - 攻击间隔：0.6s
 - 暴击：代码 **不可暴击**（`baseCritRate = 0`，泡泡命中硬编码 `isCrit = false`）
-

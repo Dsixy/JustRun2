@@ -1,11 +1,21 @@
 # 群星之怒
 
+<!-- wiki-weapon-header -->
+<div class="wiki-weapon-sheet" markdown="1">
+<div class="wiki-weapon-sheet__grid" markdown="1">
+<div class="wiki-weapon-sheet__icon"><img src="/JustRun2/assets/images/wiki/weapon_stellar_wrath.png" alt="群星之怒" width="96" height="96"></div>
+<div class="wiki-weapon-sheet__meta" markdown="1">
+
 | 字段 | 值 |
 |------|-----|
 | **ID** | 7 |
 | **资源 Key** | `stellar_wrath` |
 | **中文名** | 群星之怒 |
 | **解锁** | 卡莫单局击杀 1000 |
+
+</div>
+</div>
+</div>
 
 ---
 

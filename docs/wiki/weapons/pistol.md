@@ -1,4 +1,10 @@
-﻿# 手枪
+# 手枪
+
+<!-- wiki-weapon-header -->
+<div class="wiki-weapon-sheet" markdown="1">
+<div class="wiki-weapon-sheet__grid" markdown="1">
+<div class="wiki-weapon-sheet__icon"><img src="/JustRun2/assets/images/wiki/weapon_pistol.png" alt="手枪" width="96" height="96"></div>
+<div class="wiki-weapon-sheet__meta" markdown="1">
 
 | 字段 | 值 |
 |------|-----|
@@ -6,6 +12,10 @@
 | **资源 Key** | `pistol` |
 | **中文名** | 手枪 |
 | **解锁** | 默认解锁 |
+
+</div>
+</div>
+</div>
 
 ---
 
@@ -36,4 +46,3 @@
 - 精准度：0.8 + 0.01 × 熟练
 - 基础暴击率：5%
 - 基础暴击伤害：200%
-

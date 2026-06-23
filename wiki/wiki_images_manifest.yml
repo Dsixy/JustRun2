@@ -1,0 +1,151 @@
+# Wiki 图片映射 — Rect2(x,y,w,h) 来自 scene 资源
+# confidence: sure = 单图/icon 明确 | review = 组合精灵/代表性部件，需人工确认
+
+output_dir: docs/assets/images/wiki
+
+images:
+  # —— 角色（组合精灵，用 Head/Body 代表）——
+  character_aho:
+    rect: [1500, 0, 100, 100]
+    file: character_aho.png
+    confidence: review
+    note: 阿猴 Body 部件；完整角色含 Hair/Tail
+    sources: [scene/player/aho.tscn]
+
+  character_carmor:
+    rect: [1000, 300, 100, 100]
+    file: character_carmor.png
+    confidence: review
+    note: 卡莫 Head 部件；含耳朵/刘海
+    sources: [scene/player/carmor.tscn]
+
+  character_alew:
+    rect: [700, 200, 100, 100]
+    file: character_alew.png
+    confidence: review
+    note: 阿女 Head 部件；含双马尾/皇冠
+    sources: [scene/player/alew.tscn]
+
+  # —— 敌人 ——
+  enemy_evil_pea:
+    rect: [1500, 200, 100, 100]
+    file: enemy_evil_pea.png
+    confidence: sure
+    note: 邪恶小豆豆；三等级靠 modulate 变色
+    sources: [scene/enemy/evil_pea.tscn]
+
+  enemy_wastewit:
+    rect: [800, 100, 200, 100]
+    file: enemy_wastewit.png
+    confidence: review
+    note: 废物 Head；Body/腿为独立图块
+    sources: [scene/enemy/wastewit.tscn]
+
+  enemy_clunker:
+    rect: [1200, 200, 200, 100]
+    file: enemy_clunker.png
+    confidence: review
+    note: 破烂 Head；Body 为 1000,100 200×200
+    sources: [scene/enemy/clunker.tscn]
+
+  enemy_junk_rush:
+    rect: [1000, 0, 200, 100]
+    file: enemy_junk_rush.png
+    confidence: review
+    note: 垃圾 Head；组合精灵
+    sources: [scene/enemy/junk_rush.tscn]
+
+  enemy_mr_scythe:
+    rect: [1500, 300, 100, 100]
+    file: enemy_mr_scythe.png
+    confidence: review
+    note: 镰刀先生 Head；Body/镰刀为独立图块
+    sources: [scene/enemy/mr_scythe.tscn]
+
+  # —— 掉落物 ——
+  exp_gem_basic:
+    rect: [1300, 900, 100, 100]
+    file: exp_gem_basic.png
+    confidence: sure
+    note: 经验宝石 hframes 第 1 帧
+    sources: [scene/item/exp_gem.tscn]
+
+  exp_gem_mid:
+    rect: [1400, 900, 100, 100]
+    file: exp_gem_mid.png
+    confidence: sure
+    note: 经验宝石 hframes 第 2 帧
+    sources: [scene/item/exp_gem.tscn]
+
+  exp_gem_high:
+    rect: [1500, 900, 100, 100]
+    file: exp_gem_high.png
+    confidence: sure
+    note: 经验宝石 hframes 第 3 帧
+    sources: [scene/item/exp_gem.tscn]
+
+  coin:
+    rect: [1500, 600, 100, 100]
+    file: coin.png
+    confidence: sure
+    sources: [scene/item/carmor_coin.tscn]
+
+  plant_hyacinth:
+    rect: [1400, 800, 100, 100]
+    file: plant_hyacinth.png
+    confidence: sure
+    sources: [scene/item/hyacinth.tscn]
+
+  plant_blue_mountain_leaf:
+    rect: [1100, 800, 100, 100]
+    file: plant_blue_mountain_leaf.png
+    confidence: sure
+    sources: [scene/item/blue_mountain_leaf.tscn]
+
+  plant_wine_rose:
+    rect: [1300, 800, 100, 100]
+    file: plant_wine_rose.png
+    confidence: sure
+    sources: [scene/item/wine_rose.tscn]
+
+  plant_raindrop_jasmine:
+    rect: [1200, 800, 100, 100]
+    file: plant_raindrop_jasmine.png
+    confidence: sure
+    sources: [scene/item/raindrop_jasmine.tscn]
+
+  plant_catnip:
+    rect: [1000, 800, 100, 100]
+    file: plant_catnip.png
+    confidence: sure
+    sources: [scene/item/catnip.tscn]
+
+  # —— 武器 icon（scene/weapon 首 AtlasTexture）——
+  weapon_pistol: { rect: [0, 0, 100, 100], file: weapon_pistol.png, confidence: sure, sources: [scene/weapon/pistol.tscn] }
+  weapon_sniping_riffe: { rect: [100, 0, 100, 100], file: weapon_sniping_riffe.png, confidence: sure, sources: [scene/weapon/sniping_riffe.tscn] }
+  weapon_shotgun: { rect: [200, 0, 100, 100], file: weapon_shotgun.png, confidence: sure, sources: [scene/weapon/shotgun.tscn] }
+  weapon_laser_sword: { rect: [300, 0, 100, 100], file: weapon_laser_sword.png, confidence: sure, sources: [scene/weapon/laser_sword.tscn] }
+  weapon_falling_blossom: { rect: [400, 0, 100, 100], file: weapon_falling_blossom.png, confidence: sure, sources: [scene/weapon/falling_blossom.tscn] }
+  weapon_thought_bubble: { rect: [0, 100, 100, 100], file: weapon_thought_bubble.png, confidence: sure, sources: [scene/weapon/thought_bubble.tscn] }
+  weapon_hail_brace: { rect: [100, 100, 100, 100], file: weapon_hail_brace.png, confidence: sure, sources: [scene/weapon/hail_brace.tscn] }
+  weapon_stellar_wrath: { rect: [200, 100, 100, 100], file: weapon_stellar_wrath.png, confidence: sure, sources: [scene/weapon/stellar_wrath.tscn] }
+  weapon_poker: { rect: [300, 100, 100, 100], file: weapon_poker.png, confidence: sure, sources: [scene/weapon/poker.tscn] }
+  weapon_song_of_soul: { rect: [400, 100, 100, 100], file: weapon_song_of_soul.png, confidence: sure, sources: [scene/weapon/song_of_soul.tscn] }
+  weapon_poison_vial: { rect: [0, 200, 100, 100], file: weapon_poison_vial.png, confidence: sure, sources: [scene/weapon/poison_vial.tscn] }
+  weapon_laser_gun: { rect: [100, 200, 100, 100], file: weapon_laser_gun.png, confidence: sure, sources: [scene/weapon/laser_gun.tscn] }
+  weapon_mest: { rect: [200, 200, 100, 100], file: weapon_mest.png, confidence: sure, sources: [scene/weapon/mest.tscn] }
+  weapon_delivery_guy: { rect: [300, 200, 100, 100], file: weapon_delivery_guy.png, confidence: sure, sources: [scene/weapon/delivery_guy.tscn] }
+  weapon_spider_silk: { rect: [400, 200, 100, 100], file: weapon_spider_silk.png, confidence: sure, sources: [scene/weapon/spider_silk.tscn] }
+  weapon_comic_book: { rect: [0, 300, 100, 100], file: weapon_comic_book.png, confidence: sure, sources: [scene/weapon/comic_book.tscn] }
+  weapon_perfume_bottle: { rect: [100, 300, 100, 100], file: weapon_perfume_bottle.png, confidence: sure, sources: [scene/weapon/perfume_bottle.tscn] }
+  weapon_moon_phase_dial: { rect: [400, 300, 100, 100], file: weapon_moon_phase_dial.png, confidence: sure, sources: [scene/weapon/moon_phase_dial.tscn] }
+  weapon_coin_gun: { rect: [0, 400, 100, 100], file: weapon_coin_gun.png, confidence: sure, sources: [scene/weapon/coin_gun.tscn] }
+  weapon_wrench: { rect: [300, 400, 100, 100], file: weapon_wrench.png, confidence: sure, sources: [scene/weapon/wrench.tscn] }
+  weapon_cat_trick: { rect: [400, 400, 100, 100], file: weapon_cat_trick.png, confidence: sure, sources: [scene/weapon/cat_trick.tscn] }
+  weapon_lightwheel: { rect: [0, 500, 100, 100], file: weapon_lightwheel.png, confidence: sure, sources: [scene/weapon/lightwheel.tscn] }
+  weapon_spirit_conch: { rect: [300, 500, 100, 100], file: weapon_spirit_conch.png, confidence: sure, sources: [scene/weapon/spirit_conch.tscn] }
+  weapon_leaf: { rect: [200, 500, 100, 100], file: weapon_leaf.png, confidence: sure, sources: [scene/weapon/leaf.tscn] }
+  weapon_tear: { rect: [0, 600, 100, 100], file: weapon_tear.png, confidence: sure, sources: [scene/weapon/tear.tscn] }
+  weapon_option: { rect: [100, 500, 100, 100], file: weapon_option.png, confidence: sure, sources: [scene/weapon/option.tscn] }
+  weapon_replicator: { rect: [400, 500, 100, 100], file: weapon_replicator.png, confidence: sure, sources: [scene/weapon/replicator.tscn] }
+  weapon_rocket_launcher: { rect: [100, 400, 100, 100], file: weapon_rocket_launcher.png, confidence: sure, sources: [scene/weapon/rocket_launcher.tscn] }

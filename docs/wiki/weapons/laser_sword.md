@@ -1,11 +1,21 @@
 # 激光剑
 
+<!-- wiki-weapon-header -->
+<div class="wiki-weapon-sheet" markdown="1">
+<div class="wiki-weapon-sheet__grid" markdown="1">
+<div class="wiki-weapon-sheet__icon"><img src="/JustRun2/assets/images/wiki/weapon_laser_sword.png" alt="激光剑" width="96" height="96"></div>
+<div class="wiki-weapon-sheet__meta" markdown="1">
+
 | 字段 | 值 |
 |------|-----|
 | **ID** | 3 |
 | **资源 Key** | `laser_sword` |
 | **中文名** | 激光剑 |
 | **解锁** | 设计为初始拥有|
+
+</div>
+</div>
+</div>
 
 > 一把炫酷的激光剑。「真帅吧？」
 
@@ -45,4 +55,3 @@
 
 - 场景 L4 文案「暴击伤害挺高 200%」；代码为 `pierceCritDamage += 2`，即戳刺暴伤从 200% 升至 **400%**。
 - 攻击范围倍率：`slashScale × 4`（0 级 scale 1.0）。
-
